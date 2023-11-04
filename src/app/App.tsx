@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
 
-import { TelegramUserProvider } from './providers/TelegramUserProvider';
 import { Router } from './router/Router';
 import './styles/index.scss';
 
@@ -15,10 +14,8 @@ export function App() {
   }, []);
 
   return (
-    <TelegramUserProvider>
-      <BrowserRouter>
-        <Router />;
-      </BrowserRouter>
-    </TelegramUserProvider>
+    <BrowserRouter>
+      <Router />;
+    </BrowserRouter>
   );
 }
