@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { TelegramUserProvider } from './providers/TelegramUserProvider';
 import './styles/index.scss';
 
 const tg = window.Telegram.WebApp;
@@ -16,13 +17,13 @@ export function App() {
   };
 
   return (
-    <div>
+    <TelegramUserProvider>
       <div>window.Telegram.WebApp</div>
       <pre>{JSON.stringify(tg.initDataUnsafe, null, 2)}</pre>
       <button onClick={onClose}>Закрыть</button>
       <div>
         username: <div className="username"></div>
       </div>
-    </div>
+    </TelegramUserProvider>
   );
 }
