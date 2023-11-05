@@ -9,7 +9,7 @@ export function MileageFields() {
 
   const optionMapLabel = new Map<string, string>();
   optionMapLabel.set('', 'Не выбрано');
-  for (let i = 10000; i < 100000; i++) {
+  for (let i = 10000; i < 100000; i += 10000) {
     optionMapLabel.set(i.toString(), i.toString());
   }
   optionMapLabel.set('150000', '150000');

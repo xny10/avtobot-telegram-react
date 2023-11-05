@@ -7,6 +7,7 @@ export type IFilterShort = {
   id: string;
   name: string;
   variants: IVariantShort[];
+  isActive: boolean;
 };
 
 export type IFilterEngine = 'petrol' | 'diesel' | 'electric' | 'gas' | 'hybrid' | '';
