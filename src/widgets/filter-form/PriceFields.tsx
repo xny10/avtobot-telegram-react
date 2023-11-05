@@ -14,8 +14,8 @@ export function PriceFields() {
     <RangedInput
       title="Цена"
       onClear={onClear}
-      leftInput={<RHFTextField control={control} name="price.0" placeholder="от" type="number" />}
-      rightInput={<RHFTextField control={control} name="price.1" placeholder="от" type="number" />}
+      LeftInput={<RHFTextField control={control} name="price.0" placeholder="от" type="number" />}
+      RightInput={<RHFTextField control={control} name="price.1" placeholder="от" type="number" />}
     />
   );
 }

@@ -17,6 +17,7 @@ export function App() {
     tg.HapticFeedback.impactOccurred('soft');
   }, []);
 
+
   return (
     <ReactQueryProvider>
       <StyledEngineProvider injectFirst>

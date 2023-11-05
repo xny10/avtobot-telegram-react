@@ -4,6 +4,7 @@ import { IFilter } from 'shared/types';
 import { RHFTextField } from 'ui/react-hook-form/rhf-text-field';
 
 import { FuelField } from './FuelField';
+import { LocationField } from './LocationField';
 import { ManufactureDateFields } from './ManufactureDateFields';
 import { MileageFields } from './MileageFields';
 import { PriceFields } from './PriceFields';
@@ -30,6 +31,7 @@ export function FilterForm({ defaultValues }: FilterFormProps) {
     <FormProvider {...fields}>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <RHFTextField control={control} name="name" label="Название" />
+        <LocationField />
         <PriceFields />
         <ManufactureDateFields />
         <MileageFields />

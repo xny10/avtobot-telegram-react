@@ -13,7 +13,28 @@
 }
 
 .double_field_divider {
+  flex: 0 0 20px;
   width: 20px;
   height: 1px;
   background-color: var(--tg-theme-text-color);
+}
+
+.select_label {
+  color: var(--tg-theme-hint-color);
+
+  &.Mui-focused {
+    color: var(--tg-theme-button-color);
+  }
+}
+
+.region_select_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.regions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }

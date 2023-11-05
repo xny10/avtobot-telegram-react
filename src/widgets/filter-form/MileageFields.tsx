@@ -3,6 +3,8 @@ import { RangedInput } from 'features/filter/ui/ranged-input';
 import { useFormContext } from 'react-hook-form';
 import { RHFSelect } from 'ui/react-hook-form/rhf-select';
 
+import styles from './styles.module.scss';
+
 export function MileageFields() {
   const { control, setValue } = useFormContext();
 
@@ -33,7 +35,7 @@ export function MileageFields() {
     <RangedInput
       title="Пробег, км"
       onClear={onClear}
-      leftInput={
+      LeftInput={
         <RHFSelect
           options={options}
           control={control}
@@ -41,13 +43,14 @@ export function MileageFields() {
           label="от"
           renderOption={renderOption}
           labelProps={{
+            className: styles.select_label,
             style: {
               left: -13,
             },
           }}
         />
       }
-      rightInput={
+      RightInput={
         <RHFSelect
           options={options}
           control={control}
@@ -58,6 +61,7 @@ export function MileageFields() {
             placeholder: 'до',
           }}
           labelProps={{
+            className: styles.select_label,
             style: {
               left: -13,
             },
