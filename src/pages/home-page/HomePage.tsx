@@ -1,4 +1,5 @@
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { BaseLayout } from 'ui/base-layout';
 
 export function HomePage() {
   const { tg } = useTelegram();
@@ -8,10 +9,10 @@ export function HomePage() {
   };
 
   return (
-    <div>
+    <BaseLayout title="Мои фильтры">
       <div>window.Telegram.WebApp</div>
       <pre>{JSON.stringify(tg.initDataUnsafe, null, 2)}</pre>
       <button onClick={onClose}>Закрыть</button>
-    </div>
+    </BaseLayout>
   );
 }
