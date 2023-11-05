@@ -31,7 +31,7 @@ export function ManufactureDateFields() {
     <RangedInput
       title="Год выпуска"
       onClear={onClear}
-      leftInput={
+      LeftInput={
         <RHFSelect
           options={options}
           control={control}
@@ -46,7 +46,7 @@ export function ManufactureDateFields() {
           }}
         />
       }
-      rightInput={
+      RightInput={
         <RHFSelect
           options={options}
           control={control}

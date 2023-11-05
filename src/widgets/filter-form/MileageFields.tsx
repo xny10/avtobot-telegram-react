@@ -35,7 +35,7 @@ export function MileageFields() {
     <RangedInput
       title="Пробег, км"
       onClear={onClear}
-      leftInput={
+      LeftInput={
         <RHFSelect
           options={options}
           control={control}
@@ -50,7 +50,7 @@ export function MileageFields() {
           }}
         />
       }
-      rightInput={
+      RightInput={
         <RHFSelect
           options={options}
           control={control}
