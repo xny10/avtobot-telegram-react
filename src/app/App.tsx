@@ -19,7 +19,7 @@ export function App() {
     <StyledEngineProvider injectFirst>
       <ThemeProvider>
         <BrowserRouter>
-          <Router />;
+          <Router />
         </BrowserRouter>
       </ThemeProvider>
     </StyledEngineProvider>
