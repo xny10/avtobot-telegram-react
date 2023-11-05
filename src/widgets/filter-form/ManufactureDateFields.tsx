@@ -1,11 +1,10 @@
-import { MenuItem, Typography } from '@mui/material';
+import { MenuItem } from '@mui/material';
+import { RangedInput } from 'features/filter/ui/ranged-input';
 import { useFormContext } from 'react-hook-form';
 import { RHFSelect } from 'ui/react-hook-form/rhf-select';
 
-import styles from './styles.module.scss';
-
 export function ManufactureDateFields() {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
 
   const optionMapLabel = new Map<string, string>();
   optionMapLabel.set('', 'Не выбрано');
@@ -21,10 +20,16 @@ export function ManufactureDateFields() {
     </MenuItem>
   );
 
+  const onClear = () => {
+    setValue('manufactureYear.0', '');
+    setValue('manufactureYear.1', '');
+  };
+
   return (
-    <div>
-      <Typography>Год выпуска</Typography>
-      <div className={styles.double_field}>
+    <RangedInput
+      title="Год выпуска"
+      onClear={onClear}
+      leftInput={
         <RHFSelect
           options={options}
           control={control}
@@ -37,7 +42,8 @@ export function ManufactureDateFields() {
             },
           }}
         />
-        <div className={styles.double_field_divider} />
+      }
+      rightInput={
         <RHFSelect
           options={options}
           control={control}
@@ -53,7 +59,7 @@ export function ManufactureDateFields() {
             },
           }}
         />
-      </div>
-    </div>
+      }
+    />
   );
 }

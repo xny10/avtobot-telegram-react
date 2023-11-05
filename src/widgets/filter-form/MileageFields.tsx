@@ -1,11 +1,10 @@
-import { MenuItem, Typography } from '@mui/material';
+import { MenuItem } from '@mui/material';
+import { RangedInput } from 'features/filter/ui/ranged-input';
 import { useFormContext } from 'react-hook-form';
 import { RHFSelect } from 'ui/react-hook-form/rhf-select';
 
-import styles from './styles.module.scss';
-
 export function MileageFields() {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
 
   const optionMapLabel = new Map<string, string>();
   optionMapLabel.set('', 'Не выбрано');
@@ -25,10 +24,16 @@ export function MileageFields() {
     </MenuItem>
   );
 
+  const onClear = () => {
+    setValue('mileage.0', '');
+    setValue('mileage.1', '');
+  };
+
   return (
-    <div>
-      <Typography>Пробег, км</Typography>
-      <div className={styles.double_field}>
+    <RangedInput
+      title="Пробег, км"
+      onClear={onClear}
+      leftInput={
         <RHFSelect
           options={options}
           control={control}
@@ -41,7 +46,8 @@ export function MileageFields() {
             },
           }}
         />
-        <div className={styles.double_field_divider} />
+      }
+      rightInput={
         <RHFSelect
           options={options}
           control={control}
@@ -57,7 +63,7 @@ export function MileageFields() {
             },
           }}
         />
-      </div>
-    </div>
+      }
+    />
   );
 }

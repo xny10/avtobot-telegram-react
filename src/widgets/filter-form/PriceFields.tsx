@@ -1,20 +1,21 @@
-import { Typography } from '@mui/material';
+import { RangedInput } from 'features/filter/ui/ranged-input';
 import { useFormContext } from 'react-hook-form';
 import { RHFTextField } from 'ui/react-hook-form/rhf-text-field';
 
-import styles from './styles.module.scss';
-
 export function PriceFields() {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
+
+  const onClear = () => {
+    setValue('price.0', '');
+    setValue('price.1', '');
+  };
 
   return (
-    <div>
-      <Typography>Цена</Typography>
-      <div className={styles.double_field}>
-        <RHFTextField control={control} name="price.0" placeholder="от" type="number" />
-        <div className={styles.double_field_divider} />
-        <RHFTextField control={control} name="price.1" placeholder="до" type="number" />
-      </div>
-    </div>
+    <RangedInput
+      title="Цена"
+      onClear={onClear}
+      leftInput={<RHFTextField control={control} name="price.0" placeholder="от" type="number" />}
+      rightInput={<RHFTextField control={control} name="price.1" placeholder="от" type="number" />}
+    />
   );
 }
