@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.double_field {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.double_field_divider {
+  width: 20px;
+  height: 1px;
+  background-color: var(--tg-theme-text-color);
+}
