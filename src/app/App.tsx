@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
 
+import { ReactQueryProvider } from './providers/ReactQueryProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
 import { Router } from './router/Router';
 import './styles/index.scss';
@@ -16,12 +17,14 @@ export function App() {
   }, []);
 
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <ReactQueryProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </ReactQueryProvider>
   );
 }
