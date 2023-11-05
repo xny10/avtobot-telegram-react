@@ -1,12 +1,39 @@
-import { TextField } from '@mui/material';
+import { Chip } from '@mui/material';
 import { TabbedInput } from 'features/filter/ui/tabbed-input';
 import { useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { RHFSelect } from 'ui/react-hook-form/rhf-select';
+
+import styles from './styles.module.scss';
 
 export function LocationField() {
   const { control } = useFormContext();
 
   const [activeTabKey, setActiveTabKey] = useState('regions');
+
+  const cityOptions: string[] = ['Ростов-на-Дону', 'Москва', 'Таганрог'];
+  const CitySelect = <RHFSelect control={control} name="city" options={cityOptions} />;
+
+  const regionOptions: string[] = ['Ростовская обл.', 'Москва', 'Подмосковье', 'Адыгея', 'Тюменская обл.'];
+
+  const regions: string[] = useWatch({ name: 'region' });
+
+  const RegionSelect = (
+    <div className={styles.region_select_wrapper}>
+      <RHFSelect
+        multiple
+        control={control}
+        name="region"
+        options={regionOptions}
+        renderValue={() => 'Выбрать регион'}
+      />
+      <div className={styles.regions}>
+        {regions.map((region) => (
+          <Chip key={region} size="small" label={region} />
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <TabbedInput
@@ -14,8 +41,8 @@ export function LocationField() {
       activeTabKey={activeTabKey}
       setActiveTabKey={(tabKey) => setActiveTabKey(tabKey)}
       variants={[
-        { tabKey: 'regions', title: 'Регионы', Input: <TextField fullWidth label="Регионы" /> },
-        { tabKey: 'city', title: 'Город', Input: <TextField fullWidth label="Город" /> },
+        { tabKey: 'regions', title: 'Регионы', Input: RegionSelect },
+        { tabKey: 'city', title: 'Город', Input: CitySelect },
       ]}
     />
   );

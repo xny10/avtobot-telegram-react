@@ -10,5 +10,6 @@ export const filterMock: IFilter = {
   manufactureYear: ['1996', '2023'],
   mileage: ['20000', '150000'],
   engineType: 'petrol',
-  city: 'Rostov-on-Don',
+  city: 'Ростов-на-Дону',
+  region: ['Ростовская обл.'],
 };
