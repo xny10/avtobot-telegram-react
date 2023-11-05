@@ -14,6 +14,7 @@ export function App() {
   useEffect(() => {
     tg.ready();
     if (!tg.isExpanded) tg.expand();
+    tg.HapticFeedback.impactOccurred('soft');
   }, []);
 
   return (
