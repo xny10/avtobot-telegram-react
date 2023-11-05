@@ -1,8 +1,9 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { IconButton, Typography } from '@mui/material';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { useTelegramScrollLock } from 'shared/hooks/useTelegramScrollLock';
 
 import styles from './styles.module.scss';
 
@@ -20,8 +21,10 @@ export function BaseLayout({ children, title, backLinkBehavior = 'exit_telegram'
     else navigate(-1);
   };
 
+  const { scrollableRef, contentRef } = useTelegramScrollLock();
+
   return (
-    <div className={styles.layout_root}>
+    <div className={styles.layout_root} ref={scrollableRef}>
       <header className={styles.header}>
         <IconButton onClick={onClose} className={styles.exit_button}>
           <ArrowBackIcon className={styles.icon} />
@@ -30,7 +33,9 @@ export function BaseLayout({ children, title, backLinkBehavior = 'exit_telegram'
           {title}
         </Typography>
       </header>
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main} ref={contentRef}>
+        {children}
+      </main>
     </div>
   );
 }
