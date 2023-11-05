@@ -1,7 +1,7 @@
-.form {
+.header {
   display: flex;
-  flex-direction: column;
-  gap: 25px;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .double_field {
@@ -16,4 +16,8 @@
   width: 20px;
   height: 1px;
   background-color: var(--tg-theme-text-color);
+}
+
+.clear_button {
+  color: var(--tg-theme-hint-color);
 }
