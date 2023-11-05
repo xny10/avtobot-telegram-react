@@ -1,8 +1,12 @@
 .card {
   display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 10px 10px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .title {
@@ -22,4 +26,10 @@
   width: 1.7em;
   height: 1.7em;
   border-radius: 50%;
+}
+
+.variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
