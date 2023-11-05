@@ -1,0 +1,32 @@
+.color_test {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  div {
+    padding: 5px;
+    background-color: gray;
+  }
+
+  div:nth-child(1) {
+    background-color: var(--tg-theme-bg-color);
+  }
+  div:nth-child(2) {
+    background-color: var(--tg-theme-text-color);
+  }
+  div:nth-child(3) {
+    background-color: var(--tg-theme-hint-color);
+  }
+  div:nth-child(4) {
+    background-color: var(--tg-theme-link-color);
+  }
+  div:nth-child(5) {
+    background-color: var(--tg-theme-button-color);
+  }
+  div:nth-child(6) {
+    background-color: var(--tg-theme-button-text-color);
+  }
+  div:nth-child(7) {
+    background-color: var(--tg-theme-secondary-bg-color);
+  }
+}
