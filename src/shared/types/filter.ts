@@ -9,15 +9,15 @@ export type IFilterShort = {
   variants: IVariantShort[];
 };
 
-type IFilterEngine = 'petrol' | 'diesel' | 'electric' | 'gas' | 'hybrid';
+export type IFilterEngine = 'petrol' | 'diesel' | 'electric' | 'gas' | 'hybrid' | '';
 
 export type IFilter = {
   id: string;
   name: string;
   variants: IVariantShort[];
-  price: [number, number];
-  manufactureYear: [number, number];
-  mileage: [number, number];
+  price: [string, string];
+  manufactureYear: [string, string];
+  mileage: [string, string];
   engineType: IFilterEngine;
   // either one or another
   region?: string[];
