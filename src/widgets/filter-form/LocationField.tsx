@@ -7,7 +7,7 @@ import { RHFSelect } from 'ui/react-hook-form/rhf-select';
 import styles from './styles.module.scss';
 
 export function LocationField() {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
 
   const [activeTabKey, setActiveTabKey] = useState('regions');
 
@@ -17,7 +17,12 @@ export function LocationField() {
   const regionOptions: string[] = ['Ростовская обл.', 'Москва', 'Подмосковье', 'Адыгея', 'Тюменская обл.'];
 
   const regions: string[] = useWatch({ name: 'region' });
-
+  const onDeleteRegion = (region: string) => {
+    setValue(
+      'region',
+      regions.filter((reg) => reg !== region)
+    );
+  };
   const RegionSelect = (
     <div className={styles.region_select_wrapper}>
       <RHFSelect
@@ -25,11 +30,11 @@ export function LocationField() {
         control={control}
         name="region"
         options={regionOptions}
-        renderValue={() => 'Выбрать регион'}
+        renderValue={() => 'Добавить регион...'}
       />
       <div className={styles.regions}>
         {regions.map((region) => (
-          <Chip key={region} size="small" label={region} />
+          <Chip key={region} size="small" label={region} onDelete={() => onDeleteRegion(region)} />
         ))}
       </div>
     </div>
