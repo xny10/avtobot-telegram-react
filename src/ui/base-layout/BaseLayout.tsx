@@ -1,7 +1,6 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { IconButton, Typography } from '@mui/material';
 import { PropsWithChildren } from 'react';
-import { COLORS } from 'shared/config/colors';
 import { useTelegram } from 'shared/hooks/useTelegram';
 
 import styles from './styles.module.scss';
@@ -21,7 +20,7 @@ export function BaseLayout({ children, title }: BaseLayoutProps) {
     <div>
       <header className={styles.header}>
         <IconButton onClick={onClose} className={styles.exit_button}>
-          <ArrowBackIcon style={{ fill: COLORS.blue }} />
+          <ArrowBackIcon className={styles.icon} />
         </IconButton>
         <Typography variant="h5" className={styles.title}>
           {title}
