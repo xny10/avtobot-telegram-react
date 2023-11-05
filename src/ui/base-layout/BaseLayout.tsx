@@ -21,7 +21,7 @@ export function BaseLayout({ children, title, backLinkBehavior = 'exit_telegram'
   };
 
   return (
-    <div>
+    <div className={styles.layout_root}>
       <header className={styles.header}>
         <IconButton onClick={onClose} className={styles.exit_button}>
           <ArrowBackIcon className={styles.icon} />
