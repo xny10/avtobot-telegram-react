@@ -18,6 +18,7 @@ export const filtersShortMock: IFilterShort[] = [
         model: 'Alfa Romeo',
       },
     ],
+    isActive: true,
   },
   {
     id: 'qwerty2',
@@ -28,6 +29,7 @@ export const filtersShortMock: IFilterShort[] = [
         model: 'BMW',
       },
     ],
+    isActive: false,
   },
   {
     id: 'qwerty3',
@@ -38,5 +40,6 @@ export const filtersShortMock: IFilterShort[] = [
         model: 'bugatti',
       },
     ],
+    isActive: false,
   },
 ];
