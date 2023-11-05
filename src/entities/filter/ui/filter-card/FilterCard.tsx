@@ -17,9 +17,9 @@ export function FilterCard({ filter, index }: FilterCardProps) {
         <span className={styles.index}>{index + 1}</span>
         {filter.name}
       </Typography>
-      {filter.variants.map((variant) => (
+      {filter.variants.map((variant, i) => (
         <Chip
-          key={variant.id}
+          key={i}
           label={
             <Typography>
               {variant.model}({variant.make})
