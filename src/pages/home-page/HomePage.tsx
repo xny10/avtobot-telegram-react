@@ -1,17 +1,19 @@
+import { useEffect } from 'react';
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { filtersShortMock } from 'shared/mocks/filtersShort.mock';
+import { BaseLayout } from 'ui/base-layout';
+import { FiltersList } from 'widgets/filters-list';
 
 export function HomePage() {
   const { tg } = useTelegram();
 
-  const onClose = () => {
-    tg.close();
-  };
+  useEffect(() => {
+    console.log(tg);
+  }, []);
 
   return (
-    <div>
-      <div>window.Telegram.WebApp</div>
-      <pre>{JSON.stringify(tg.initDataUnsafe, null, 2)}</pre>
-      <button onClick={onClose}>Закрыть</button>
-    </div>
+    <BaseLayout title="Мои фильтры">
+      <FiltersList filters={filtersShortMock} />
+    </BaseLayout>
   );
 }

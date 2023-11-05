@@ -1,0 +1,35 @@
+.layout_root {
+  position: relative;
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  fill: var(--tg-theme-text-color);
+}
+
+.exit_button {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.main {
+  padding: 0 15px;
+  margin: 10px auto 0;
+}
