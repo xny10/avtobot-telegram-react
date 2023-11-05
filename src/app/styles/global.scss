@@ -7,11 +7,10 @@
   --tg-theme-button-color: #3fc1b0;
   --tg-theme-button-text-color: #ffffff;
   --tg-theme-secondary-bg-color: #313b43;
-  /* prevent telegram iframe collapsing */
-  touch-action: none !important;
 }
 
 body {
+  position: relative;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);

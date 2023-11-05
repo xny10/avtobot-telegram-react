@@ -17,16 +17,6 @@ export function App() {
     tg.HapticFeedback.impactOccurred('soft');
   }, []);
 
-  useEffect(() => {
-    // prevent telegram iframe акщь collapsing
-    function handler(event: TouchEvent) {
-      event.preventDefault();
-    }
-    document.addEventListener('touchmove', handler, { passive: false });
-    return () => {
-      document.removeEventListener('touchmove', handler);
-    };
-  }, []);
 
   return (
     <ReactQueryProvider>

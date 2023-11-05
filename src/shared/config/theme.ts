@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material';
+import globalCssStyles from 'app/styles/global.module.scss';
 import { tg } from 'shared/hooks/useTelegram';
 
 export const theme = createTheme({
@@ -38,6 +39,11 @@ export const theme = createTheme({
     MuiSelect: {
       defaultProps: {
         variant: 'standard',
+        MenuProps: {
+          classes: {
+            paper: globalCssStyles.select_menu_paper,
+          },
+        },
       },
     },
   },
