@@ -26,7 +26,7 @@ export function BaseLayout({ children, title }: BaseLayoutProps) {
           {title}
         </Typography>
       </header>
-      <main>{children}</main>
+      <main className={styles.main}>{children}</main>
     </div>
   );
 }

@@ -14,6 +14,7 @@
 .icon {
   width: 32px;
   height: 32px;
+  fill: var(--tg-theme-text-color);
 }
 
 .exit_button {
@@ -21,4 +22,9 @@
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.main {
+  padding: 0 15px;
+  margin: 10px auto 0;
 }
