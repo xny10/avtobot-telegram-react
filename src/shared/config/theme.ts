@@ -22,6 +22,18 @@ export const theme = createTheme({
       defaultProps: {
         variant: 'standard',
       },
+      styleOverrides: {
+        root: (config) => ({
+          input: {
+            '&::placeholder': {
+              color: 'var(--tg-theme-hint-color)',
+            },
+            '&:focus::placeholder': {
+              color: config.theme.palette.primary.main,
+            },
+          },
+        }),
+      },
     },
     MuiSelect: {
       defaultProps: {

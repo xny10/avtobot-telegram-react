@@ -3,6 +3,8 @@ import { RangedInput } from 'features/filter/ui/ranged-input';
 import { useFormContext } from 'react-hook-form';
 import { RHFSelect } from 'ui/react-hook-form/rhf-select';
 
+import styles from './styles.module.scss';
+
 export function ManufactureDateFields() {
   const { control, setValue } = useFormContext();
 
@@ -37,6 +39,7 @@ export function ManufactureDateFields() {
           label="от"
           renderOption={renderOption}
           labelProps={{
+            className: styles.select_label,
             style: {
               left: -13,
             },
@@ -50,10 +53,8 @@ export function ManufactureDateFields() {
           name="manufactureYear.1"
           label="до"
           renderOption={renderOption}
-          selectProps={{
-            placeholder: 'до',
-          }}
           labelProps={{
+            className: styles.select_label,
             style: {
               left: -13,
             },
