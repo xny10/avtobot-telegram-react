@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, IconButton, TextField, Typography, dividerClasses } from '@mui/material';
+import { Button, Chip, IconButton, TextField, Typography, dividerClasses } from '@mui/material';
 import { produce } from 'immer';
 import { useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
@@ -14,7 +14,7 @@ import styles from './BrandModelField.module.scss';
 import { ISerializedFilter } from './model';
 
 export function BrandModelField() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [openedBrand, setOpenedBrand] = useState<string | null>(null);
   const [search, setSearch] = useState('');
 
@@ -69,11 +69,24 @@ export function BrandModelField() {
           label="Выбрать марку и модель"
           InputProps={{ endAdornment: <MoreHorizIcon /> }}
         />
+        <div className={styles.selected_variants}>
+          {Object.keys(field.value).map((brand) => {
+            const models = field.value[brand];
+            if (Object.values(models).some((value) => !!value)) {
+              const selectedModels = Object.entries(models)
+                .filter(([model, isSelected]) => isSelected)
+                .map(([model]) => model);
+              return (
+                <Chip key={brand} label={`${brand}(${isBrandSelected(brand) ? 'Все' : selectedModels.join(',')})`} />
+              );
+            }
+            return null;
+          })}
+        </div>
       </div>
       {open && (
         <div className={styles.form}>
           <BaseLayout backLinkBehavior={() => setOpen(false)} title="Марки и модели">
-            <Button onClick={() => console.log('getValues()', getValues())}>get values()</Button>
             <TextField
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -84,7 +97,6 @@ export function BrandModelField() {
             {!filteredBrands.length && <Typography>Ничего не найдено</Typography>}
             {!!filteredBrands.length && (
               <div className={styles.brands}>
-                {/* TODO: select all */}
                 <LabeledCheckbox checked={isEverythingSelected} onCheck={toggleBrands}>
                   Выбрать всё / Снять выделение
                 </LabeledCheckbox>
