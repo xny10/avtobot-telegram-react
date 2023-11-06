@@ -28,8 +28,8 @@ export const MileageFields = memo(function MileageFields() {
   );
 
   const onClear = () => {
-    setValue('mileage.0', '');
-    setValue('mileage.1', '');
+    setValue('mileage.0', '', { shouldDirty: true });
+    setValue('mileage.1', '', { shouldDirty: true });
   };
 
   return (

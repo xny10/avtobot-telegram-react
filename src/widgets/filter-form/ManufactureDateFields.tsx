@@ -24,8 +24,8 @@ export const ManufactureDateFields = memo(function ManufactureDateFields() {
   );
 
   const onClear = () => {
-    setValue('manufactureYear.0', '');
-    setValue('manufactureYear.1', '');
+    setValue('manufactureYear.0', '', { shouldDirty: true });
+    setValue('manufactureYear.1', '', { shouldDirty: true });
   };
 
   return (

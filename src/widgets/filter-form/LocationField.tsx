@@ -20,7 +20,8 @@ export const LocationField = memo(function LocationField() {
   const onDeleteRegion = (region: string) => {
     setValue(
       'region',
-      regions.filter((reg) => reg !== region)
+      regions.filter((reg) => reg !== region),
+      { shouldDirty: true }
     );
   };
   const RegionSelect = (

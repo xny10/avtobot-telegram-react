@@ -37,8 +37,8 @@ export const PriceFields = memo(function PriceFields() {
   );
 
   const onClear = () => {
-    setValue('price.0', '');
-    setValue('price.1', '');
+    setValue('price.0', '', { shouldDirty: true });
+    setValue('price.1', '', { shouldDirty: true });
   };
 
   return (

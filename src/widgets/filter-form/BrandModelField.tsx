@@ -54,7 +54,7 @@ export const BrandModelField = memo(function BrandModelField() {
       Object.keys(models).forEach((model) => {
         models[model] = !isEverythingSelected;
       });
-      setValue(`variants.${brand}`, models);
+      setValue(`variants.${brand}`, models, { shouldDirty: true });
     });
   }
 
