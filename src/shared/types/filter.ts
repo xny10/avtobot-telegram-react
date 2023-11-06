@@ -1,6 +1,6 @@
 export type IVariantShort = {
+  brand: string;
   model: string;
-  make: string;
 };
 
 export type IFilterShort = {

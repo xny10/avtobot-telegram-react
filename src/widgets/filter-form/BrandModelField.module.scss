@@ -1,0 +1,35 @@
+.open_button {
+  pointer-events: none;
+}
+
+.form {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 110;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    flex: 1 1 100%;
+  }
+}
+
+.brands {
+  margin-top: 10px;
+}
+
+.brand_list {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.brand_checkbox_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

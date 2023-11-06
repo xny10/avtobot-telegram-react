@@ -28,7 +28,7 @@ export function FilterCard({ filter, index, buttonSlot }: FilterCardProps) {
             key={i}
             label={
               <Typography>
-                {variant.model}({variant.make})
+                {variant.brand}({variant.model})
               </Typography>
             }
           />

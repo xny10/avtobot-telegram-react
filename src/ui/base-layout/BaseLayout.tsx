@@ -1,15 +1,16 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { IconButton, Typography } from '@mui/material';
-import { PropsWithChildren, useEffect, useRef } from 'react';
+import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { useTelegramScrollLock } from 'shared/hooks/useTelegramScrollLock';
+import { AnyFunction } from 'shared/types';
 
 import styles from './styles.module.scss';
 
 type BaseLayoutProps = PropsWithChildren<{
   title: string;
-  backLinkBehavior?: 'previous_page' | 'exit_telegram';
+  backLinkBehavior?: 'previous_page' | 'exit_telegram' | AnyFunction;
 }>;
 
 export function BaseLayout({ children, title, backLinkBehavior = 'exit_telegram' }: BaseLayoutProps) {
@@ -17,7 +18,8 @@ export function BaseLayout({ children, title, backLinkBehavior = 'exit_telegram'
   const navigate = useNavigate();
 
   const onClose = () => {
-    if (backLinkBehavior === 'exit_telegram') tg.close();
+    if (typeof backLinkBehavior === 'function') backLinkBehavior();
+    else if (backLinkBehavior === 'exit_telegram') tg.close();
     else navigate(-1);
   };
 
