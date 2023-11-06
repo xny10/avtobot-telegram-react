@@ -133,19 +133,36 @@ export function BrandModelField() {
         <div className={styles.form}>
           <BaseLayout backLinkBehavior={() => setOpenedBrand(null)} title={openedBrand}>
             <div key={openedBrand}>
-              {Object.keys(field.value[openedBrand]).map((model) => {
-                const name = `variants.${openedBrand}.${model}`;
-                return (
-                  <RHFLabeledCheckbox
-                    key={name}
-                    control={control}
-                    name={name}
-                    transformOnChange={(isSelected) => !isSelected}
-                  >
-                    {model}
-                  </RHFLabeledCheckbox>
-                );
-              })}
+              <LabeledCheckbox
+                checked={isBrandSelected(openedBrand)}
+                onCheck={() => {
+                  const isOpenedBrandSelected = isBrandSelected(openedBrand);
+                  const selectedBrand = field.value[openedBrand];
+                  const copy = { ...selectedBrand };
+
+                  Object.keys(copy).forEach((model) => {
+                    copy[model] = !isOpenedBrandSelected;
+                  });
+                  setValue(`variants.${openedBrand}`, copy);
+                }}
+              >
+                Выбрать всё / Снять выделение
+              </LabeledCheckbox>
+              <div className={styles.models} key={Math.random()}>
+                {Object.keys(field.value[openedBrand]).map((model) => {
+                  const name = `variants.${openedBrand}.${model}`;
+                  return (
+                    <RHFLabeledCheckbox
+                      key={name}
+                      control={control}
+                      name={name}
+                      transformOnChange={(isSelected) => !isSelected}
+                    >
+                      {model}
+                    </RHFLabeledCheckbox>
+                  );
+                })}
+              </div>
             </div>
           </BaseLayout>
         </div>
