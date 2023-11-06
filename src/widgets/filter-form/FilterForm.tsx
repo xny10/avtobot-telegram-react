@@ -4,6 +4,7 @@ import { useTelegram } from 'shared/hooks/useTelegram';
 import { IFilter } from 'shared/types';
 import { RHFTextField } from 'ui/react-hook-form';
 
+import { BrandModelField } from './BrandModelField';
 import { FuelField } from './FuelField';
 import { LocationField } from './LocationField';
 import { ManufactureDateFields } from './ManufactureDateFields';
@@ -34,6 +35,7 @@ export function FilterForm({ defaultValues }: FilterFormProps) {
   return (
     <FormProvider {...fields}>
       <form className={styles.form}>
+        <BrandModelField />
         <RHFTextField control={control} name="name" label="Название" />
         <LocationField />
         <PriceFields />
