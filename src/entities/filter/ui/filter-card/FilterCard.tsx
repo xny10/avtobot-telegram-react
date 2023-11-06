@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from 'shared/config/routes';
 import { IFilterShort } from 'shared/types';
 
+import { HeaderPrimary } from './HeaderPrimary';
 import styles from './styles.module.scss';
 
 type FilterCardProps = {
@@ -16,17 +17,7 @@ export function FilterCard({ filter, index, Buttons }: FilterCardProps) {
   return (
     <Link to={`${ROUTES.filter}/${filter.id}`} className={styles.card}>
       <div className={styles.header}>
-        <div className={styles.primary}>
-          <Typography className={styles.index}>{index + 1}</Typography>
-          <div>
-            <Typography className={styles.title} component="div">
-              {filter.name}
-            </Typography>
-            <Typography className={styles.years}>
-              {filter.manufactureYear[0]} - {filter.manufactureYear[1]}
-            </Typography>
-          </div>
-        </div>
+        <HeaderPrimary index={index} title={filter.name} manufactureYear={filter.manufactureYear} />
         {Buttons}
       </div>
       <div className={styles.variants}>
