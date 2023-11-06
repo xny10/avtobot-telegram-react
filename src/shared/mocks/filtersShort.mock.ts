@@ -7,7 +7,7 @@ export const filtersShortMock: IFilterShort[] = [
     variants: [
       {
         brand: 'BMW',
-        model: '14',
+        model: '12',
       },
       {
         brand: 'ВАЗ',
@@ -15,7 +15,7 @@ export const filtersShortMock: IFilterShort[] = [
       },
       {
         brand: 'Alfa Romeo',
-        model: '12',
+        model: '14',
       },
     ],
     isActive: true,

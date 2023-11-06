@@ -1,6 +1,6 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { IconButton, Typography } from '@mui/material';
-import { PropsWithChildren, useEffect, useRef } from 'react';
+import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { useTelegramScrollLock } from 'shared/hooks/useTelegramScrollLock';
