@@ -12,6 +12,10 @@ import { RHFLabeledCheckbox } from 'ui/react-hook-form';
 import styles from './BrandModelField.module.scss';
 
 export function BrandModelField() {
+  const [open, setOpen] = useState(true);
+  const [openedBrand, setOpenedBrand] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
+
   const { control, getValues } = useFormContext();
 
   const { field } = useController({
@@ -19,15 +23,6 @@ export function BrandModelField() {
   });
 
   const options: Record<string, string[]> = filterConfigMock.variants;
-
-  const [open, setOpen] = useState(true);
-  const [openedBrand, setOpenedBrand] = useState<string | null>(null);
-
-  const onOpen = (e: MouseEvent) => {
-    setOpen(true);
-  };
-
-  const [search, setSearch] = useState('');
   const brands = Object.keys(options);
   const filteredBrands = brands.filter((brand) => brand.toLowerCase().trim().includes(search.toLowerCase().trim()));
 
@@ -43,7 +38,7 @@ export function BrandModelField() {
 
   return (
     <div>
-      <div onClick={onOpen}>
+      <div onClick={() => setOpen(true)}>
         <TextField
           className={styles.open_button}
           fullWidth
