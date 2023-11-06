@@ -23,10 +23,10 @@ export function FilterCard({ filter, index, Buttons }: FilterCardProps) {
       <div className={styles.variants}>
         {filter.variants.map((variant, i) => (
           <Chip
-            key={i}
+            key={variant.brand}
             label={
               <Typography>
-                {variant.brand}({variant.model})
+                {variant.brand}({variant.models})
               </Typography>
             }
           />

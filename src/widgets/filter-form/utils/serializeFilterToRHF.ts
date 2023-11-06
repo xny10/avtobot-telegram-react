@@ -10,13 +10,13 @@ export function serializeFilterToRHF(filter: IFilter) {
   Object.entries(config.variants).forEach(([brand, models]) => {
     variants[brand] = {};
     models.forEach((model) => {
-      const filterVariant = filter.variants.find((variant) => variant.brand === brand)?.model;
-      if (filterVariant === 'all') {
+      const filterVariant = filter.variants.find((variant) => variant.brand === brand)?.models;
+      if (!filterVariant) {
+        variants[brand][model] = false;
+      } else if (filterVariant.length === 0) {
         variants[brand][model] = true;
       } else {
-        variants[brand][model] = filter.variants.find((variant) => variant.model.split(',').includes(model))
-          ? true
-          : false;
+        variants[brand][model] = filter.variants.find((variant) => variant.models.includes(model)) ? true : false;
       }
     });
   });
