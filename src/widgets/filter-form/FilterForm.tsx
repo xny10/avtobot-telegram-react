@@ -37,7 +37,7 @@ export function FilterForm({ defaultValues }: FilterFormProps) {
         <MileageFields />
         <FuelField />
         <Button variant="contained" type="submit">
-          save
+          Сохранить
         </Button>
       </form>
     </FormProvider>
