@@ -37,7 +37,7 @@ export function RHFLabeledCheckbox({
           {...rest}
           checked={checkboxValue}
           onChange={handleChange}
-          ref={ref}
+          inputRef={ref}
           disabled={disabled}
           onBlur={onBlur}
           name={RHFname}
