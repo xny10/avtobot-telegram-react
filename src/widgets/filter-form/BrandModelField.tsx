@@ -40,6 +40,7 @@ export function BrandModelField() {
   const isEverythingSelected = areAllBrandsSelected(field.value);
   console.log('isEverythingSelected', isEverythingSelected);
 
+  // TODO: декомпозировать эту поебень
   function toggleBrands() {
     // todo: не работает, не ебу почему
     // const copy = JSON.parse(JSON.stringify(field.value));
