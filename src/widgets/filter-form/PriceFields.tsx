@@ -5,16 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import { RHFSelect } from 'ui/react-hook-form';
 
 import styles from './styles.module.scss';
-
-function insertDots(stringifiedNumber: string) {
-  const chars = stringifiedNumber.split('').reverse();
-  const newChars = [];
-  for (let i = 0; i < chars.length; i += 1) {
-    if (i % 3 === 0 && i !== 0) newChars.push('.');
-    newChars.push(chars[i]);
-  }
-  return newChars.reverse().join('');
-}
+import { insertDots } from './utils/insertDots';
 
 export const PriceFields = memo(function PriceFields() {
   const { control, setValue } = useFormContext();
