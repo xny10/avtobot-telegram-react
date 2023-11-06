@@ -26,7 +26,7 @@ export function FilterCard({ filter, index, Buttons }: FilterCardProps) {
             key={i}
             label={
               <Typography>
-                {variant.brand}({variant.model})
+                {variant.brand}({variant.models})
               </Typography>
             }
           />
