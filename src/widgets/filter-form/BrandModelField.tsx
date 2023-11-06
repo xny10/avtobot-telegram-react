@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, IconButton, TextField, Typography } from '@mui/material';
+import { Button, IconButton, TextField, Typography, dividerClasses } from '@mui/material';
 import { produce } from 'immer';
 import { useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
@@ -132,7 +132,21 @@ export function BrandModelField() {
       {openedBrand && (
         <div className={styles.form}>
           <BaseLayout backLinkBehavior={() => setOpenedBrand(null)} title={openedBrand}>
-            123
+            <div key={openedBrand}>
+              {Object.keys(field.value[openedBrand]).map((model) => {
+                const name = `variants.${openedBrand}.${model}`;
+                return (
+                  <RHFLabeledCheckbox
+                    key={name}
+                    control={control}
+                    name={name}
+                    transformOnChange={(isSelected) => !isSelected}
+                  >
+                    {model}
+                  </RHFLabeledCheckbox>
+                );
+              })}
+            </div>
           </BaseLayout>
         </div>
       )}
