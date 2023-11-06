@@ -19,6 +19,7 @@ export const filtersShortMock: IFilterShort[] = [
       },
     ],
     isActive: true,
+    manufactureYear: ['1996', '2023'],
   },
   {
     id: 'qwerty2',
@@ -30,6 +31,7 @@ export const filtersShortMock: IFilterShort[] = [
       },
     ],
     isActive: false,
+    manufactureYear: ['2000', '2005'],
   },
   {
     id: 'qwerty3',
@@ -41,5 +43,6 @@ export const filtersShortMock: IFilterShort[] = [
       },
     ],
     isActive: false,
+    manufactureYear: ['1990', '1995'],
   },
 ];

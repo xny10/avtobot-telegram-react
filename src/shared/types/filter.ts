@@ -8,6 +8,7 @@ export type IFilterShort = {
   name: string;
   variants: IVariantShort[];
   isActive: boolean;
+  manufactureYear: [string, string];
 };
 
 export type IFilterEngine = 'petrol' | 'diesel' | 'electric' | 'gas' | 'hybrid' | '';
