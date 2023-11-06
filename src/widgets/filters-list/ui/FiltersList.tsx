@@ -1,5 +1,6 @@
 import { FilterCard } from 'entities/filter';
-import { SwitchFilter } from 'features/filter';
+import { CopyFilter, SwitchFilter } from 'features/filter';
+import { DeleteFilter } from 'features/filter';
 import { IFilterShort } from 'shared/types';
 
 import styles from './styles.module.scss';
@@ -16,7 +17,13 @@ export function FiltersList({ filters }: FiltersListProps) {
           key={filter.id}
           filter={filter}
           index={i}
-          buttonSlot={<SwitchFilter filterId={filter.id} isActive={filter.isActive} />}
+          Buttons={
+            <div>
+              <SwitchFilter filterId={filter.id} isActive={filter.isActive} />
+              <CopyFilter filterId={filter.id} />
+              <DeleteFilter filterId={filter.id} />
+            </div>
+          }
         />
       ))}
     </div>
