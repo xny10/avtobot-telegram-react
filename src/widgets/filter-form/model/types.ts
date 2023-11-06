@@ -1,7 +1,9 @@
 import { IFilter } from 'shared/types';
 
 export type ISerializedVariants = {
-  [brand: string]: string[];
+  [brand: string]: {
+    [model: string]: boolean;
+  };
 };
 
 export type ISerializedFilter = Omit<IFilter, 'variants'> & {

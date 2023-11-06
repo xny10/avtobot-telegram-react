@@ -7,12 +7,18 @@ export function serializeFilterToRHF(filter: IFilter) {
   const config = filterConfigMock;
 
   const variants: ISerializedVariants = {};
-  filter.variants.forEach((variant) => {
-    if (variant.model === 'all') {
-      variants[variant.brand] = config.variants[variant.brand];
-    } else {
-      variants[variant.brand] = variant.model.split(',');
-    }
+  Object.entries(config.variants).forEach(([brand, models]) => {
+    variants[brand] = {};
+    models.forEach((model) => {
+      const filterVariant = filter.variants.find((variant) => variant.brand === brand)?.model;
+      if (filterVariant === 'all') {
+        variants[brand][model] = true;
+      } else {
+        variants[brand][model] = filter.variants.find((variant) => variant.model.split(',').includes(model))
+          ? true
+          : false;
+      }
+    });
   });
 
   const serialized: ISerializedFilter = {
