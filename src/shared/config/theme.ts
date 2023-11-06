@@ -22,6 +22,14 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           background: TG_THEME_COLORS.hint,
+          color: TG_THEME_COLORS.text,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: TG_THEME_COLORS['button-text'],
         },
       },
     },
