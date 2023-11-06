@@ -6,8 +6,8 @@ import { TG_THEME_COLORS } from './colors';
 
 export const theme = createTheme({
   palette: {
-    mode: tg.colorScheme,
-    // mode: 'dark',
+    // mode: tg.colorScheme,
+    mode: 'dark',
     primary: {
       main: TG_THEME_COLORS.button,
     },
