@@ -1,6 +1,7 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, IconButton, TextField, Typography } from '@mui/material';
 import { MouseEvent, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { filterConfigMock } from 'shared/mocks/filterConfig.mock';
@@ -11,7 +12,7 @@ import { RHFLabeledCheckbox } from 'ui/react-hook-form';
 import styles from './BrandModelField.module.scss';
 
 export function BrandModelField() {
-  const { control, setValue, getValues } = useFormContext();
+  const { control, getValues } = useFormContext();
 
   const { field } = useController({
     name: 'variants',
@@ -20,7 +21,7 @@ export function BrandModelField() {
   const options: Record<string, string[]> = filterConfigMock.variants;
 
   const [open, setOpen] = useState(true);
-  // const [openedBrand, setOpenedBrand] = useState<string | null>(null);
+  const [openedBrand, setOpenedBrand] = useState<string | null>(null);
 
   const onOpen = (e: MouseEvent) => {
     setOpen(true);
@@ -52,7 +53,7 @@ export function BrandModelField() {
       </div>
       {open && (
         <div className={styles.form}>
-          <BaseLayout backLinkBehavior={() => setOpen(false)} title="Марки и модели авто">
+          <BaseLayout backLinkBehavior={() => setOpen(false)} title="Марки и модели">
             <Button onClick={() => console.log('getValues()', getValues())}>get values()</Button>
             <TextField
               value={search}
@@ -72,34 +73,45 @@ export function BrandModelField() {
                   {filteredBrands.map((brand, i) => {
                     const name = `variants.${brand}`;
                     return (
-                      <RHFLabeledCheckbox
-                        control={control}
-                        key={name}
-                        name={name}
-                        transformValue={() => {
-                          return isBrandSelected(brand);
-                        }}
-                        transformOnChange={(value) => {
-                          let copy = { ...value };
-                          if (!isBrandSelected(brand)) {
-                            Object.keys(copy).forEach((key) => {
-                              copy[key] = true;
-                            });
-                          } else {
-                            Object.keys(copy).forEach((key) => {
-                              copy[key] = false;
-                            });
-                          }
-                          return copy;
-                        }}
-                      >
-                        {brand}
-                      </RHFLabeledCheckbox>
+                      <div key={name} className={styles.brand_checkbox_wrapper}>
+                        <RHFLabeledCheckbox
+                          control={control}
+                          name={name}
+                          transformValue={() => {
+                            return isBrandSelected(brand);
+                          }}
+                          transformOnChange={(value) => {
+                            let copy = { ...value };
+                            if (!isBrandSelected(brand)) {
+                              Object.keys(copy).forEach((key) => {
+                                copy[key] = true;
+                              });
+                            } else {
+                              Object.keys(copy).forEach((key) => {
+                                copy[key] = false;
+                              });
+                            }
+                            return copy;
+                          }}
+                        >
+                          {brand}
+                        </RHFLabeledCheckbox>
+                        <IconButton onClick={() => setOpenedBrand(brand)}>
+                          <ExpandMoreIcon />
+                        </IconButton>
+                      </div>
                     );
                   })}
                 </div>
               </div>
             )}
+          </BaseLayout>
+        </div>
+      )}
+      {openedBrand && (
+        <div className={styles.form}>
+          <BaseLayout backLinkBehavior={() => setOpenedBrand(null)} title={openedBrand}>
+            123
           </BaseLayout>
         </div>
       )}

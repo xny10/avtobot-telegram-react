@@ -25,4 +25,11 @@
   padding-left: 15px;
   display: flex;
   flex-direction: column;
+  gap: 5px;
+}
+
+.brand_checkbox_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
