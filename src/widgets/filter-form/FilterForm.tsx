@@ -29,16 +29,14 @@ export function FilterForm({ defaultValues }: FilterFormProps) {
 
   return (
     <FormProvider {...fields}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form}>
         <RHFTextField control={control} name="name" label="Название" />
         <LocationField />
         <PriceFields />
         <ManufactureDateFields />
         <MileageFields />
         <FuelField />
-        <Button variant="contained" type="submit">
-          Сохранить
-        </Button>
+        <SaveFilter onSubmit={handleSubmit(onSubmit)} />
       </form>
     </FormProvider>
   );
