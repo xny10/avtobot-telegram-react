@@ -1,8 +1,8 @@
 import { Chip } from '@mui/material';
-import { TabbedInput } from 'features/filter/ui/tabbed-input';
+import { TabbedInput } from 'features/filter';
 import { useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { RHFSelect } from 'ui/react-hook-form/rhf-select';
+import { RHFSelect } from 'ui/react-hook-form';
 
 import styles from './styles.module.scss';
 

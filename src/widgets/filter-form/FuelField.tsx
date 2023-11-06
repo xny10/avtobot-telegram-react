@@ -1,7 +1,7 @@
 import { MenuItem } from '@mui/material';
 import { useFormContext } from 'react-hook-form';
 import { IFilterEngine } from 'shared/types';
-import { RHFSelect } from 'ui/react-hook-form/rhf-select';
+import { RHFSelect } from 'ui/react-hook-form';
 
 export function FuelField() {
   const { control } = useFormContext();

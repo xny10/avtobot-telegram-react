@@ -1,9 +1,8 @@
 import { MenuItem } from '@mui/material';
-import { RangedInput } from 'features/filter/ui/ranged-input';
+import { RangedInput } from 'features/filter';
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { RHFSelect } from 'ui/react-hook-form/rhf-select';
-import { RHFTextField } from 'ui/react-hook-form/rhf-text-field';
+import { RHFSelect } from 'ui/react-hook-form';
 
 import styles from './styles.module.scss';
 

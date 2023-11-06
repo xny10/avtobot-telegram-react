@@ -1,7 +1,7 @@
-import { Button } from '@mui/material';
+import { SaveFilter } from 'features/filter';
 import { FormProvider, useForm } from 'react-hook-form';
 import { IFilter } from 'shared/types';
-import { RHFTextField } from 'ui/react-hook-form/rhf-text-field';
+import { RHFTextField } from 'ui/react-hook-form';
 
 import { FuelField } from './FuelField';
 import { LocationField } from './LocationField';
