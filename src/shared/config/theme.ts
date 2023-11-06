@@ -2,20 +2,34 @@ import { createTheme } from '@mui/material';
 import globalCssStyles from 'app/styles/global.module.scss';
 import { tg } from 'shared/hooks/useTelegram';
 
+import { TG_THEME_COLORS } from './colors';
+
 export const theme = createTheme({
   palette: {
     mode: tg.colorScheme,
+    // mode: 'dark',
+    primary: {
+      main: TG_THEME_COLORS.button,
+    },
   },
   typography: {
     allVariants: {
-      color: 'var(--tg-theme-text-color)',
+      color: TG_THEME_COLORS.text,
     },
   },
   components: {
     MuiChip: {
       styleOverrides: {
         root: {
-          background: 'var(--tg-theme-hint-color)',
+          background: TG_THEME_COLORS.hint,
+          color: TG_THEME_COLORS.text,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: TG_THEME_COLORS['button-text'],
         },
       },
     },
@@ -27,7 +41,7 @@ export const theme = createTheme({
         root: (config) => ({
           input: {
             '&::placeholder': {
-              color: 'var(--tg-theme-hint-color)',
+              color: TG_THEME_COLORS.hint,
             },
             '&:focus::placeholder': {
               color: config.theme.palette.primary.main,
