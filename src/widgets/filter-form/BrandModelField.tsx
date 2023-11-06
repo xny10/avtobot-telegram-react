@@ -36,7 +36,6 @@ export const BrandModelField = memo(function BrandModelField() {
 
   watch('variants');
   const isEverythingSelected = areAllBrandsSelected(field.value);
-  console.log('isEverythingSelected', isEverythingSelected);
 
   // TODO: декомпозировать эту поебень
   function toggleBrands() {
