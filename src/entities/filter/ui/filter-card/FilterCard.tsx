@@ -16,10 +16,17 @@ export function FilterCard({ filter, index, Buttons }: FilterCardProps) {
   return (
     <Link to={`${ROUTES.filter}/${filter.id}`} className={styles.card}>
       <div className={styles.header}>
-        <Typography className={styles.title} component="div">
-          <span className={styles.index}>{index + 1}</span>
-          {filter.name}
-        </Typography>
+        <div className={styles.primary}>
+          <Typography className={styles.index}>{index + 1}</Typography>
+          <div>
+            <Typography className={styles.title} component="div">
+              {filter.name}
+            </Typography>
+            <Typography className={styles.years}>
+              {filter.manufactureYear[0]} - {filter.manufactureYear[1]}
+            </Typography>
+          </div>
+        </div>
         {Buttons}
       </div>
       <div className={styles.variants}>
