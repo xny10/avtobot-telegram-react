@@ -2,7 +2,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, IconButton, TextField, Typography } from '@mui/material';
-import { MouseEvent, useState } from 'react';
+import { produce } from 'immer';
+import { useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { filterConfigMock } from 'shared/mocks/filterConfig.mock';
 import { BaseLayout } from 'ui/base-layout';
@@ -10,13 +11,14 @@ import { LabeledCheckbox } from 'ui/labeled-checkbox';
 import { RHFLabeledCheckbox } from 'ui/react-hook-form';
 
 import styles from './BrandModelField.module.scss';
+import { ISerializedFilter } from './model';
 
 export function BrandModelField() {
   const [open, setOpen] = useState(true);
   const [openedBrand, setOpenedBrand] = useState<string | null>(null);
   const [search, setSearch] = useState('');
 
-  const { control, getValues } = useFormContext();
+  const { control, getValues, setValue, watch } = useFormContext();
 
   const { field } = useController({
     name: 'variants',
@@ -30,11 +32,32 @@ export function BrandModelField() {
     return Object.values(field.value[brand]).every((isSelected) => isSelected === true);
   }
 
-  function areAllBrandsSelected() {
-    return Object.keys(field.value).every(isBrandSelected);
+  function areAllBrandsSelected(variants: any[]) {
+    return Object.keys(variants).every(isBrandSelected);
   }
 
-  const isEverythingSelected = areAllBrandsSelected();
+  watch('variants');
+  const isEverythingSelected = areAllBrandsSelected(field.value);
+  console.log('isEverythingSelected', isEverythingSelected);
+
+  function toggleBrands() {
+    // todo: не работает, не ебу почему
+    // const copy = JSON.parse(JSON.stringify(field.value));
+    // Object.keys(copy).forEach((brand) => {
+    //   Object.keys(copy[brand]).forEach((model) => {
+    //     copy[brand][model] = !isEverythingSelected;
+    //   });
+    // });
+    // setValue('variants', copy);
+
+    brands.forEach((brand) => {
+      const models = { ...field.value[brand] };
+      Object.keys(models).forEach((model) => {
+        models[model] = !isEverythingSelected;
+      });
+      setValue(`variants.${brand}`, models);
+    });
+  }
 
   return (
     <div>
@@ -60,7 +83,8 @@ export function BrandModelField() {
             {!filteredBrands.length && <Typography>Ничего не найдено</Typography>}
             {!!filteredBrands.length && (
               <div className={styles.brands}>
-                <LabeledCheckbox checked={isEverythingSelected} onCheck={() => {}}>
+                {/* TODO: select all */}
+                <LabeledCheckbox checked={isEverythingSelected} onCheck={toggleBrands}>
                   Выбрать всё / Снять выделение
                 </LabeledCheckbox>
                 <Typography></Typography>
@@ -86,6 +110,7 @@ export function BrandModelField() {
                                 copy[key] = false;
                               });
                             }
+                            console.log(copy);
                             return copy;
                           }}
                         >
