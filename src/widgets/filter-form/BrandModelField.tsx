@@ -75,7 +75,7 @@ export const BrandModelField = memo(function BrandModelField() {
               .filter(([model, isSelected]) => isSelected)
               .map(([model]) => model);
             return (
-              <Chip key={brand} label={`${brand}(${isBrandSelected(brand) ? 'Все' : selectedModels.join(',')})`} />
+              <Chip key={brand} label={`${brand}(${isBrandSelected(brand) ? 'Все' : selectedModels.join(', ')})`} />
             );
           }
           return null;
