@@ -60,27 +60,27 @@ export const BrandModelField = memo(function BrandModelField() {
 
   return (
     <div>
-      <div onClick={() => setOpen(true)}>
+      <div className={styles.open_button_wrapper} onClick={() => setOpen(true)}>
         <TextField
           className={styles.open_button}
           fullWidth
           label="Выбрать марку и модель"
           InputProps={{ endAdornment: <MoreHorizIcon /> }}
         />
-        <div className={styles.selected_variants}>
-          {Object.keys(field.value).map((brand) => {
-            const models = field.value[brand];
-            if (Object.values(models).some((value) => !!value)) {
-              const selectedModels = Object.entries(models)
-                .filter(([model, isSelected]) => isSelected)
-                .map(([model]) => model);
-              return (
-                <Chip key={brand} label={`${brand}(${isBrandSelected(brand) ? 'Все' : selectedModels.join(',')})`} />
-              );
-            }
-            return null;
-          })}
-        </div>
+      </div>
+      <div className={styles.selected_variants}>
+        {Object.keys(field.value).map((brand) => {
+          const models = field.value[brand];
+          if (Object.values(models).some((value) => !!value)) {
+            const selectedModels = Object.entries(models)
+              .filter(([model, isSelected]) => isSelected)
+              .map(([model]) => model);
+            return (
+              <Chip key={brand} label={`${brand}(${isBrandSelected(brand) ? 'Все' : selectedModels.join(',')})`} />
+            );
+          }
+          return null;
+        })}
       </div>
       {open && (
         <div className={styles.form}>
