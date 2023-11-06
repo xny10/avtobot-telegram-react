@@ -9,10 +9,10 @@ import styles from './styles.module.scss';
 type FilterCardProps = {
   filter: IFilterShort;
   index: number;
-  buttonSlot?: ReactNode;
+  Buttons?: ReactNode;
 };
 
-export function FilterCard({ filter, index, buttonSlot }: FilterCardProps) {
+export function FilterCard({ filter, index, Buttons }: FilterCardProps) {
   return (
     <Link to={`${ROUTES.filter}/${filter.id}`} className={styles.card}>
       <div className={styles.header}>
@@ -20,7 +20,7 @@ export function FilterCard({ filter, index, buttonSlot }: FilterCardProps) {
           <span className={styles.index}>{index + 1}</span>
           {filter.name}
         </Typography>
-        {buttonSlot}
+        {Buttons}
       </div>
       <div className={styles.variants}>
         {filter.variants.map((variant, i) => (
