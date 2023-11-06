@@ -17,9 +17,12 @@
   }
 }
 
-.brand_list {
+.brands {
   margin-top: 10px;
+}
+
+.brand_list {
+  padding-left: 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }

@@ -10,24 +10,26 @@ import { LocationField } from './LocationField';
 import { ManufactureDateFields } from './ManufactureDateFields';
 import { MileageFields } from './MileageFields';
 import { PriceFields } from './PriceFields';
+import { ISerializedFilter } from './model';
 import styles from './styles.module.scss';
+import { serializeFilterToRHF } from './utils/serializeFilterToRHF';
 
 type FilterFormProps = {
-  defaultValues: IFilter;
+  filter: IFilter;
 };
 
-export function FilterForm({ defaultValues }: FilterFormProps) {
+export function FilterForm({ filter }: FilterFormProps) {
   const { tg } = useTelegram();
 
   const fields = useForm({
-    defaultValues,
+    defaultValues: serializeFilterToRHF(filter),
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
 
   const { control, handleSubmit, formState } = fields;
 
-  const onSubmit = (values: IFilter) => {
+  const onSubmit = (values: ISerializedFilter) => {
     tg.HapticFeedback.impactOccurred('rigid');
     console.log('values', values);
   };

@@ -2,19 +2,23 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField, Typography } from '@mui/material';
 import { MouseEvent, useState } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
+import { filterConfigMock } from 'shared/mocks/filterConfig.mock';
 import { BaseLayout } from 'ui/base-layout';
+import { LabeledCheckbox } from 'ui/labeled-checkbox';
 
 import styles from './BrandModelField.module.scss';
 
 export function BrandModelField() {
   const { control, setValue } = useFormContext();
 
-  const options: Record<string, string[]> = {
-    AC: ['378 GT ZAGATO', 'ACE', 'ACECA', 'C WAY M1'],
-    ACURA: ['TEST1', 'TEST2', 'TEST3'],
-    'ASTON-MARTIN': ['AST1', 'AST2', 'AST3'],
-  };
+  const { field } = useController({
+    name: 'variants',
+  });
+
+  console.log('field.value', field.value);
+
+  const options: Record<string, string[]> = filterConfigMock.variants;
 
   const [open, setOpen] = useState(true);
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
@@ -49,10 +53,18 @@ export function BrandModelField() {
             />
             {!filteredBrands.length && <Typography>Ничего не найдено</Typography>}
             {!!filteredBrands.length && (
-              <div className={styles.brand_list}>
-                {filteredBrands.map((brand) => (
-                  <Typography key={brand}>{brand}</Typography>
-                ))}
+              <div className={styles.brands}>
+                <LabeledCheckbox checked={false} onCheck={() => {}}>
+                  Выбрать всё / Снять выделение
+                </LabeledCheckbox>
+                <Typography></Typography>
+                <div className={styles.brand_list}>
+                  {filteredBrands.map((brand) => (
+                    <LabeledCheckbox key={brand} checked={true} onCheck={() => {}}>
+                      {brand}
+                    </LabeledCheckbox>
+                  ))}
+                </div>
               </div>
             )}
           </BaseLayout>

@@ -7,7 +7,7 @@ export function FilterPage() {
 
   return (
     <BaseLayout backLinkBehavior="previous_page" title={filter.name || 'Фильтр'}>
-      <FilterForm defaultValues={filter} />
+      <FilterForm filter={filter} />
     </BaseLayout>
   );
 }

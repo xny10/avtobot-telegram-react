@@ -6,16 +6,16 @@ export const filtersShortMock: IFilterShort[] = [
     name: 'фильтр 1',
     variants: [
       {
-        model: '14',
         brand: 'BMW',
+        model: '14',
       },
       {
-        model: 'all',
         brand: 'ВАЗ',
+        model: 'all',
       },
       {
-        model: '12',
         brand: 'Alfa Romeo',
+        model: '12',
       },
     ],
     isActive: true,
@@ -25,8 +25,8 @@ export const filtersShortMock: IFilterShort[] = [
     name: 'фильтр бэхи',
     variants: [
       {
-        model: 'all',
         brand: 'BMW',
+        model: 'all',
       },
     ],
     isActive: false,
@@ -36,8 +36,8 @@ export const filtersShortMock: IFilterShort[] = [
     name: 'фильтр крутые',
     variants: [
       {
-        model: '2',
         brand: 'bugatti',
+        model: '2',
       },
     ],
     isActive: false,
