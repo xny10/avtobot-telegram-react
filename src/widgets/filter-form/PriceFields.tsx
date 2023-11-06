@@ -1,6 +1,6 @@
 import { MenuItem } from '@mui/material';
 import { RangedInput } from 'features/filter';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { RHFSelect } from 'ui/react-hook-form';
 
@@ -16,7 +16,7 @@ function insertDots(stringifiedNumber: string) {
   return newChars.reverse().join('');
 }
 
-export function PriceFields() {
+export const PriceFields = memo(function PriceFields() {
   const { control, setValue } = useFormContext();
 
   const optionMapLabel = useMemo(() => {
@@ -88,4 +88,4 @@ export function PriceFields() {
       }
     />
   );
-}
+});

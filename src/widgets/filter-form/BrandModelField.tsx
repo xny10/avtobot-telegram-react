@@ -1,9 +1,8 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, Chip, IconButton, TextField, Typography, dividerClasses } from '@mui/material';
-import { produce } from 'immer';
-import { useState } from 'react';
+import { Chip, IconButton, TextField, Typography } from '@mui/material';
+import { memo, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { filterConfigMock } from 'shared/mocks/filterConfig.mock';
 import { BaseLayout } from 'ui/base-layout';
@@ -11,9 +10,8 @@ import { LabeledCheckbox } from 'ui/labeled-checkbox';
 import { RHFLabeledCheckbox } from 'ui/react-hook-form';
 
 import styles from './BrandModelField.module.scss';
-import { ISerializedFilter } from './model';
 
-export function BrandModelField() {
+export const BrandModelField = memo(function BrandModelField() {
   const [open, setOpen] = useState(false);
   const [openedBrand, setOpenedBrand] = useState<string | null>(null);
   const [search, setSearch] = useState('');
@@ -181,4 +179,4 @@ export function BrandModelField() {
       )}
     </div>
   );
-}
+});

@@ -1,12 +1,12 @@
 import { Chip } from '@mui/material';
 import { TabbedInput } from 'features/filter';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { RHFSelect } from 'ui/react-hook-form';
 
 import styles from './styles.module.scss';
 
-export function LocationField() {
+export const LocationField = memo(function LocationField() {
   const { control, setValue } = useFormContext();
 
   const [activeTabKey, setActiveTabKey] = useState('regions');
@@ -51,4 +51,4 @@ export function LocationField() {
       ]}
     />
   );
-}
+});

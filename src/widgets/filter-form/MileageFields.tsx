@@ -1,11 +1,12 @@
 import { MenuItem } from '@mui/material';
 import { RangedInput } from 'features/filter';
+import { memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { RHFSelect } from 'ui/react-hook-form';
 
 import styles from './styles.module.scss';
 
-export function MileageFields() {
+export const MileageFields = memo(function MileageFields() {
   const { control, setValue } = useFormContext();
 
   const optionMapLabel = new Map<string, string>();
@@ -70,4 +71,4 @@ export function MileageFields() {
       }
     />
   );
-}
+});

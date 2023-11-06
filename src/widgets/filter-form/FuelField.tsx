@@ -1,9 +1,10 @@
 import { MenuItem } from '@mui/material';
+import { memo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { IFilterEngine } from 'shared/types';
 import { RHFSelect } from 'ui/react-hook-form';
 
-export function FuelField() {
+export const FuelField = memo(function FuelField() {
   const { control } = useFormContext();
 
   const options = ['', 'petrol', 'diesel', 'electric', 'gas', 'hybrid'];
@@ -46,4 +47,4 @@ export function FuelField() {
       }}
     />
   );
-}
+});
