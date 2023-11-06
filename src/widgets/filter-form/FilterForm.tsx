@@ -37,8 +37,8 @@ export function FilterForm({ filter }: FilterFormProps) {
   return (
     <FormProvider {...fields}>
       <form className={styles.form}>
-        <BrandModelField />
         <RHFTextField control={control} name="name" label="Название" />
+        <BrandModelField />
         <LocationField />
         <PriceFields />
         <ManufactureDateFields />
