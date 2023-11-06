@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import SearchIcon from '@mui/icons-material/Search';
-import { Chip, IconButton, TextField, Typography } from '@mui/material';
+import { Button, Chip, IconButton, TextField, Typography } from '@mui/material';
 import { memo, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { filterConfigMock } from 'shared/mocks/filterConfig.mock';
@@ -16,7 +16,7 @@ export const BrandModelField = memo(function BrandModelField() {
   const [openedBrand, setOpenedBrand] = useState<string | null>(null);
   const [search, setSearch] = useState('');
 
-  const { control, getValues, setValue, watch } = useFormContext();
+  const { control, setValue, watch } = useFormContext();
 
   const { field } = useController({
     name: 'variants',
@@ -136,6 +136,9 @@ export const BrandModelField = memo(function BrandModelField() {
                 </div>
               </div>
             )}
+            <Button className={styles.go_back_button} variant="outlined" fullWidth onClick={() => setOpen(false)}>
+              Назад
+            </Button>
           </BaseLayout>
         </div>
       )}
@@ -174,6 +177,9 @@ export const BrandModelField = memo(function BrandModelField() {
                 })}
               </div>
             </div>
+            <Button className={styles.go_back_button} variant="outlined" fullWidth onClick={() => setOpenedBrand(null)}>
+              Назад
+            </Button>
           </BaseLayout>
         </div>
       )}
