@@ -1,10 +1,9 @@
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { MenuItem, TextField } from '@mui/material';
-import { RangedInput } from 'features/filter';
+import SearchIcon from '@mui/icons-material/Search';
+import { TextField, Typography } from '@mui/material';
 import { MouseEvent, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { BaseLayout } from 'ui/base-layout';
-import { RHFSelect } from 'ui/react-hook-form';
 
 import styles from './BrandModelField.module.scss';
 
@@ -24,6 +23,10 @@ export function BrandModelField() {
     setOpen(true);
   };
 
+  const [search, setSearch] = useState('');
+  const brands = Object.keys(options);
+  const filteredBrands = brands.filter((brand) => brand.toLowerCase().trim().includes(search.toLowerCase().trim()));
+
   return (
     <div>
       <div onClick={onOpen}>
@@ -37,7 +40,21 @@ export function BrandModelField() {
       {open && (
         <div className={styles.form}>
           <BaseLayout backLinkBehavior={() => setOpen(false)} title="Марки и модели авто">
-            form
+            <TextField
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              fullWidth
+              label="Поиск"
+              InputProps={{ startAdornment: <SearchIcon /> }}
+            />
+            {!filteredBrands.length && <Typography>Ничего не найдено</Typography>}
+            {!!filteredBrands.length && (
+              <div className={styles.brand_list}>
+                {filteredBrands.map((brand) => (
+                  <Typography key={brand}>{brand}</Typography>
+                ))}
+              </div>
+            )}
           </BaseLayout>
         </div>
       )}

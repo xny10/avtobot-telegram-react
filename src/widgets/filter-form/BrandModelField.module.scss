@@ -16,3 +16,10 @@
     flex: 1 1 100%;
   }
 }
+
+.brand_list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
