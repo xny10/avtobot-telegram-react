@@ -37,9 +37,9 @@ export const BrandModelField = memo(function BrandModelField() {
   watch('variants');
   const isEverythingSelected = areAllBrandsSelected(field.value);
 
-  // TODO: декомпозировать эту поебень
+  // TODO: decompose
   function toggleBrands() {
-    // todo: не работает, не ебу почему
+    // todo: does not work. idk why
     // const copy = JSON.parse(JSON.stringify(field.value));
     // Object.keys(copy).forEach((brand) => {
     //   Object.keys(copy[brand]).forEach((model) => {
