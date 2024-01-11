@@ -10,16 +10,30 @@ type RangeSelectProps = {
   options: string[];
   name: string;
   label?: string;
+  formatOption?: (option: string) => string;
+  itemOrder?: 'asc' | 'desc';
 };
 
-export const RangeSelect = memo(function RangeSelect({ options, name, label }: RangeSelectProps) {
+export const RangeSelect = memo(function RangeSelect({
+  options,
+  name,
+  label,
+  formatOption,
+  itemOrder = 'asc',
+}: RangeSelectProps) {
   const { control, setValue } = useFormContext();
 
-  const renderOption = (option: string) => (
-    <MenuItem key={option} value={option}>
-      {option || 'Не выбрано'}
-    </MenuItem>
-  );
+  const renderOption = (option: string) => {
+    let renderableOption = option;
+    if (renderableOption === '') renderableOption = 'Не выбрано';
+    else if (formatOption) renderableOption = formatOption(renderableOption);
+
+    return (
+      <MenuItem key={option} value={option}>
+        {renderableOption}
+      </MenuItem>
+    );
+  };
 
   const onClear = () => {
     setValue(`${name}.0`, '', { shouldDirty: true });
@@ -32,7 +46,7 @@ export const RangeSelect = memo(function RangeSelect({ options, name, label }: R
   const indexLeft = options.indexOf(valueLeft);
   const indexRight = options.indexOf(valueRight);
 
-  const isValid = valueLeft === '' || indexLeft >= indexRight;
+  const isValid = valueLeft === '' || (itemOrder === 'desc' ? indexLeft >= indexRight : indexLeft <= indexRight);
 
   useEffect(() => {
     if (!isValid) {
@@ -45,7 +59,11 @@ export const RangeSelect = memo(function RangeSelect({ options, name, label }: R
     availableOptionsRight = options;
   } else {
     const index = options.indexOf(valueLeft);
-    availableOptionsRight = options.slice(0, index + 1);
+    if (itemOrder === 'desc') {
+      availableOptionsRight = options.slice(0, index + 1);
+    } else {
+      availableOptionsRight = ['', ...options.slice(index)];
+    }
   }
 
   return (
@@ -59,6 +77,7 @@ export const RangeSelect = memo(function RangeSelect({ options, name, label }: R
           name={`${name}.0`}
           label="от"
           renderOption={renderOption}
+          renderValue={formatOption}
           labelProps={{
             className: styles.select_label,
             style: {
@@ -74,6 +93,7 @@ export const RangeSelect = memo(function RangeSelect({ options, name, label }: R
           name={`${name}.1`}
           label="до"
           renderOption={renderOption}
+          renderValue={formatOption}
           labelProps={{
             className: styles.select_label,
             style: {
