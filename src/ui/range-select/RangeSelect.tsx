@@ -6,11 +6,13 @@ import { RHFSelect } from 'ui/react-hook-form';
 
 import styles from './styles.module.scss';
 
-type ManufactureYearFieldsProps = {
+type RangeSelectProps = {
   options: string[];
+  name: string;
+  label?: string;
 };
 
-export const ManufactureYearFields = memo(function ManufactureYearFields({ options }: ManufactureYearFieldsProps) {
+export const RangeSelect = memo(function RangeSelect({ options, name, label }: RangeSelectProps) {
   const { control, setValue } = useFormContext();
 
   const renderOption = (option: string) => (
@@ -20,12 +22,12 @@ export const ManufactureYearFields = memo(function ManufactureYearFields({ optio
   );
 
   const onClear = () => {
-    setValue('manufactureYear.0', '', { shouldDirty: true });
-    setValue('manufactureYear.1', '', { shouldDirty: true });
+    setValue(`${name}.0`, '', { shouldDirty: true });
+    setValue(`${name}.1`, '', { shouldDirty: true });
   };
 
-  const valueLeft = useWatch({ name: 'manufactureYear.0' });
-  const valueRight = useWatch({ name: 'manufactureYear.1' });
+  const valueLeft = useWatch({ name: `${name}.0` });
+  const valueRight = useWatch({ name: `${name}.1` });
 
   const indexLeft = options.indexOf(valueLeft);
   const indexRight = options.indexOf(valueRight);
@@ -34,7 +36,7 @@ export const ManufactureYearFields = memo(function ManufactureYearFields({ optio
 
   useEffect(() => {
     if (!isValid) {
-      setValue('manufactureYear.1', '', { shouldDirty: true });
+      setValue(`${name}.1`, '', { shouldDirty: true });
     }
   }, [isValid]);
 
@@ -48,13 +50,13 @@ export const ManufactureYearFields = memo(function ManufactureYearFields({ optio
 
   return (
     <RangedInput
-      title="Год выпуска"
+      title={label ?? name}
       onClear={onClear}
       LeftInput={
         <RHFSelect
           options={options}
           control={control}
-          name="manufactureYear.0"
+          name={`${name}.0`}
           label="от"
           renderOption={renderOption}
           labelProps={{
@@ -69,7 +71,7 @@ export const ManufactureYearFields = memo(function ManufactureYearFields({ optio
         <RHFSelect
           options={availableOptionsRight}
           control={control}
-          name="manufactureYear.1"
+          name={`${name}.1`}
           label="до"
           renderOption={renderOption}
           labelProps={{

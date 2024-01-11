@@ -2,12 +2,12 @@ import { SaveFilter } from 'features/filter';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { IFilter } from 'shared/types';
+import { RangeSelect } from 'ui/range-select';
 import { RHFTextField } from 'ui/react-hook-form';
 
 import { BrandModelField } from './BrandModelField';
 import { FuelField } from './FuelField';
 import { LocationField } from './LocationField';
-import { ManufactureYearFields } from './ManufactureYearFields';
 import { MileageFields } from './MileageFields';
 import { PriceFields } from './PriceFields';
 import { ISerializedFilter } from './model';
@@ -46,7 +46,7 @@ export function FilterForm({ filter }: FilterFormProps) {
         <LocationField />
         <BrandModelField />
         <PriceFields />
-        <ManufactureYearFields options={MANUFACTURE_YEAR_MOCK} />
+        <RangeSelect name="manufactureYear" options={MANUFACTURE_YEAR_MOCK} label="Год выпуска" />
         <MileageFields />
         <FuelField />
         <SaveFilter onSubmit={handleSubmit(onSubmit)} disabled={!formState.isDirty} />

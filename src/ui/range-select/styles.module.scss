@@ -1,0 +1,7 @@
+.select_label {
+  color: var(--tg-theme-hint-color);
+
+  &.Mui-focused {
+    color: var(--tg-theme-button-color);
+  }
+}
