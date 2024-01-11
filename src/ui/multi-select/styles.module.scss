@@ -1,0 +1,11 @@
+.select_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selected_options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
