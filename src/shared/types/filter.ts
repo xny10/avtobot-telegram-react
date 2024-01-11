@@ -23,6 +23,8 @@ export type IFilter = {
   manufactureYear: [string, string];
   mileage: [string, string];
   engineType: IFilterEngine;
+  engineVolume: [string, string];
+  enginePower: [string, string];
   region: string[];
   city: string[];
   searchType: ISearchType;

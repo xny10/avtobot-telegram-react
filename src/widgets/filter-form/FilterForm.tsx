@@ -55,6 +55,16 @@ export function FilterForm({ filter }: FilterFormProps) {
   }
   MILEAGE_MOCK.push('150000', '200000', '250000', '300000');
 
+  const ENGINE_VOLUME_MOCK = [''];
+  for (let i = 10; i < 60; i += 1) {
+    ENGINE_VOLUME_MOCK.push((i / 10).toString());
+  }
+
+  const ENGINE_POWER_MOCK = [''];
+  for (let i = 100; i < 1600; i += 25) {
+    ENGINE_POWER_MOCK.push(i.toString());
+  }
+
   return (
     <FormProvider {...fields}>
       <form className={styles.form}>
@@ -69,6 +79,8 @@ export function FilterForm({ filter }: FilterFormProps) {
           options={MILEAGE_MOCK}
           formatOption={(price) => formatNumber(+price)}
         />
+        <RangeSelect name="engineVolume" label="Объём двигателя, л" options={ENGINE_VOLUME_MOCK} />
+        <RangeSelect name="enginePower" label="Мощность двигателя, л.с." options={ENGINE_POWER_MOCK} />
         <FuelField />
         <SaveFilter onSubmit={handleSubmit(onSubmit)} disabled={!formState.isDirty} />
       </form>

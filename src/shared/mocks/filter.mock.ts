@@ -9,6 +9,8 @@ export const filterMock: IFilter = {
   price: ['200000', '1200000'],
   manufactureYear: ['1996', '2023'],
   mileage: ['20000', '150000'],
+  engineVolume: ['', '3.4'],
+  enginePower: ['300', '1300'],
   engineType: 'petrol',
   city: ['Москва'],
   region: ['Ростовская обл.'],
