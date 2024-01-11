@@ -7,6 +7,7 @@ import { RangeSelect } from 'ui/range-select';
 import { RHFTextField } from 'ui/react-hook-form';
 
 import { BrandModelField } from './BrandModelField';
+import { EngineVolumeSelect } from './EngineVolumeSelect';
 import { FuelField } from './FuelField';
 import { LocationField } from './LocationField';
 import { ISerializedFilter } from './model';
@@ -81,6 +82,7 @@ export function FilterForm({ filter }: FilterFormProps) {
         />
         <FuelField />
         {/* TODO: пока выключаем */}
+        {/* <EngineVolumeSelect options={ENGINE_VOLUME_MOCK} /> */}
         {/* <RangeSelect name="enginePower" label="Мощность двигателя, л.с." options={ENGINE_POWER_MOCK} /> */}
         <SaveFilter onSubmit={handleSubmit(onSubmit)} disabled={!formState.isDirty} />
       </form>
