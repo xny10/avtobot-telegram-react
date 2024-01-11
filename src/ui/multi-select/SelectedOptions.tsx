@@ -6,9 +6,10 @@ import styles from './styles.module.scss';
 type SelectedOptionsProps = {
   name: string;
   control?: Control<any, any>;
+  options: string[];
 };
 
-export function SelectedOptions({ name, control }: SelectedOptionsProps) {
+export function SelectedOptions({ name, control, options }: SelectedOptionsProps) {
   const { control: contextControl, setValue } = useFormContext();
 
   const selectedOptions: string[] = useWatch({
@@ -24,11 +25,24 @@ export function SelectedOptions({ name, control }: SelectedOptionsProps) {
     );
   };
 
+  // TODO: такая проверка не сработает для вложенных структур, надо будет что-то придумать
+  const isEverythingSelected = selectedOptions.length === options.length;
+
   return (
     <div className={styles.selected_options}>
-      {selectedOptions?.map((option) => (
-        <Chip key={option} size="small" label={option} onDelete={() => onDeleteOption(option)} />
-      ))}
+      {(() => {
+        if (selectedOptions.length === 0) {
+          return <Chip variant="outlined" size="small" label="Ничего не выбрано" />;
+        }
+
+        if (isEverythingSelected) {
+          return <Chip variant="outlined" size="small" label="Все" />;
+        }
+
+        return selectedOptions.map((option) => (
+          <Chip key={option} size="small" label={option} onDelete={() => onDeleteOption(option)} />
+        ));
+      })()}
     </div>
   );
 }
