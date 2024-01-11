@@ -1,18 +1,22 @@
 import { TabbedInput } from 'features/filter';
-import { memo, useState } from 'react';
+import { memo } from 'react';
+import { useController } from 'react-hook-form';
 import { MultiSelect } from 'ui/multi-select';
 
 export const LocationField = memo(function LocationField() {
-  const [activeTabKey, setActiveTabKey] = useState('region');
+  const {
+    field: { value, onChange },
+  } = useController({ name: 'searchType' });
 
+  // TODO: load cities & regions from backend
   const cityOptions = ['Ростов-на-Дону', 'Москва', 'Таганрог'];
   const regionOptions = ['Ростовская обл.', 'Москва', 'Подмосковье', 'Адыгея', 'Тюменская обл.'];
 
   return (
     <TabbedInput
       onClear={() => {}}
-      activeTabKey={activeTabKey}
-      setActiveTabKey={(tabKey) => setActiveTabKey(tabKey)}
+      activeTabKey={value}
+      setActiveTabKey={(tabKey) => onChange(tabKey)}
       variants={[
         {
           tabKey: 'region',

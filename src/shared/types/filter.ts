@@ -25,5 +25,5 @@ export type IFilter = {
   engineType: IFilterEngine;
   region: string[];
   city: string[];
-  searchBy: ISearchBy;
+  searchType: ISearchBy;
 };

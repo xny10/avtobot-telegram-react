@@ -12,5 +12,5 @@ export const filterMock: IFilter = {
   engineType: 'petrol',
   city: ['Москва'],
   region: ['Ростовская обл.'],
-  searchBy: 'region',
+  searchType: 'region',
 };
