@@ -79,9 +79,9 @@ export function FilterForm({ filter }: FilterFormProps) {
           options={MILEAGE_MOCK}
           formatOption={(price) => formatNumber(+price)}
         />
-        <RangeSelect name="engineVolume" label="Объём двигателя, л" options={ENGINE_VOLUME_MOCK} />
-        <RangeSelect name="enginePower" label="Мощность двигателя, л.с." options={ENGINE_POWER_MOCK} />
         <FuelField />
+        {/* TODO: пока выключаем */}
+        {/* <RangeSelect name="enginePower" label="Мощность двигателя, л.с." options={ENGINE_POWER_MOCK} /> */}
         <SaveFilter onSubmit={handleSubmit(onSubmit)} disabled={!formState.isDirty} />
       </form>
     </FormProvider>

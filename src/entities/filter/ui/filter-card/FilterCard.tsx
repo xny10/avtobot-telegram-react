@@ -1,14 +1,14 @@
-import { Chip, Switch, Typography } from '@mui/material';
+import { Chip, Typography } from '@mui/material';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from 'shared/config/routes';
-import { IFilterShort } from 'shared/types';
+import { IFilter } from 'shared/types';
 
 import { HeaderPrimary } from './HeaderPrimary';
 import styles from './styles.module.scss';
 
 type FilterCardProps = {
-  filter: IFilterShort;
+  filter: IFilter;
   index: number;
   Buttons?: ReactNode;
 };
@@ -21,7 +21,7 @@ export function FilterCard({ filter, index, Buttons }: FilterCardProps) {
         {Buttons}
       </div>
       <div className={styles.variants}>
-        {filter.variants.map((variant, i) => (
+        {filter.variants.map((variant) => (
           <Chip
             key={variant.brand}
             label={
