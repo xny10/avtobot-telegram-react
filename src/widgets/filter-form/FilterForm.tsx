@@ -9,7 +9,6 @@ import { RHFTextField } from 'ui/react-hook-form';
 import { BrandModelField } from './BrandModelField';
 import { FuelField } from './FuelField';
 import { LocationField } from './LocationField';
-import { MileageFields } from './MileageFields';
 import { ISerializedFilter } from './model';
 import styles from './styles.module.scss';
 import { serializeFilterToRHF } from './utils/serializeFilterToRHF';
@@ -50,6 +49,12 @@ export function FilterForm({ filter }: FilterFormProps) {
     PRICE_MOCK.push(i.toString());
   }
 
+  const MILEAGE_MOCK = [''];
+  for (let i = 10000; i < 100000; i += 10000) {
+    MILEAGE_MOCK.push(i.toString());
+  }
+  MILEAGE_MOCK.push('150000', '200000', '250000', '300000');
+
   return (
     <FormProvider {...fields}>
       <form className={styles.form}>
@@ -58,7 +63,12 @@ export function FilterForm({ filter }: FilterFormProps) {
         <BrandModelField />
         <RangeSelect name="price" label="Цена" options={PRICE_MOCK} formatOption={(price) => formatNumber(+price)} />
         <RangeSelect name="manufactureYear" label="Год выпуска" options={MANUFACTURE_YEAR_MOCK} itemOrder="desc" />
-        <MileageFields />
+        <RangeSelect
+          name="mileage"
+          label="Пробег, км"
+          options={MILEAGE_MOCK}
+          formatOption={(price) => formatNumber(+price)}
+        />
         <FuelField />
         <SaveFilter onSubmit={handleSubmit(onSubmit)} disabled={!formState.isDirty} />
       </form>
