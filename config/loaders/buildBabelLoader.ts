@@ -1,22 +1,25 @@
-import webpack from 'webpack'
+import { BuildOptions } from '../types/types';
 
-export function buildBabelLoader(isTsx: boolean): webpack.RuleSetRule {
-  return ({
-    test: isTsx ? /\.(jsx|tsx)/ : /\.(js|ts)/,
+export function buildBabelLoader({ mode }: BuildOptions) {
+  const isDev = mode === 'development';
+
+  return {
+    test: /\.tsx?$/,
     exclude: /node_modules/,
     use: {
       loader: 'babel-loader',
       options: {
-        plugins: [
+        presets: [
+          '@babel/preset-env',
+          '@babel/preset-typescript',
           [
-            '@babel/plugin-transform-typescript',
+            '@babel/preset-react',
             {
-              isTsx,
+              runtime: isDev ? 'automatic' : 'classic',
             },
           ],
-          '@babel/plugin-transform-runtime',
         ],
       },
     },
-  })
+  };
 }
