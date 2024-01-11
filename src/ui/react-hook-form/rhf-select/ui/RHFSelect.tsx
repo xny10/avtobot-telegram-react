@@ -88,6 +88,7 @@ export function RHFSelect({
         multiple={multiple}
         value={valueToShow}
         renderValue={(v) => (renderValue ? renderValue(v) : v)}
+        displayEmpty
         onOpen={onOpen}
         onChange={onChange}
       >
@@ -104,7 +105,7 @@ export function RHFSelect({
           if (multiple) {
             return options.map((option) => (
               <MenuItem key={option} value={option}>
-                <Checkbox checked={value.indexOf(option) > -1} />
+                <Checkbox checked={value.indexOf(option) > -1} size="small" />
                 <ListItemText primary={option} />
               </MenuItem>
             ));

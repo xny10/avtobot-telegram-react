@@ -17,7 +17,7 @@ export function RangedInput({ title, onClear, LeftInput, RightInput }: RangedInp
       Title={title}
       Button={
         <Typography className={styles.clear_button} onClick={onClear}>
-          Очистить всё
+          Очистить
         </Typography>
       }
       Content={

@@ -6,7 +6,7 @@ export function FilterPage() {
   const filter = filterMock;
 
   return (
-    <BaseLayout backLinkBehavior="previous_page" title={filter.name || 'Фильтр'}>
+    <BaseLayout backLinkBehavior="previous_page" title={filter.name || 'Новый Фильтр'}>
       <FilterForm filter={filter} />
     </BaseLayout>
   );

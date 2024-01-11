@@ -15,7 +15,6 @@ export const LocationField = memo(function LocationField() {
   const CitySelect = <RHFSelect control={control} name="city" options={cityOptions} />;
 
   const regionOptions: string[] = ['Ростовская обл.', 'Москва', 'Подмосковье', 'Адыгея', 'Тюменская обл.'];
-
   const regions: string[] = useWatch({ name: 'region' });
   const onDeleteRegion = (region: string) => {
     setValue(
@@ -31,7 +30,7 @@ export const LocationField = memo(function LocationField() {
         control={control}
         name="region"
         options={regionOptions}
-        renderValue={() => 'Добавить регион...'}
+        renderValue={() => 'Добавить регион'}
       />
       <div className={styles.regions}>
         {regions.map((region) => (
