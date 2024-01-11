@@ -88,6 +88,7 @@ export function RHFSelect({
         multiple={multiple}
         value={valueToShow}
         renderValue={(v) => (renderValue ? renderValue(v) : v)}
+        displayEmpty
         onOpen={onOpen}
         onChange={onChange}
       >

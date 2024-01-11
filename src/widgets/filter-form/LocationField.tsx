@@ -31,7 +31,7 @@ export const LocationField = memo(function LocationField() {
         control={control}
         name="region"
         options={regionOptions}
-        renderValue={() => 'Добавить регион...'}
+        renderValue={() => 'Добавить регион'}
       />
       <div className={styles.regions}>
         {regions.map((region) => (

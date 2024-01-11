@@ -41,7 +41,7 @@ export function TabbedInput({ activeTabKey, variants, setActiveTabKey, onClear }
       }
       Button={
         <Typography className={styles.clear_button} onClick={onClear}>
-          Очистить всё
+          Очистить
         </Typography>
       }
       Content={activeVariant.Input}
