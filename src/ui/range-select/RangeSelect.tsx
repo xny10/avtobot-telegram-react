@@ -32,7 +32,7 @@ export const RangeSelect = memo(function RangeSelect({ options, name, label }: R
   const indexLeft = options.indexOf(valueLeft);
   const indexRight = options.indexOf(valueRight);
 
-  const isValid = indexLeft >= indexRight;
+  const isValid = valueLeft === '' || indexLeft >= indexRight;
 
   useEffect(() => {
     if (!isValid) {
