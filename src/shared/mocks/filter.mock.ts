@@ -30,4 +30,9 @@ export const filterMock: IFilter = {
   searchType: 'region',
 };
 
-export const filtersMock: IFilter[] = [{ ...filterMock }, { ...filterMock }, { ...filterMock }, { ...filterMock }];
+export const filtersMock: IFilter[] = [
+  { ...filterMock, id: 'f1' },
+  { ...filterMock, id: 'f2' },
+  { ...filterMock, id: 'f3' },
+  { ...filterMock, id: 'f4' },
+];
