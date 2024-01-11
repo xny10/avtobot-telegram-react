@@ -3,7 +3,7 @@ import { ReactNode, useId } from 'react';
 import { Control, useController } from 'react-hook-form';
 
 type BaseProps = {
-  control: Control<any, any>;
+  control?: Control<any, any>;
   name: string;
   label?: string;
   options: any[];

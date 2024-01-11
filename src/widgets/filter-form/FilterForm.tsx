@@ -2,6 +2,7 @@ import { SaveFilter } from 'features/filter';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { IFilter } from 'shared/types';
+import { MultiSelect } from 'ui/multi-select';
 import { RHFTextField } from 'ui/react-hook-form';
 
 import { BrandModelField } from './BrandModelField';

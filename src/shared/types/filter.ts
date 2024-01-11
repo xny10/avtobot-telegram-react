@@ -13,6 +13,8 @@ export type IFilterShort = {
 
 export type IFilterEngine = 'petrol' | 'diesel' | 'electric' | 'gas' | 'hybrid' | '';
 
+export type ISearchBy = 'region' | 'city';
+
 export type IFilter = {
   id: string;
   name: string;
@@ -21,7 +23,7 @@ export type IFilter = {
   manufactureYear: [string, string];
   mileage: [string, string];
   engineType: IFilterEngine;
-  // either one or another
-  region?: string[];
-  city?: string;
+  region: string[];
+  city: string[];
+  searchType: ISearchBy;
 };
