@@ -11,7 +11,7 @@ type MultiSelectProps = {
   inputLabel: string;
 };
 
-export function MultiSelect({ name, control, options, inputLabel }: MultiSelectProps) {
+export function RHFMultiSelect({ name, control, options, inputLabel }: MultiSelectProps) {
   return (
     <div className={styles.select_wrapper}>
       <RHFSelect multiple control={control} name={name} options={options} renderValue={() => inputLabel} />

@@ -1,7 +1,7 @@
 import { TabbedInput } from 'features/filter';
 import { memo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { MultiSelect } from 'ui/multi-select';
+import { RHFMultiSelect } from 'ui/react-hook-form/rhf-multi-select';
 
 import { clearLocation } from './utils/clearLocation';
 
@@ -29,12 +29,12 @@ export const LocationField = memo(function LocationField() {
         {
           tabKey: 'region',
           title: 'Регионы',
-          Input: <MultiSelect key="region" name="region" options={regionOptions} inputLabel="Добавить регион" />,
+          Input: <RHFMultiSelect key="region" name="region" options={regionOptions} inputLabel="Добавить регион" />,
         },
         {
           tabKey: 'city',
           title: 'Город',
-          Input: <MultiSelect key="city" name="city" options={cityOptions} inputLabel="Добавить город" />,
+          Input: <RHFMultiSelect key="city" name="city" options={cityOptions} inputLabel="Добавить город" />,
         },
       ]}
     />
