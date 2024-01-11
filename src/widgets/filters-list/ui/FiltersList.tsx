@@ -1,12 +1,12 @@
 import { FilterCard } from 'entities/filter';
 import { CopyFilter, SwitchFilter } from 'features/filter';
 import { DeleteFilter } from 'features/filter';
-import { IFilterShort } from 'shared/types';
+import { IFilter } from 'shared/types';
 
 import styles from './styles.module.scss';
 
 type FiltersListProps = {
-  filters: IFilterShort[];
+  filters: IFilter[];
 };
 
 export function FiltersList({ filters }: FiltersListProps) {
