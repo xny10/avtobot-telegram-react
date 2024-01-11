@@ -1,9 +1,13 @@
 import { TabbedInput } from 'features/filter';
 import { memo } from 'react';
-import { useController } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form';
 import { MultiSelect } from 'ui/multi-select';
 
+import { clearLocation } from './utils/clearLocation';
+
 export const LocationField = memo(function LocationField() {
+  const { setValue } = useFormContext();
+
   const {
     field: { value, onChange },
   } = useController({ name: 'searchType' });
@@ -12,9 +16,13 @@ export const LocationField = memo(function LocationField() {
   const cityOptions = ['Ростов-на-Дону', 'Москва', 'Таганрог'];
   const regionOptions = ['Ростовская обл.', 'Москва', 'Подмосковье', 'Адыгея', 'Тюменская обл.'];
 
+  const onClear = () => {
+    clearLocation(value, setValue);
+  };
+
   return (
     <TabbedInput
-      onClear={() => {}}
+      onClear={onClear}
       activeTabKey={value}
       setActiveTabKey={(tabKey) => onChange(tabKey)}
       variants={[

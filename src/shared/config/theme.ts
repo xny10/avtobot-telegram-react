@@ -21,8 +21,10 @@ export const theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          background: TG_THEME_COLORS.hint,
           color: TG_THEME_COLORS.text,
+        },
+        filled: {
+          background: TG_THEME_COLORS.hint,
         },
       },
     },

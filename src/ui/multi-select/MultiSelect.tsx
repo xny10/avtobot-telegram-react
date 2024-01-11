@@ -15,7 +15,7 @@ export function MultiSelect({ name, control, options, inputLabel }: MultiSelectP
   return (
     <div className={styles.select_wrapper}>
       <RHFSelect multiple control={control} name={name} options={options} renderValue={() => inputLabel} />
-      <SelectedOptions name={name} control={control} />
+      <SelectedOptions name={name} control={control} options={options} />
     </div>
   );
 }
