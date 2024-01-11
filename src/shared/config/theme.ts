@@ -26,9 +26,6 @@ export const theme = createTheme({
         filled: {
           background: TG_THEME_COLORS.hint,
         },
-        outlined: {
-          borderColor: TG_THEME_COLORS.button,
-        },
       },
     },
     MuiButton: {

@@ -32,7 +32,7 @@ export function SelectedOptions({ name, control, options }: SelectedOptionsProps
     <div className={styles.selected_options}>
       {(() => {
         if (selectedOptions.length === 0) {
-          return <Chip variant="outlined" size="small" label="Ничего не выбрано" />;
+          return <Chip variant="outlined" color="error" size="small" label="Ничего не выбрано" />;
         }
 
         if (isEverythingSelected) {
