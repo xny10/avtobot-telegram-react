@@ -1,4 +1,5 @@
 import { Chip } from '@mui/material';
+import { Fragment } from 'react';
 import { useWatch } from 'react-hook-form';
 import { ICarsSerialized } from 'shared/types';
 
@@ -40,14 +41,14 @@ export function SelectedList() {
         return result
           .filter((entry) => !entry.nothingSelected)
           .map((entry) => (
-            <div key={entry.brand}>
+            <Fragment key={entry.brand}>
               {(() => {
                 if (entry.allSelected) {
                   return <Chip label={`${entry.brand} (все)`} size="small" />;
                 }
                 return <Chip label={`${entry.brand} (${entry.selected.join(', ')})`} size="small" />;
               })()}
-            </div>
+            </Fragment>
           ));
       })()}
     </div>
