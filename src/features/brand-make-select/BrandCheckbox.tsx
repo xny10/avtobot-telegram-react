@@ -23,7 +23,12 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
 
   const carSerialized = value as ICarsSerialized[string];
 
-  const isAllMakesSelected = Object.values(carSerialized).every(Boolean);
+  const entries = Object.entries(carSerialized);
+  const selectedLength = entries.reduce((totalSelected, [make, selected]) => {
+    if (selected) totalSelected++;
+    return totalSelected;
+  }, 0);
+  const isAllMakesSelected = selectedLength === entries.length;
 
   const onTriggerAll = (select: boolean) => {
     const newValue = produce(carSerialized, (draft) => {
@@ -51,7 +56,15 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
     <div key={car.brand}>
       <div className={styles.brand_checkbox_wrapper}>
         <LabeledCheckbox checked={isAllMakesSelected} onCheck={onTriggerAll}>
-          {car.brand}
+          {(() => {
+            if (isAllMakesSelected) {
+              return `${car.brand} (все)`;
+            }
+            if (selectedLength > 0) {
+              return `${car.brand} (${selectedLength})`;
+            }
+            return car.brand;
+          })()}
         </LabeledCheckbox>
         <IconButton onClick={() => setOpen(true)}>
           <ExpandMoreIcon fontSize="large" />
