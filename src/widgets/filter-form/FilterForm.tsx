@@ -1,5 +1,6 @@
 import { BrandMakeSelect } from 'features/brand-make-select';
 import { SaveFilter } from 'features/filter';
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { carsMock } from 'shared/mocks/cars.mock';
@@ -15,9 +16,10 @@ import styles from './styles.module.scss';
 
 type FilterFormProps = {
   filter: IFilter;
+  setConfirmExit: (confirm: boolean) => void;
 };
 
-export function FilterForm({ filter }: FilterFormProps) {
+export function FilterForm({ filter, setConfirmExit }: FilterFormProps) {
   const { tg } = useTelegram();
 
   const fields = useForm<IFilterSerialized>({
@@ -32,6 +34,10 @@ export function FilterForm({ filter }: FilterFormProps) {
     tg.HapticFeedback.impactOccurred('rigid');
     console.log('values', values);
   };
+
+  useEffect(() => {
+    setConfirmExit(formState.isDirty);
+  }, [formState.isDirty]);
 
   const MANUFACTURE_YEAR_MOCK = [''];
   for (let i = new Date().getFullYear(); i > 1980; i--) {
