@@ -77,14 +77,9 @@ export function FilterForm({ filter, setConfirmExit }: FilterFormProps) {
         <RHFTextField control={control} name="name" label="Название" />
         <LocationField />
         <BrandMakeSelect cars={carsMock} />
-        <RangeSelect name="price" label="Цена" options={PRICE_MOCK} formatOption={(price) => formatNumber(+price)} />
+        <RangeSelect name="price" label="Цена" options={PRICE_MOCK} formatOption={formatNumber} />
         <RangeSelect name="manufactureYear" label="Год выпуска" options={MANUFACTURE_YEAR_MOCK} itemOrder="desc" />
-        <RangeSelect
-          name="mileage"
-          label="Пробег, км"
-          options={MILEAGE_MOCK}
-          formatOption={(price) => formatNumber(+price)}
-        />
+        <RangeSelect name="mileage" label="Пробег, км" options={MILEAGE_MOCK} formatOption={formatNumber} />
         <FuelField />
         {/* TODO: пока выключаем */}
         {/* <EngineVolumeSelect options={ENGINE_VOLUME_MOCK} /> */}
