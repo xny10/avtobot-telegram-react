@@ -11,7 +11,7 @@ import { RangeSelect } from 'ui/range-select';
 import { RHFTextField } from 'ui/react-hook-form';
 
 import { FuelField } from './FuelField';
-import { LocationField } from './LocationField';
+import { LocationSelect } from './LocationSelect';
 import styles from './styles.module.scss';
 
 type FilterFormProps = {
@@ -75,7 +75,7 @@ export function FilterForm({ filter, setConfirmExit }: FilterFormProps) {
     <FormProvider {...fields}>
       <form className={styles.form}>
         <RHFTextField control={control} name="name" label="Название" />
-        <LocationField />
+        <LocationSelect />
         <BrandMakeSelect cars={carsMock} />
         <RangeSelect name="price" label="Цена" options={PRICE_MOCK} formatOption={formatNumber} />
         <RangeSelect name="manufactureYear" label="Год выпуска" options={MANUFACTURE_YEAR_MOCK} itemOrder="desc" />

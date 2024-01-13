@@ -1,11 +1,15 @@
 import { Chip } from '@mui/material';
-import { Fragment } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { useWatch } from 'react-hook-form';
 import { ICarsSerialized } from 'shared/types';
 
 import styles from './SelectedList.module.scss';
 
-export function SelectedList() {
+type SelectedListProps = {
+  EverythingSelectedList: ReactNode;
+};
+
+export function SelectedList({ EverythingSelectedList }: SelectedListProps) {
   const cars: ICarsSerialized = useWatch({ name: 'cars' });
 
   const result = Object.entries(cars).map(([brand, makes]) => {
@@ -31,11 +35,8 @@ export function SelectedList() {
   return (
     <div className={styles.selected_chips}>
       {(() => {
-        if (selectedAllLength === result.length) {
-          return <Chip label="Все" size="small" variant="outlined" />;
-        }
-        if (selectedNothingLength === result.length) {
-          return <Chip color="error" label="Ничего не выбрано" size="small" variant="outlined" />;
+        if (selectedAllLength === result.length || selectedNothingLength === result.length) {
+          return <>{EverythingSelectedList}</>;
         }
 
         return result

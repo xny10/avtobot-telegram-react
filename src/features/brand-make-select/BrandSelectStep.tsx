@@ -21,6 +21,7 @@ export function BrandSelectStep({ cars }: BrandSelectStepProps) {
   const { field } = useController({ name: 'cars' });
 
   const value: ICarsSerialized = field.value;
+
   const isEverythingSelected = areAllBrandsSelected(value);
   //* необходимо для своевременного пересчёта isEverythingSelected
   useWatch({ name: 'cars' });

@@ -6,6 +6,7 @@ import { ICar } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { OpenStacked } from 'ui/open-stacked';
 
+import { AllBrandsSelectedList } from './AllBrandsSelectedList';
 import styles from './BrandModelSelect.module.scss';
 import { BrandSelectStep } from './BrandSelectStep';
 import { ClearAll } from './ClearAll';
@@ -41,7 +42,7 @@ export const BrandMakeSelect = memo(function BrandMakeSelect({ cars }: BrandMake
           <BrandSelectStep cars={cars} />
         </BaseLayout>
       </OpenStacked>
-      <SelectedList />
+      <SelectedList EverythingSelectedList={<AllBrandsSelectedList cars={cars} />} />
     </div>
   );
 });

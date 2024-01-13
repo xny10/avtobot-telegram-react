@@ -5,7 +5,7 @@ import { RHFMultiSelect } from 'ui/react-hook-form/rhf-multi-select';
 
 import { clearLocation } from './utils/clearLocation';
 
-export const LocationField = memo(function LocationField() {
+export const LocationSelect = memo(function LocationSelect() {
   const { setValue } = useFormContext();
 
   const {
