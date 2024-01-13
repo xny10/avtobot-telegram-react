@@ -1,38 +1,43 @@
+import { BrandMakeSelect } from 'features/brand-make-select';
 import { SaveFilter } from 'features/filter';
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTelegram } from 'shared/hooks/useTelegram';
-import { IFilter } from 'shared/types';
+import { carsMock } from 'shared/mocks/cars.mock';
+import { IFilter, IFilterSerialized } from 'shared/types';
+import { serializeFilter } from 'shared/utils/form.utils';
 import { formatNumber } from 'shared/utils/format.utils';
 import { RangeSelect } from 'ui/range-select';
 import { RHFTextField } from 'ui/react-hook-form';
 
-import { BrandModelField } from './BrandModelField';
-import { EngineVolumeSelect } from './EngineVolumeSelect';
 import { FuelField } from './FuelField';
 import { LocationField } from './LocationField';
-import { ISerializedFilter } from './model';
 import styles from './styles.module.scss';
-import { serializeFilterToRHF } from './utils/serializeFilterToRHF';
 
 type FilterFormProps = {
   filter: IFilter;
+  setConfirmExit: (confirm: boolean) => void;
 };
 
-export function FilterForm({ filter }: FilterFormProps) {
+export function FilterForm({ filter, setConfirmExit }: FilterFormProps) {
   const { tg } = useTelegram();
 
-  const fields = useForm({
-    defaultValues: serializeFilterToRHF(filter),
+  const fields = useForm<IFilterSerialized>({
+    defaultValues: serializeFilter(filter, carsMock),
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
 
   const { control, handleSubmit, formState } = fields;
 
-  const onSubmit = (values: ISerializedFilter) => {
+  const onSubmit = (values: IFilterSerialized) => {
     tg.HapticFeedback.impactOccurred('rigid');
     console.log('values', values);
   };
+
+  useEffect(() => {
+    setConfirmExit(formState.isDirty);
+  }, [formState.isDirty]);
 
   const MANUFACTURE_YEAR_MOCK = [''];
   for (let i = new Date().getFullYear(); i > 1980; i--) {
@@ -71,7 +76,7 @@ export function FilterForm({ filter }: FilterFormProps) {
       <form className={styles.form}>
         <RHFTextField control={control} name="name" label="Название" />
         <LocationField />
-        <BrandModelField />
+        <BrandMakeSelect cars={carsMock} />
         <RangeSelect name="price" label="Цена" options={PRICE_MOCK} formatOption={(price) => formatNumber(+price)} />
         <RangeSelect name="manufactureYear" label="Год выпуска" options={MANUFACTURE_YEAR_MOCK} itemOrder="desc" />
         <RangeSelect

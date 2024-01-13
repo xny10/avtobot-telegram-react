@@ -1,6 +1,15 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { IconButton, Typography } from '@mui/material';
-import { PropsWithChildren } from 'react';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  IconButton,
+  Typography,
+} from '@mui/material';
+import { PropsWithChildren, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { useTelegramScrollLock } from 'shared/hooks/useTelegramScrollLock';
@@ -11,16 +20,29 @@ import styles from './styles.module.scss';
 type BaseLayoutProps = PropsWithChildren<{
   title: string;
   backLinkBehavior?: 'previous_page' | 'exit_telegram' | AnyFunction;
+  confirmGoBack?: boolean;
 }>;
 
-export function BaseLayout({ children, title, backLinkBehavior = 'exit_telegram' }: BaseLayoutProps) {
+export function BaseLayout({
+  children,
+  title,
+  backLinkBehavior = 'exit_telegram',
+  confirmGoBack = false,
+}: BaseLayoutProps) {
   const { tg } = useTelegram();
   const navigate = useNavigate();
 
-  const onClose = () => {
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
+  const initiateCloseBehavior = () => {
     if (typeof backLinkBehavior === 'function') backLinkBehavior();
     else if (backLinkBehavior === 'exit_telegram') tg.close();
     else navigate(-1);
+  };
+
+  const onClose = () => {
+    if (confirmGoBack) setConfirmOpen(true);
+    else initiateCloseBehavior();
   };
 
   const { scrollableRef, contentRef } = useTelegramScrollLock();
@@ -38,6 +60,18 @@ export function BaseLayout({ children, title, backLinkBehavior = 'exit_telegram'
       <main className={styles.main} ref={contentRef}>
         {children}
       </main>
+      <Dialog open={confirmOpen} onClose={() => setConfirmOpen(false)}>
+        <DialogTitle>Вы действительно хотите выйти?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Изменения не сохранятся</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setConfirmOpen(false)}>Остаться</Button>
+          <Button onClick={initiateCloseBehavior} color="error">
+            Уйти
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

@@ -4,10 +4,14 @@ import { tg } from 'shared/hooks/useTelegram';
 
 import { TG_THEME_COLORS } from './colors';
 
+// TODO: for dev only
+console.log('tg', tg);
+console.log('tg', tg.platform);
+
 export const theme = createTheme({
   palette: {
-    mode: tg.colorScheme,
-    // mode: 'dark',
+    // mode: tg.colorScheme,
+    mode: 'dark',
     primary: {
       main: TG_THEME_COLORS.button,
     },
@@ -30,7 +34,7 @@ export const theme = createTheme({
     },
     MuiButton: {
       styleOverrides: {
-        root: {
+        textPrimary: {
           color: TG_THEME_COLORS['button-text'],
         },
       },

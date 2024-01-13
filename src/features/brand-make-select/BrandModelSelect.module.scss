@@ -1,3 +1,9 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .open_button_wrapper {
   cursor: pointer;
 }
@@ -51,6 +57,17 @@
 }
 
 .models {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.checkboxes {
+  margin-top: 10px;
+}
+
+.checkbox_list {
   padding-left: 15px;
   display: flex;
   flex-direction: column;
