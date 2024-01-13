@@ -34,8 +34,8 @@ export function SelectedList() {
         if (selectedAllLength === result.length) {
           return <Chip label="Все" size="small" variant="outlined" />;
         }
-        if (selectedNothingLength === 0) {
-          return <Chip label="Ничего не выбрано" size="small" variant="outlined" />;
+        if (selectedNothingLength === result.length) {
+          return <Chip color="error" label="Ничего не выбрано" size="small" variant="outlined" />;
         }
 
         return result
