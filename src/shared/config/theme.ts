@@ -34,7 +34,7 @@ export const theme = createTheme({
     },
     MuiButton: {
       styleOverrides: {
-        root: {
+        textPrimary: {
           color: TG_THEME_COLORS['button-text'],
         },
       },
