@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import styles from './styles.module.scss';
 
 type LabeledInputProps = {
-  Title: ReactNode;
+  Title?: ReactNode;
   Button?: ReactNode;
   Content: ReactNode;
 };
