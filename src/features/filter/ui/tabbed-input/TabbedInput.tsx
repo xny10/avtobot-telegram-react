@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
+import { ClearButton } from 'ui/clear-button';
 
 import { LabeledInput } from '../labeled-input';
 import styles from './styles.module.scss';
@@ -39,11 +40,7 @@ export function TabbedInput({ activeTabKey, variants, setActiveTabKey, onClear }
           ))}
         </Typography>
       }
-      Button={
-        <Typography className={styles.clear_button} onClick={onClear}>
-          Очистить
-        </Typography>
-      }
+      Button={<ClearButton onClear={onClear} />}
       Content={activeVariant.Input}
     />
   );

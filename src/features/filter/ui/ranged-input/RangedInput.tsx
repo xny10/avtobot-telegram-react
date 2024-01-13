@@ -1,5 +1,5 @@
-import { Typography } from '@mui/material';
 import { ReactNode } from 'react';
+import { ClearButton } from 'ui/clear-button';
 
 import { LabeledInput } from '../labeled-input';
 import styles from './styles.module.scss';
@@ -15,11 +15,7 @@ export function RangedInput({ title, onClear, LeftInput, RightInput }: RangedInp
   return (
     <LabeledInput
       Title={title}
-      Button={
-        <Typography className={styles.clear_button} onClick={onClear}>
-          Очистить
-        </Typography>
-      }
+      Button={<ClearButton onClear={onClear} />}
       Content={
         <div className={styles.double_field}>
           {LeftInput}
