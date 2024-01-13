@@ -31,11 +31,8 @@ export function SelectedList() {
   return (
     <div className={styles.selected_chips}>
       {(() => {
-        if (selectedAllLength === result.length) {
+        if (selectedAllLength === result.length || selectedNothingLength === result.length) {
           return <Chip label="Все" size="small" variant="outlined" />;
-        }
-        if (selectedNothingLength === result.length) {
-          return <Chip color="error" label="Ничего не выбрано" size="small" variant="outlined" />;
         }
 
         return result
