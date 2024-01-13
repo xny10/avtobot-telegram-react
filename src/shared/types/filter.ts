@@ -1,11 +1,12 @@
-export type IVariantShort = {
-  brand: string;
-  models: string[];
-};
-
 export type IFilterEngine = 'petrol' | 'diesel' | 'electric' | 'gas' | 'hybrid' | '';
 
 export type ISearchType = 'region' | 'city';
+
+export type ICar = {
+  //TODO это тоже id или нет
+  brand: string;
+  makes: { name: string }[];
+};
 
 export type IFilter = {
   id: string;
@@ -13,7 +14,7 @@ export type IFilter = {
   isActive: boolean;
   // example: 2024-01-10 17:41:06.675979 +00:00
   createdAt: string;
-  variants: IVariantShort[];
+  cars: ICar[];
   price: [string, string];
   manufactureYear: [string, string];
   mileage: [string, string];
@@ -25,4 +26,14 @@ export type IFilter = {
   region: string[];
   city: string[];
   searchType: ISearchType;
+};
+
+export type ICarsSerialized = {
+  [brand: string]: {
+    [model: string]: boolean;
+  };
+};
+
+export type IFilterSerialized = Omit<IFilter, 'cars'> & {
+  cars: ICarsSerialized;
 };

@@ -3,18 +3,18 @@ import { IFilter } from 'shared/types';
 export const filterMock: IFilter = {
   id: 'filter1',
   name: 'фильтр 1',
-  variants: [
+  cars: [
     {
       brand: 'BMW',
-      models: ['12'],
+      makes: [{ name: 'bm12' }],
     },
     {
-      brand: 'ВАЗ',
-      models: [],
+      brand: 'AC',
+      makes: [{ name: '378 GT ZAGATO' }],
     },
     {
       brand: 'Alfa Romeo',
-      models: ['12', '14'],
+      makes: [{ name: 'Alfa12' }, { name: 'MOP' }],
     },
   ],
   isActive: true,
