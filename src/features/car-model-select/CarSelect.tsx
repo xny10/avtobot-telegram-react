@@ -62,13 +62,6 @@ export function CarSelect({ cars }: CarSelectProps) {
           </FixedSizeList>
         )}
       </AutoSizer>
-      <div className={styles.checkbox_list}>
-        {carsFiltered.length !== cars.length && (
-          <Typography color="gray">
-            Показано {carsFiltered.length} из {cars.length}
-          </Typography>
-        )}
-      </div>
     </div>
   );
 }
