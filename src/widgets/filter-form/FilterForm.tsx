@@ -1,4 +1,4 @@
-import { BrandMakeSelect } from 'features/brand-make-select';
+import { CarModelSelect } from 'features/car-model-select';
 import { SaveFilter } from 'features/filter';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -76,7 +76,7 @@ export function FilterForm({ filter, setConfirmExit }: FilterFormProps) {
       <form className={styles.form}>
         <RHFTextField control={control} name="name" label="Название" />
         <LocationSelect />
-        <BrandMakeSelect cars={carsMock} />
+        <CarModelSelect cars={carsMock} />
         <RangeSelect name="price" label="Цена" options={PRICE_MOCK} formatOption={formatNumber} />
         <RangeSelect name="manufactureYear" label="Год выпуска" options={MANUFACTURE_YEAR_MOCK} itemOrder="desc" />
         <RangeSelect name="mileage" label="Пробег, км" options={MILEAGE_MOCK} formatOption={formatNumber} />

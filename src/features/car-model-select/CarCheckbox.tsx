@@ -10,14 +10,14 @@ import { BaseLayout } from 'ui/base-layout';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
 import { OpenStacked } from 'ui/open-stacked';
 
-import styles from './BrandModelSelect.module.scss';
-import { MakeCheckbox } from './MakeCheckbox';
+import styles from './CarModelSelect.module.scss';
+import { ModelCheckbox } from './MakeCheckbox';
 
-type BrandCheckboxProps = {
+type CarCheckboxProps = {
   car: ICar;
 };
 
-export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxProps) {
+export const CarCheckbox = memo(function CarCheckbox({ car }: CarCheckboxProps) {
   const {
     field: { value, onChange },
   } = useController({ name: `cars.${car.name}` });
@@ -25,16 +25,16 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
   const carSerialized = value as ICarsSerialized[string];
 
   const entries = Object.entries(carSerialized);
-  const selectedLength = entries.reduce((totalSelected, [make, selected]) => {
+  const selectedLength = entries.reduce((totalSelected, [model, selected]) => {
     if (selected) totalSelected++;
     return totalSelected;
   }, 0);
-  const isAllMakesSelected = selectedLength === entries.length;
+  const areAllModelsSelected = selectedLength === entries.length;
 
   const onTriggerAll = (select: boolean) => {
     const newValue = produce(carSerialized, (draft) => {
-      Object.keys(draft).forEach((make) => {
-        draft[make] = select;
+      Object.keys(draft).forEach((model) => {
+        draft[model] = select;
       });
     });
     onChange(newValue);
@@ -51,14 +51,14 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
 
   const { open, onOpen, onClose } = useDialog();
 
-  const carMakesFiltered = car.models.filter((make) => make.name.toLowerCase().includes(search.toLowerCase()));
+  const carModelsFiltered = car.models.filter((make) => make.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div>
       <div className={styles.brand_checkbox_wrapper}>
-        <LabeledCheckbox checked={isAllMakesSelected} onCheck={onTriggerAll}>
+        <LabeledCheckbox checked={areAllModelsSelected} onCheck={onTriggerAll}>
           {(() => {
-            if (isAllMakesSelected) {
+            if (areAllModelsSelected) {
               return `${car.name} (все)`;
             }
             if (selectedLength > 0) {
@@ -81,21 +81,21 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
             InputProps={{ endAdornment: <SearchIcon /> }}
           />
           <div className={styles.checkboxes}>
-            <LabeledCheckbox checked={isAllMakesSelected} onCheck={onTriggerAll}>
+            <LabeledCheckbox checked={areAllModelsSelected} onCheck={onTriggerAll}>
               Выбрать всё / Снять выделение
             </LabeledCheckbox>
             <div className={styles.checkbox_list}>
-              {carMakesFiltered.map((make) => (
-                <MakeCheckbox
-                  key={make.id}
-                  makeName={make.name}
-                  checked={carSerialized[make.name]}
+              {carModelsFiltered.map((model) => (
+                <ModelCheckbox
+                  key={model.id}
+                  modelName={model.name}
+                  checked={carSerialized[model.name]}
                   onCheck={onTriggerMake}
                 />
               ))}
-              {carMakesFiltered.length !== car.models.length && (
+              {carModelsFiltered.length !== car.models.length && (
                 <Typography color="gray">
-                  Показано {carMakesFiltered.length} из {car.models.length}
+                  Показано {carModelsFiltered.length} из {car.models.length}
                 </Typography>
               )}
             </div>

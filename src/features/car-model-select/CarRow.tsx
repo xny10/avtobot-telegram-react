@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import { ICar } from 'shared/types';
 
-import { BrandCheckbox } from './BrandCheckbox';
+import { CarCheckbox } from './CarCheckbox';
 
 type CarRowProps = {
   index: number;
@@ -16,7 +16,7 @@ export function CarRow({ index, style, data }: CarRowProps) {
   const car = data.carsFiltered[index];
   return (
     <div key={`${car.id}${data.isEverythingSelected}`} style={style}>
-      <BrandCheckbox car={car} />
+      <CarCheckbox car={car} />
     </div>
   );
 }

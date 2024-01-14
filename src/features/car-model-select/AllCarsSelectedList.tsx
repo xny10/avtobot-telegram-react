@@ -1,11 +1,11 @@
 import { Chip } from '@mui/material';
 import { ICar } from 'shared/types';
 
-type AllBrandsSelectedListProps = {
+type AllCarsSelectedListProps = {
   cars: ICar[];
 };
 
-export function AllBrandsSelectedList({ cars }: AllBrandsSelectedListProps) {
+export function AllCarsSelectedList({ cars }: AllCarsSelectedListProps) {
   return (
     <>
       {cars.map((car) => (

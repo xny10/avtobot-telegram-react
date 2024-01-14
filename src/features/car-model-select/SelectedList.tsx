@@ -12,9 +12,11 @@ type SelectedListProps = {
 export function SelectedList({ EverythingSelectedList }: SelectedListProps) {
   const cars: ICarsSerialized = useWatch({ name: 'cars' });
 
-  const result = Object.entries(cars).map(([brand, makes]) => {
-    const entries = Object.entries(makes);
-    const selected = entries.filter(([makeName, isSelected]) => isSelected).map(([makeName, isSelected]) => makeName);
+  const result = Object.entries(cars).map(([brand, models]) => {
+    const entries = Object.entries(models);
+    const selected = entries
+      .filter(([modelName, isSelected]) => isSelected)
+      .map(([modelName, isSelected]) => modelName);
 
     return {
       brand,

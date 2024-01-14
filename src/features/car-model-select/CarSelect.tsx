@@ -1,21 +1,20 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField, Typography } from '@mui/material';
-import { CSSProperties, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useController, useWatch } from 'react-hook-form';
 import { FixedSizeList } from 'react-window';
 import { ICar, ICarsSerialized } from 'shared/types';
 import { areAllBrandsSelected, setAllCarsSelection } from 'shared/utils/filter.utils';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
 
-import { BrandCheckbox } from './BrandCheckbox';
-import styles from './BrandModelSelect.module.scss';
+import styles from './CarModelSelect.module.scss';
 import { CarRow } from './CarRow';
 
-type BrandSelectStepProps = {
+type CarSelectProps = {
   cars: ICar[];
 };
 
-export function BrandSelectStep({ cars }: BrandSelectStepProps) {
+export function CarSelect({ cars }: CarSelectProps) {
   const [search, setSearch] = useState('');
 
   const carsFiltered = cars.filter((car) => car.name.toLowerCase().includes(search.toLowerCase()));
