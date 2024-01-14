@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material';
 import { MouseEvent } from 'react';
 
 type CopyFilterProps = {
-  filterId: string;
+  filterId: number;
 };
 
 export function CopyFilter({ filterId }: CopyFilterProps) {
