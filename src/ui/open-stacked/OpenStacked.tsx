@@ -1,5 +1,6 @@
 import { animated, useTransition } from '@react-spring/web';
-import { PropsWithChildren } from 'react';
+import { Fragment, PropsWithChildren, useId } from 'react';
+import { createPortal } from 'react-dom';
 
 import styles from './OpenStacked.module.scss';
 
@@ -14,17 +15,25 @@ export function OpenStacked({ open, children }: OpenStackedProps) {
     leave: { transform: 'translateX(100%)' },
   });
 
+  const stackId = useId();
+
   return (
     <>
-      {transitions((style, open) => {
-        return (
-          open && (
-            <animated.div style={style} className={styles.fixed_stack_item}>
-              {children}
-            </animated.div>
-          )
-        );
-      })}
+      {createPortal(
+        <Fragment>
+          {transitions((style, open) => {
+            return (
+              open && (
+                <animated.div style={style} className={styles.fixed_stack_item}>
+                  {children}
+                </animated.div>
+              )
+            );
+          })}
+        </Fragment>,
+        document.body,
+        stackId
+      )}
     </>
   );
 }

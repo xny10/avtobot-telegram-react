@@ -51,7 +51,6 @@ export function CarSelect({ cars }: CarSelectProps) {
       <AutoSizer>
         {({ width, height }: any) => (
           <FixedSizeList
-            className="virtualized list"
             width={width}
             height={height}
             itemData={itemData}
