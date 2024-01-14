@@ -7,7 +7,7 @@ export function populateMissingCars(filter: IFilter, cars: ICar[]) {
   return produce(filter, (draft) => {
     cars.forEach((car) => {
       if (!existingCarsBrands.has(car.brand)) {
-        draft.cars.push({ brand: car.brand, makes: [] });
+        draft.cars.push({ ...car, makes: [] });
       }
     });
   });

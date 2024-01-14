@@ -45,7 +45,7 @@ export function BrandSelectStep({ cars }: BrandSelectStepProps) {
         </LabeledCheckbox>
         <div className={styles.checkbox_list}>
           {carsFiltered.map((car) => {
-            return <BrandCheckbox key={`${car.brand}${isEverythingSelected}`} car={car} />;
+            return <BrandCheckbox key={`${car.id}${isEverythingSelected}`} car={car} />;
           })}
           {carsFiltered.length !== cars.length && (
             <Typography color="gray">

@@ -53,7 +53,7 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
   const carMakesFiltered = car.makes.filter((make) => make.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <div key={car.brand}>
+    <div>
       <div className={styles.brand_checkbox_wrapper}>
         <LabeledCheckbox checked={isAllMakesSelected} onCheck={onTriggerAll}>
           {(() => {

@@ -3,7 +3,7 @@ export type IFilterEngine = 'petrol' | 'diesel' | 'electric' | 'gas' | 'hybrid' 
 export type ISearchType = 'region' | 'city';
 
 export type ICar = {
-  //TODO это тоже id или нет
+  id: number;
   brand: string;
   makes: { name: string }[];
 };

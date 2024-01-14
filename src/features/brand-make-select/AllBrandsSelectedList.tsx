@@ -9,7 +9,7 @@ export function AllBrandsSelectedList({ cars }: AllBrandsSelectedListProps) {
   return (
     <>
       {cars.map((car) => (
-        <Chip key={car.brand} size="small" label={`${car.brand} (все)`} />
+        <Chip key={car.id} size="small" label={`${car.brand} (все)`} />
       ))}
     </>
   );
