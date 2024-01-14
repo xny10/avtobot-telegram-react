@@ -2,6 +2,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { TextField, Typography } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { useController, useWatch } from 'react-hook-form';
+import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList } from 'react-window';
 import { ICar, ICarsSerialized } from 'shared/types';
 import { areAllBrandsSelected, setAllCarsSelection } from 'shared/utils/filter.utils';
@@ -36,7 +37,7 @@ export function CarSelect({ cars }: CarSelectProps) {
   }, [carsFiltered, isEverythingSelected]);
 
   return (
-    <div>
+    <div className={styles.car_select_root}>
       <TextField
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -44,20 +45,29 @@ export function CarSelect({ cars }: CarSelectProps) {
         label="Поиск"
         InputProps={{ endAdornment: <SearchIcon /> }}
       />
-      <div className={styles.checkboxes}>
-        <LabeledCheckbox checked={isEverythingSelected} onCheck={onToggleBrands}>
-          Выбрать всё / Снять выделение
-        </LabeledCheckbox>
-        <FixedSizeList height={500} itemData={itemData} itemCount={carsFiltered.length} itemSize={50} width={600}>
-          {CarRow}
-        </FixedSizeList>
-        <div className={styles.checkbox_list}>
-          {carsFiltered.length !== cars.length && (
-            <Typography color="gray">
-              Показано {carsFiltered.length} из {cars.length}
-            </Typography>
-          )}
-        </div>
+      <LabeledCheckbox checked={isEverythingSelected} onCheck={onToggleBrands}>
+        Выбрать всё / Снять выделение
+      </LabeledCheckbox>
+      <AutoSizer>
+        {({ width, height }: any) => (
+          <FixedSizeList
+            className="virtualized list"
+            width={width}
+            height={height}
+            itemData={itemData}
+            itemCount={carsFiltered.length}
+            itemSize={50}
+          >
+            {CarRow}
+          </FixedSizeList>
+        )}
+      </AutoSizer>
+      <div className={styles.checkbox_list}>
+        {carsFiltered.length !== cars.length && (
+          <Typography color="gray">
+            Показано {carsFiltered.length} из {cars.length}
+          </Typography>
+        )}
       </div>
     </div>
   );

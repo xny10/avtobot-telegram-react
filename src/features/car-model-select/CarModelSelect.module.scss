@@ -50,6 +50,7 @@
 
 .checkboxes {
   margin-top: 10px;
+  flex: 1 1 100%;
 }
 
 .checkbox_list {
@@ -57,4 +58,12 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.car_select_root {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  // TODO: переписать на --tg-viewport-stable-height
+  min-height: calc(100vh - 200px);
 }

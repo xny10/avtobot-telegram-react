@@ -5,10 +5,5 @@
   z-index: 110;
   width: 100vw;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  div {
-    flex: 1 1 100%;
-  }
+  background-color: var(--tg-theme-bg-color);
 }
