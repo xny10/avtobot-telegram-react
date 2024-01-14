@@ -1,17 +1,19 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SearchIcon from '@mui/icons-material/Search';
-import { IconButton, TextField, Typography } from '@mui/material';
+import { IconButton, TextField } from '@mui/material';
 import { produce } from 'immer';
-import { memo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { useController } from 'react-hook-form';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { FixedSizeList } from 'react-window';
 import { useDialog } from 'shared/hooks/useDialog';
-import { ICar, ICarsSerialized } from 'shared/types';
+import { AutoSizerRenderProps, ICar, ICarsSerialized } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
 import { OpenStacked } from 'ui/open-stacked';
 
 import styles from './CarModelSelect.module.scss';
-import { ModelCheckbox } from './MakeCheckbox';
+import { ModelRow } from './ModelRow';
 
 type CarCheckboxProps = {
   car: ICar;
@@ -31,6 +33,7 @@ export const CarCheckbox = memo(function CarCheckbox({ car }: CarCheckboxProps) 
   }, 0);
   const areAllModelsSelected = selectedLength === entries.length;
 
+  // TODO посмотреть нет ли тут сломанных/бессмысленных memo, callback
   const onTriggerAll = (select: boolean) => {
     const newValue = produce(carSerialized, (draft) => {
       Object.keys(draft).forEach((model) => {
@@ -40,18 +43,31 @@ export const CarCheckbox = memo(function CarCheckbox({ car }: CarCheckboxProps) 
     onChange(newValue);
   };
 
-  const onTriggerMake = (makeName: string) => {
-    const newValue = produce(carSerialized, (draft) => {
-      draft[makeName] = !draft[makeName];
-    });
-    onChange(newValue);
-  };
+  const onTriggerMake = useCallback(
+    (makeName: string) => {
+      const newValue = produce(carSerialized, (draft) => {
+        draft[makeName] = !draft[makeName];
+      });
+      onChange(newValue);
+    },
+    [carSerialized]
+  );
 
   const [search, setSearch] = useState('');
 
   const { open, onOpen, onClose } = useDialog();
 
-  const carModelsFiltered = car.models.filter((make) => make.name.toLowerCase().includes(search.toLowerCase()));
+  const carModelsFiltered = useMemo(() => {
+    return car.models.filter((make) => make.name.toLowerCase().includes(search.toLowerCase()));
+  }, [car, search]);
+
+  const itemData = useMemo(() => {
+    return {
+      onTriggerMake,
+      carModels: carModelsFiltered,
+      carSerialized,
+    };
+  }, [onTriggerMake, carModelsFiltered, carSerialized]);
 
   return (
     <div>
@@ -73,32 +89,30 @@ export const CarCheckbox = memo(function CarCheckbox({ car }: CarCheckboxProps) 
       </div>
       <OpenStacked open={open}>
         <BaseLayout backLinkBehavior={onClose} title={car.name}>
-          <TextField
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            fullWidth
-            label="Поиск"
-            InputProps={{ endAdornment: <SearchIcon /> }}
-          />
-          <div className={styles.checkboxes}>
+          <div className={styles.stack_with_virtualized_list_wrapper}>
+            <TextField
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              fullWidth
+              label="Поиск"
+              InputProps={{ endAdornment: <SearchIcon /> }}
+            />
             <LabeledCheckbox checked={areAllModelsSelected} onCheck={onTriggerAll}>
               Выбрать всё / Снять выделение
             </LabeledCheckbox>
-            <div className={styles.checkbox_list}>
-              {carModelsFiltered.map((model) => (
-                <ModelCheckbox
-                  key={model.id}
-                  modelName={model.name}
-                  checked={carSerialized[model.name]}
-                  onCheck={onTriggerMake}
-                />
-              ))}
-              {carModelsFiltered.length !== car.models.length && (
-                <Typography color="gray">
-                  Показано {carModelsFiltered.length} из {car.models.length}
-                </Typography>
+            <AutoSizer>
+              {({ width, height }: AutoSizerRenderProps) => (
+                <FixedSizeList
+                  width={width}
+                  height={height}
+                  itemData={itemData}
+                  itemCount={carModelsFiltered.length}
+                  itemSize={50}
+                >
+                  {ModelRow}
+                </FixedSizeList>
               )}
-            </div>
+            </AutoSizer>
           </div>
         </BaseLayout>
       </OpenStacked>

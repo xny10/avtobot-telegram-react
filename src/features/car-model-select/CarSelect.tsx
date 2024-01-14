@@ -1,10 +1,11 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { TextField, Typography } from '@mui/material';
+import { TextField } from '@mui/material';
 import { useMemo, useState } from 'react';
 import { useController, useWatch } from 'react-hook-form';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList } from 'react-window';
 import { ICar, ICarsSerialized } from 'shared/types';
+import { AutoSizerRenderProps } from 'shared/types/lib';
 import { areAllBrandsSelected, setAllCarsSelection } from 'shared/utils/filter.utils';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
 
@@ -37,7 +38,7 @@ export function CarSelect({ cars }: CarSelectProps) {
   }, [carsFiltered, isEverythingSelected]);
 
   return (
-    <div className={styles.car_select_root}>
+    <div className={styles.stack_with_virtualized_list_wrapper}>
       <TextField
         value={search}
         onChange={(e) => setSearch(e.target.value)}
@@ -49,7 +50,7 @@ export function CarSelect({ cars }: CarSelectProps) {
         Выбрать всё / Снять выделение
       </LabeledCheckbox>
       <AutoSizer>
-        {({ width, height }: any) => (
+        {({ width, height }: AutoSizerRenderProps) => (
           <FixedSizeList
             width={width}
             height={height}
