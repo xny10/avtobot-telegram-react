@@ -86,7 +86,7 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
             <div className={styles.checkbox_list}>
               {carMakesFiltered.map((make) => (
                 <MakeCheckbox
-                  key={make.name}
+                  key={make.id}
                   makeName={make.name}
                   checked={carSerialized[make.name]}
                   onCheck={onTriggerMake}

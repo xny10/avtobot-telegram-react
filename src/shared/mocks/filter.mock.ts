@@ -6,18 +6,29 @@ export const filterMock: IFilter = {
   cars: [
     {
       id: 215,
-      name: 'BMW',
-      models: [{ name: 'bm12' }],
+      name: 'ACURA',
+      models: [{ id: 1569, name: 'EL', manufacturerId: 215 }],
     },
     {
-      id: 214,
-      name: 'AC',
-      models: [{ name: '378 GT ZAGATO' }],
-    },
-    {
-      id: 213,
-      name: 'Alfa Romeo',
-      models: [{ name: 'Alfa12' }, { name: 'MOP' }],
+      id: 216,
+      name: 'ALFA-ROMEO',
+      models: [
+        {
+          id: 1584,
+          name: '6C',
+          manufacturerId: 216,
+        },
+        {
+          id: 1585,
+          name: 'Spider',
+          manufacturerId: 216,
+        },
+        {
+          id: 1586,
+          name: '8C',
+          manufacturerId: 216,
+        },
+      ],
     },
   ],
   isActive: true,

@@ -2,10 +2,17 @@ export type IFilterEngine = 'petrol' | 'diesel' | 'electric' | 'gas' | 'hybrid' 
 
 export type ISearchType = 'region' | 'city';
 
+export type IModel = {
+  id: number;
+  name: string;
+  // TODO: Вообще эту штуку можно удалить и нужно
+  manufacturerId: number;
+};
+
 export type ICar = {
   id: number;
   name: string;
-  models: { name: string }[];
+  models: IModel[];
 };
 
 export type IFilter = {
