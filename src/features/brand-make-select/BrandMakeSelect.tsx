@@ -2,6 +2,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { TextField } from '@mui/material';
 import { LabeledInput } from 'features/filter';
 import { memo, useState } from 'react';
+import { useDialog } from 'shared/hooks/useDialog';
 import { ICar } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { OpenStacked } from 'ui/open-stacked';
@@ -17,7 +18,7 @@ type BrandMakeSelectProps = {
 };
 
 export const BrandMakeSelect = memo(function BrandMakeSelect({ cars }: BrandMakeSelectProps) {
-  const [open, setOpen] = useState(false);
+  const { open, onOpen, onClose } = useDialog();
 
   return (
     <div className={styles.root}>
@@ -26,7 +27,7 @@ export const BrandMakeSelect = memo(function BrandMakeSelect({ cars }: BrandMake
           Title="Марки и модели авто"
           Button={<ClearAll />}
           Content={
-            <div className={styles.open_button_wrapper} onClick={() => setOpen(true)}>
+            <div className={styles.open_button_wrapper} onClick={onOpen}>
               <TextField
                 className={styles.open_button}
                 fullWidth
@@ -38,7 +39,7 @@ export const BrandMakeSelect = memo(function BrandMakeSelect({ cars }: BrandMake
         />
       </div>
       <OpenStacked open={open}>
-        <BaseLayout backLinkBehavior={() => setOpen(false)} title="Марки и модели">
+        <BaseLayout backLinkBehavior={onClose} title="Марки и модели">
           <BrandSelectStep cars={cars} />
         </BaseLayout>
       </OpenStacked>

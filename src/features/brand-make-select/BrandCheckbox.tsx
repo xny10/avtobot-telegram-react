@@ -4,6 +4,7 @@ import { IconButton, TextField, Typography } from '@mui/material';
 import { produce } from 'immer';
 import { memo, useState } from 'react';
 import { useController } from 'react-hook-form';
+import { useDialog } from 'shared/hooks/useDialog';
 import { ICar, ICarsSerialized } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
@@ -48,7 +49,7 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
 
   const [search, setSearch] = useState('');
 
-  const [open, setOpen] = useState(false);
+  const { open, onOpen, onClose } = useDialog();
 
   const carMakesFiltered = car.models.filter((make) => make.name.toLowerCase().includes(search.toLowerCase()));
 
@@ -66,12 +67,12 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
             return car.name;
           })()}
         </LabeledCheckbox>
-        <IconButton onClick={() => setOpen(true)}>
+        <IconButton onClick={onOpen}>
           <ExpandMoreIcon fontSize="large" />
         </IconButton>
       </div>
       <OpenStacked open={open}>
-        <BaseLayout backLinkBehavior={() => setOpen(false)} title={car.name}>
+        <BaseLayout backLinkBehavior={onClose} title={car.name}>
           <TextField
             value={search}
             onChange={(e) => setSearch(e.target.value)}

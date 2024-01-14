@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { PropsWithChildren, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDialog } from 'shared/hooks/useDialog';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { useTelegramScrollLock } from 'shared/hooks/useTelegramScrollLock';
 import { AnyFunction } from 'shared/types';
@@ -32,7 +33,7 @@ export function BaseLayout({
   const { tg } = useTelegram();
   const navigate = useNavigate();
 
-  const [confirmOpen, setConfirmOpen] = useState(false);
+  const { open: confirmOpen, onOpen: onOpenDialog, onClose: onCloseDialog } = useDialog();
 
   const initiateCloseBehavior = () => {
     if (typeof backLinkBehavior === 'function') backLinkBehavior();
@@ -41,7 +42,7 @@ export function BaseLayout({
   };
 
   const onClose = () => {
-    if (confirmGoBack) setConfirmOpen(true);
+    if (confirmGoBack) onOpenDialog();
     else initiateCloseBehavior();
   };
 
@@ -60,13 +61,13 @@ export function BaseLayout({
       <main className={styles.main} ref={contentRef}>
         {children}
       </main>
-      <Dialog open={confirmOpen} onClose={() => setConfirmOpen(false)}>
+      <Dialog open={confirmOpen} onClose={onCloseDialog}>
         <DialogTitle>Вы действительно хотите выйти?</DialogTitle>
         <DialogContent>
           <DialogContentText>Изменения не сохранятся</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setConfirmOpen(false)}>Остаться</Button>
+          <Button onClick={onCloseDialog}>Остаться</Button>
           <Button onClick={initiateCloseBehavior} color="error">
             Уйти
           </Button>
