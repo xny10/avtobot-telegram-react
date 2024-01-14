@@ -1,7 +1,8 @@
 import { Button } from '@mui/material';
+import { AnyFunction } from 'shared/types';
 
 type SaveFilterProps = {
-  onSubmit: (...args: any[]) => void;
+  onSubmit: AnyFunction;
   disabled?: boolean;
 };
 

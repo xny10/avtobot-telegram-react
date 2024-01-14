@@ -1,11 +1,12 @@
 import { Typography } from '@mui/material';
+import { IRangeTuple } from 'shared/types';
 
 import styles from './styles.module.scss';
 
 type CardHeaderProps = {
   index: number;
   title: string;
-  manufactureYear: [string, string];
+  manufactureYear: IRangeTuple;
 };
 
 export function HeaderPrimary({ index, title, manufactureYear }: CardHeaderProps) {
@@ -17,7 +18,11 @@ export function HeaderPrimary({ index, title, manufactureYear }: CardHeaderProps
           {title}
         </Typography>
         <Typography className={styles.years}>
-          {manufactureYear[0]} - {manufactureYear[1]}
+          {(() => {
+            if (!manufactureYear[0]) return `до ${manufactureYear[1]}`;
+            if (!manufactureYear[1]) return `от ${manufactureYear[0]}`;
+            return `${manufactureYear[0]} - ${manufactureYear[1]}`;
+          })()}
         </Typography>
       </div>
     </div>

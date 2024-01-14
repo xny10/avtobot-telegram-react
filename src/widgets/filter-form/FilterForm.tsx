@@ -31,6 +31,7 @@ export function FilterForm({ filter, setConfirmExit }: FilterFormProps) {
   const { control, handleSubmit, formState } = fields;
 
   const onSubmit = (values: IFilterSerialized) => {
+    //* если в cars ничего не выбрано - это значит что на самом деле выбрано всё.
     tg.HapticFeedback.impactOccurred('rigid');
     console.log('values', values);
   };

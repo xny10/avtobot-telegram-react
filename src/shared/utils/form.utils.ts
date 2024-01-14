@@ -1,5 +1,4 @@
-import { produce } from 'immer';
-import { ICar, ICarsSerialized, IFilter, IFilterSerialized } from 'shared/types';
+import { ICar, ICarsSerialized, IFilter, IFilterSerialized, IRangeTuple } from 'shared/types';
 
 export function serializeCars(cars: ICar[]): ICarsSerialized {
   const carsSerialized: ICarsSerialized = {};
@@ -23,10 +22,23 @@ export function serializeFilter(filter: IFilter, cars: ICar[]): IFilterSerialize
     });
   });
 
-  const filterSerialized = produce<IFilter, IFilterSerialized>(filter, (draft) => {
-    draft.cars = carsSerialized;
-  });
+  const filterCopy = structuredClone(filter);
 
-  // TODO что-то не так с выведением типов у produce
-  return filterSerialized as unknown as IFilterSerialized;
+  const filterSerialized: IFilterSerialized = {
+    ...filterCopy,
+    cars: carsSerialized,
+    price: serializeTuple(filterCopy.price),
+    manufactureYear: serializeTuple(filterCopy.manufactureYear),
+    mileage: serializeTuple(filterCopy.mileage),
+  };
+
+  return filterSerialized;
+}
+
+function serializeTuple(tuple: IRangeTuple): [string, string] {
+  if (tuple.length !== 2) throw new Error('tuple have length other than 2');
+  return tuple.map((item) => {
+    if (item === null) return '';
+    return item.toString();
+  }) as [string, string];
 }

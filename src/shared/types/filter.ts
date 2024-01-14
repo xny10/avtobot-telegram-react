@@ -15,6 +15,8 @@ export type ICar = {
   models: IModel[];
 };
 
+export type IRangeTuple = [number | null, number | null];
+
 export type IFilter = {
   id: string;
   name: string;
@@ -22,13 +24,13 @@ export type IFilter = {
   // example: 2024-01-10 17:41:06.675979 +00:00
   createdAt: string;
   cars: ICar[];
-  price: [string, string];
-  manufactureYear: [string, string];
-  mileage: [string, string];
+  price: IRangeTuple;
+  manufactureYear: IRangeTuple;
+  mileage: IRangeTuple;
   engineType: IFilterEngine;
   // TODO: пока выключаем эту шнягу
-  // engineVolume: [string, string];
-  // enginePower: [string, string];
+  // engineVolume: IRangeTuple;
+  // enginePower: IRangeTuple;
   // TODO: на самом деле это int айдишники городов и регионов
   region: string[];
   city: string[];
@@ -41,6 +43,9 @@ export type ICarsSerialized = {
   };
 };
 
-export type IFilterSerialized = Omit<IFilter, 'cars'> & {
+export type IFilterSerialized = Omit<IFilter, 'cars' | 'price' | 'manufactureYear' | 'mileage'> & {
   cars: ICarsSerialized;
+  price: [string, string];
+  manufactureYear: [string, string];
+  mileage: [string, string];
 };
