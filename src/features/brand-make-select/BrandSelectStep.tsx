@@ -1,13 +1,15 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField, Typography } from '@mui/material';
-import { useState } from 'react';
+import { CSSProperties, useMemo, useState } from 'react';
 import { useController, useWatch } from 'react-hook-form';
+import { FixedSizeList } from 'react-window';
 import { ICar, ICarsSerialized } from 'shared/types';
 import { areAllBrandsSelected, setAllCarsSelection } from 'shared/utils/filter.utils';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
 
 import { BrandCheckbox } from './BrandCheckbox';
 import styles from './BrandModelSelect.module.scss';
+import { CarRow } from './CarRow';
 
 type BrandSelectStepProps = {
   cars: ICar[];
@@ -43,10 +45,16 @@ export function BrandSelectStep({ cars }: BrandSelectStepProps) {
         <LabeledCheckbox checked={isEverythingSelected} onCheck={onToggleBrands}>
           Выбрать всё / Снять выделение
         </LabeledCheckbox>
+        <FixedSizeList
+          height={500}
+          itemData={{ carsFiltered, isEverythingSelected }}
+          itemCount={carsFiltered.length}
+          itemSize={50}
+          width={600}
+        >
+          {CarRow}
+        </FixedSizeList>
         <div className={styles.checkbox_list}>
-          {carsFiltered.map((car) => {
-            return <BrandCheckbox key={`${car.id}${isEverythingSelected}`} car={car} />;
-          })}
           {carsFiltered.length !== cars.length && (
             <Typography color="gray">
               Показано {carsFiltered.length} из {cars.length}
