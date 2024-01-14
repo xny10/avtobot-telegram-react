@@ -4,6 +4,6 @@
   top: 0;
   z-index: 110;
   width: 100vw;
-  min-height: 100vh;
+  min-height: var(--tg-viewport-stable-height);
   background-color: var(--tg-theme-bg-color);
 }
