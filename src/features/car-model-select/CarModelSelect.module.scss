@@ -50,6 +50,7 @@
 
 .checkboxes {
   margin-top: 10px;
+  flex: 1 1 100%;
 }
 
 .checkbox_list {
@@ -57,4 +58,11 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+
+.stack_with_virtualized_list_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: calc(var(--tg-viewport-stable-height) - 200px);
 }

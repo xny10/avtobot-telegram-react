@@ -1,23 +1,24 @@
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { TextField } from '@mui/material';
 import { LabeledInput } from 'features/filter';
-import { memo, useState } from 'react';
+import { memo } from 'react';
+import { useDialog } from 'shared/hooks/useDialog';
 import { ICar } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { OpenStacked } from 'ui/open-stacked';
 
-import { AllBrandsSelectedList } from './AllBrandsSelectedList';
-import styles from './BrandModelSelect.module.scss';
-import { BrandSelectStep } from './BrandSelectStep';
+import { AllCarsSelectedList } from './AllCarsSelectedList';
+import styles from './CarModelSelect.module.scss';
+import { CarSelect } from './CarSelect';
 import { ClearAll } from './ClearAll';
 import { SelectedList } from './SelectedList';
 
-type BrandMakeSelectProps = {
+type CarModelSelectProps = {
   cars: ICar[];
 };
 
-export const BrandMakeSelect = memo(function BrandMakeSelect({ cars }: BrandMakeSelectProps) {
-  const [open, setOpen] = useState(false);
+export const CarModelSelect = memo(function CarModelSelect({ cars }: CarModelSelectProps) {
+  const { open, onOpen, onClose } = useDialog();
 
   return (
     <div className={styles.root}>
@@ -26,7 +27,7 @@ export const BrandMakeSelect = memo(function BrandMakeSelect({ cars }: BrandMake
           Title="Марки и модели авто"
           Button={<ClearAll />}
           Content={
-            <div className={styles.open_button_wrapper} onClick={() => setOpen(true)}>
+            <div className={styles.open_button_wrapper} onClick={onOpen}>
               <TextField
                 className={styles.open_button}
                 fullWidth
@@ -38,11 +39,11 @@ export const BrandMakeSelect = memo(function BrandMakeSelect({ cars }: BrandMake
         />
       </div>
       <OpenStacked open={open}>
-        <BaseLayout backLinkBehavior={() => setOpen(false)} title="Марки и модели">
-          <BrandSelectStep cars={cars} />
+        <BaseLayout backLinkBehavior={onClose} title="Марки и модели">
+          <CarSelect cars={cars} />
         </BaseLayout>
       </OpenStacked>
-      <SelectedList EverythingSelectedList={<AllBrandsSelectedList cars={cars} />} />
+      <SelectedList EverythingSelectedList={<AllCarsSelectedList cars={cars} />} />
     </div>
   );
 });
