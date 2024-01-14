@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { carsMock } from 'shared/mocks/cars.mock';
 import { IFilter, IFilterSerialized } from 'shared/types';
-import { serializeFilter } from 'shared/utils/form.utils';
+import { deserializeFilter, serializeFilter } from 'shared/utils/form.utils';
 import { formatNumber } from 'shared/utils/format.utils';
 import { RangeSelect } from 'ui/range-select';
 import { RHFTextField } from 'ui/react-hook-form';
@@ -33,7 +33,7 @@ export function FilterForm({ filter, setConfirmExit }: FilterFormProps) {
   const onSubmit = (values: IFilterSerialized) => {
     //* если в cars ничего не выбрано - это значит что на самом деле выбрано всё.
     tg.HapticFeedback.impactOccurred('rigid');
-    console.log('values', values);
+    console.log('values', deserializeFilter(values));
   };
 
   useEffect(() => {
