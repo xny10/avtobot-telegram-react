@@ -19,7 +19,7 @@ type BrandCheckboxProps = {
 export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxProps) {
   const {
     field: { value, onChange },
-  } = useController({ name: `cars.${car.brand}` });
+  } = useController({ name: `cars.${car.name}` });
 
   const carSerialized = value as ICarsSerialized[string];
 
@@ -50,7 +50,7 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
 
   const [open, setOpen] = useState(false);
 
-  const carMakesFiltered = car.makes.filter((make) => make.name.toLowerCase().includes(search.toLowerCase()));
+  const carMakesFiltered = car.models.filter((make) => make.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div>
@@ -58,12 +58,12 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
         <LabeledCheckbox checked={isAllMakesSelected} onCheck={onTriggerAll}>
           {(() => {
             if (isAllMakesSelected) {
-              return `${car.brand} (все)`;
+              return `${car.name} (все)`;
             }
             if (selectedLength > 0) {
-              return `${car.brand} (${selectedLength})`;
+              return `${car.name} (${selectedLength})`;
             }
-            return car.brand;
+            return car.name;
           })()}
         </LabeledCheckbox>
         <IconButton onClick={() => setOpen(true)}>
@@ -71,7 +71,7 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
         </IconButton>
       </div>
       <OpenStacked open={open}>
-        <BaseLayout backLinkBehavior={() => setOpen(false)} title={car.brand}>
+        <BaseLayout backLinkBehavior={() => setOpen(false)} title={car.name}>
           <TextField
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -92,9 +92,9 @@ export const BrandCheckbox = memo(function BrandCheckbox({ car }: BrandCheckboxP
                   onCheck={onTriggerMake}
                 />
               ))}
-              {carMakesFiltered.length !== car.makes.length && (
+              {carMakesFiltered.length !== car.models.length && (
                 <Typography color="gray">
-                  Показано {carMakesFiltered.length} из {car.makes.length}
+                  Показано {carMakesFiltered.length} из {car.models.length}
                 </Typography>
               )}
             </div>

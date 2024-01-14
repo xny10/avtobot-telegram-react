@@ -5,9 +5,9 @@ export function serializeCars(cars: ICar[]): ICarsSerialized {
   const carsSerialized: ICarsSerialized = {};
 
   cars.forEach((car) => {
-    carsSerialized[car.brand] = {};
-    car.makes.forEach((make) => {
-      carsSerialized[car.brand][make.name] = false;
+    carsSerialized[car.name] = {};
+    car.models.forEach((make) => {
+      carsSerialized[car.name][make.name] = false;
     });
   });
 
@@ -18,8 +18,8 @@ export function serializeFilter(filter: IFilter, cars: ICar[]): IFilterSerialize
   const carsSerialized = serializeCars(cars);
 
   filter.cars.forEach((car) => {
-    car.makes.forEach((make) => {
-      carsSerialized[car.brand][make.name] = true;
+    car.models.forEach((make) => {
+      carsSerialized[car.name][make.name] = true;
     });
   });
 

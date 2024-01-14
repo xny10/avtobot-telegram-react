@@ -16,7 +16,7 @@ type BrandSelectStepProps = {
 export function BrandSelectStep({ cars }: BrandSelectStepProps) {
   const [search, setSearch] = useState('');
 
-  const carsFiltered = cars.filter((car) => car.brand.toLowerCase().includes(search.toLowerCase()));
+  const carsFiltered = cars.filter((car) => car.name.toLowerCase().includes(search.toLowerCase()));
 
   const { field } = useController({ name: 'cars' });
 

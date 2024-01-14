@@ -4,8 +4,8 @@ export type ISearchType = 'region' | 'city';
 
 export type ICar = {
   id: number;
-  brand: string;
-  makes: { name: string }[];
+  name: string;
+  models: { name: string }[];
 };
 
 export type IFilter = {
