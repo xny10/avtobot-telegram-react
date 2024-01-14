@@ -1,6 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useController, useWatch } from 'react-hook-form';
 import { FixedSizeList } from 'react-window';
 import { ICar, ICarsSerialized } from 'shared/types';
@@ -31,6 +31,10 @@ export function CarSelect({ cars }: CarSelectProps) {
     field.onChange(setAllCarsSelection(value, selected));
   };
 
+  const itemData = useMemo(() => {
+    return { carsFiltered, isEverythingSelected };
+  }, [carsFiltered, isEverythingSelected]);
+
   return (
     <div>
       <TextField
@@ -44,13 +48,7 @@ export function CarSelect({ cars }: CarSelectProps) {
         <LabeledCheckbox checked={isEverythingSelected} onCheck={onToggleBrands}>
           Выбрать всё / Снять выделение
         </LabeledCheckbox>
-        <FixedSizeList
-          height={500}
-          itemData={{ carsFiltered, isEverythingSelected }}
-          itemCount={carsFiltered.length}
-          itemSize={50}
-          width={600}
-        >
+        <FixedSizeList height={500} itemData={itemData} itemCount={carsFiltered.length} itemSize={50} width={600}>
           {CarRow}
         </FixedSizeList>
         <div className={styles.checkbox_list}>
