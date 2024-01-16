@@ -22,8 +22,7 @@ export type IFilter = {
   userId: number;
   name: string;
   isActive: boolean;
-  // example: 2024-01-10 17:41:06.675979 +00:00
-  createdAt: string;
+
   carChoices: ICar[];
   price: IRangeTuple;
   manufactureYear: IRangeTuple;
@@ -36,6 +35,9 @@ export type IFilter = {
   region: number[];
   city: number[];
   searchType: ISearchType;
+  // example: 2024-01-15T12:23:11.83061Z
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ICarChoice = {
