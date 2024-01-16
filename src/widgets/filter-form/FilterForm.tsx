@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { carsMock } from 'shared/mocks/cars.mock';
-import { ICar, IFilter, IFilterSerialized } from 'shared/types';
+import { IFilter, IFilterSerialized, IManufacturer } from 'shared/types';
 import { deserializeFilter, serializeFilter } from 'shared/utils/form.utils';
 import { formatNumber } from 'shared/utils/format.utils';
 import { RangeSelect } from 'ui/range-select';
@@ -16,7 +16,7 @@ import styles from './styles.module.scss';
 
 type FilterFormProps = {
   filter: IFilter;
-  manufacturers: ICar[];
+  manufacturers: IManufacturer[];
   setConfirmExit: (confirm: boolean) => void;
 };
 

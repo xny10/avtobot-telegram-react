@@ -9,7 +9,7 @@ export type IModel = {
   manufacturerId: number;
 };
 
-export type ICar = {
+export type IManufacturer = {
   id: number;
   name: string;
   models: IModel[];
@@ -22,8 +22,7 @@ export type IFilter = {
   userId: number;
   name: string;
   isActive: boolean;
-
-  carChoices: ICar[];
+  carChoices: IManufacturer[];
   price: IRangeTuple;
   manufactureYear: IRangeTuple;
   mileage: IRangeTuple;

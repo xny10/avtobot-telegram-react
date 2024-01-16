@@ -1,8 +1,8 @@
 import { Chip } from '@mui/material';
-import { ICar } from 'shared/types';
+import { IManufacturer } from 'shared/types';
 
 type AllCarsSelectedListProps = {
-  cars: ICar[];
+  cars: IManufacturer[];
 };
 
 export function AllCarsSelectedList({ cars }: AllCarsSelectedListProps) {

@@ -3,7 +3,7 @@ import { TextField } from '@mui/material';
 import { LabeledInput } from 'features/filter';
 import { memo } from 'react';
 import { useDialog } from 'shared/hooks/useDialog';
-import { ICar } from 'shared/types';
+import { IManufacturer } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { OpenStacked } from 'ui/open-stacked';
 
@@ -14,7 +14,7 @@ import { ClearAll } from './ClearAll';
 import { SelectedList } from './SelectedList';
 
 type CarModelSelectProps = {
-  cars: ICar[];
+  cars: IManufacturer[];
 };
 
 export const CarModelSelect = memo(function CarModelSelect({ cars }: CarModelSelectProps) {

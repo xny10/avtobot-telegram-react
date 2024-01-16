@@ -1,6 +1,6 @@
-import { ICar, ICarsSerialized, IFilter, IFilterSerialized, IRangeTuple } from 'shared/types';
+import { IManufacturer, ICarsSerialized, IFilter, IFilterSerialized, IRangeTuple } from 'shared/types';
 
-function serializeCars(cars: ICar[]): ICarsSerialized {
+function serializeCars(cars: IManufacturer[]): ICarsSerialized {
   const carsSerialized: ICarsSerialized = {};
 
   cars.forEach((car) => {
@@ -13,9 +13,9 @@ function serializeCars(cars: ICar[]): ICarsSerialized {
   return carsSerialized;
 }
 
-function deserializeCars(cars: ICarsSerialized): ICar[] {
+function deserializeCars(cars: ICarsSerialized): IManufacturer[] {
   // TODO: десериализация
-  return <ICar[]><unknown>null
+  return <IManufacturer[]><unknown>null
 }
 
 function serializeTuple(tuple: IRangeTuple): [string, string] {
@@ -32,7 +32,7 @@ function deserializeTuple(tuple: [string, string]): IRangeTuple {
   ]
 }
 
-export function serializeFilter(filter: IFilter, cars: ICar[]): IFilterSerialized {
+export function serializeFilter(filter: IFilter, cars: IManufacturer[]): IFilterSerialized {
   const carsSerialized = serializeCars(cars);
 
   filter.carChoices.forEach((car) => {

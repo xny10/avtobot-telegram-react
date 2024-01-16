@@ -1,4 +1,4 @@
-import { ICar, ICity, IRegion } from 'shared/types';
+import { ICity, IManufacturer, IRegion } from 'shared/types';
 
 import { api } from './queryClient';
 
@@ -22,7 +22,7 @@ export async function fetchRegions() {
 
 export async function fetchManufacturers() {
   try {
-    const res = await api.get<ICar[]>('Dictionaries/manufacturers');
+    const res = await api.get<IManufacturer[]>('Dictionaries/manufacturers');
     return res.data;
   } catch (e) {
     console.error('error', e);
