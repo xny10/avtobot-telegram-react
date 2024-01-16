@@ -1,5 +1,5 @@
 import { StyledEngineProvider } from '@mui/material';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
 
@@ -22,7 +22,9 @@ export function App() {
       <StyledEngineProvider injectFirst>
         <ThemeProvider>
           <BrowserRouter>
-            <Router />
+            <Suspense fallback="">
+              <Router />
+            </Suspense>
           </BrowserRouter>
         </ThemeProvider>
       </StyledEngineProvider>
