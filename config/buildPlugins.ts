@@ -1,5 +1,6 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import DotenvPlugin from 'dotenv-webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -14,6 +15,7 @@ export function buildPlugins({ mode, paths, analyzer, platform }: BuildOptions):
   const isProd = mode === 'production';
 
   const plugins: Configuration['plugins'] = [
+    new DotenvPlugin(),
     new HtmlWebpackPlugin({
       template: paths.html,
       // TODO добавить фавикноку позже
