@@ -2,11 +2,11 @@ import { MenuItem } from '@mui/material';
 import { TabbedInput } from 'features/filter';
 import { memo } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
+import { useCities } from 'shared/hooks/useCities';
+import { useRegions } from 'shared/hooks/useRegions';
 import { ICity, IRegion } from 'shared/types';
 import { RHFMultiSelect } from 'ui/react-hook-form/rhf-multi-select';
 
-import { useCities } from './hooks/useCities';
-import { useRegions } from './hooks/useRegions';
 import { clearLocation } from './utils/clearLocation';
 
 export const LocationSelect = memo(function LocationSelect() {
