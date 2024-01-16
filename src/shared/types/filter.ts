@@ -31,9 +31,8 @@ export type IFilter = {
   // TODO: пока выключаем эту шнягу
   // engineVolume: IRangeTuple;
   // enginePower: IRangeTuple;
-  // TODO: на самом деле это int айдишники городов и регионов
-  region: number[];
-  city: number[];
+  regionIds: number[];
+  cityIds: number[];
   searchType: ISearchType;
   // example: 2024-01-15T12:23:11.83061Z
   createdAt: string;
