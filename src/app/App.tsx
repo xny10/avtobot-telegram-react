@@ -2,6 +2,7 @@ import { StyledEngineProvider } from '@mui/material';
 import { Suspense, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { BaseLayout } from 'ui/base-layout';
 
 import { ReactQueryProvider } from './providers/ReactQueryProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
@@ -22,7 +23,7 @@ export function App() {
       <StyledEngineProvider injectFirst>
         <ThemeProvider>
           <BrowserRouter>
-            <Suspense fallback="">
+            <Suspense fallback={<BaseLayout title="" />}>
               <Router />
             </Suspense>
           </BrowserRouter>
