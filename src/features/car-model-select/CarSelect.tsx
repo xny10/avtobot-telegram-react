@@ -6,7 +6,7 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList } from 'react-window';
 import { ICar, ICarsSerialized } from 'shared/types';
 import { AutoSizerRenderProps } from 'shared/types/lib';
-import { areAllBrandsSelected, setAllCarsSelection } from 'shared/utils/filter.utils';
+import { areAllCarsSelected, setAllCarsSelection } from 'shared/utils/filter.utils';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
 
 import styles from './CarModelSelect.module.scss';
@@ -25,7 +25,7 @@ export function CarSelect({ cars }: CarSelectProps) {
 
   const value: ICarsSerialized = field.value;
 
-  const isEverythingSelected = areAllBrandsSelected(value);
+  const isEverythingSelected = areAllCarsSelected(value);
   //* необходимо для своевременного пересчёта isEverythingSelected
   useWatch({ name: 'cars' });
 

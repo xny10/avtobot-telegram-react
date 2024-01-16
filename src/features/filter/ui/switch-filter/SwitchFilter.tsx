@@ -2,7 +2,7 @@ import { Switch } from '@mui/material';
 import { MouseEvent } from 'react';
 
 type SwitchFilterProps = {
-  filterId: string;
+  filterId: number;
   isActive: boolean;
 };
 

@@ -18,7 +18,7 @@ export type ICar = {
 export type IRangeTuple = [number | null, number | null];
 
 export type IFilter = {
-  id: string;
+  id: number;
   name: string;
   isActive: boolean;
   // example: 2024-01-10 17:41:06.675979 +00:00
@@ -35,6 +35,29 @@ export type IFilter = {
   region: string[];
   city: string[];
   searchType: ISearchType;
+};
+
+export type ICarChoice = {
+  ManufacturerID: number;
+  ModelIds: number[];
+};
+
+export type FilterDto = {
+  Id: number;
+  UserId: number;
+  Name: string;
+  IsActive: boolean;
+  CarChoices: ICarChoice[];
+  Price: IRangeTuple;
+  ManufactureYear: IRangeTuple;
+  Mileage: IRangeTuple;
+  EngineType: IFilterEngine;
+  SearchType: ISearchType;
+  // TODO: пока выключаем эту шнягу
+  // engineVolume: IRangeTuple;
+  // enginePower: IRangeTuple;
+  RegionIds: number[];
+  CityIds: number[];
 };
 
 export type ICarsSerialized = {

@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material';
 import { MouseEvent } from 'react';
 
 type DeleteFilterProps = {
-  filterId: string;
+  filterId: number;
 };
 
 export function DeleteFilter({ filterId }: DeleteFilterProps) {

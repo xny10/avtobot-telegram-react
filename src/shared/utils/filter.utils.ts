@@ -4,8 +4,12 @@ export function isBrandMakesSelected(carMakes: ICarsSerialized[string]) {
   return Object.values(carMakes).every(Boolean);
 }
 
-export function areAllBrandsSelected(cars: ICarsSerialized) {
+export function areAllCarsSelected(cars: ICarsSerialized) {
   return Object.values(cars).every((carMakes) => isBrandMakesSelected(carMakes));
+}
+
+export function areNoneCarsSelected(cars: ICarsSerialized) {
+  return Object.values(cars).every((carMakes) => !isBrandMakesSelected(carMakes));
 }
 
 export function setAllCarsSelection(cars: ICarsSerialized, selected: boolean) {
