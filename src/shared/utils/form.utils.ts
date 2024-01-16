@@ -45,7 +45,7 @@ export function serializeFilter(filter: IFilter, cars: ICar[]): IFilterSerialize
 
   const filterSerialized: IFilterSerialized = {
     ...filterCopy,
-    cars: carsSerialized,
+    carChoices: carsSerialized,
     price: serializeTuple(filterCopy.price),
     manufactureYear: serializeTuple(filterCopy.manufactureYear),
     mileage: serializeTuple(filterCopy.mileage),
@@ -62,7 +62,7 @@ export function deserializeFilter(filterSerialized: IFilterSerialized): IFilter 
   // TODO: привести не к filter, а к filterDto
   const filter: IFilter = {
     ...filterSerialized,
-    carChoices: deserializeCars(filterCopy.cars),
+    carChoices: deserializeCars(filterCopy.carChoices),
     price: deserializeTuple(filterCopy.price),
     manufactureYear: deserializeTuple(filterCopy.manufactureYear),
     mileage: deserializeTuple(filterCopy.mileage),

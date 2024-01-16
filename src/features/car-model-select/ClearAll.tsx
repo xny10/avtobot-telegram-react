@@ -6,8 +6,8 @@ export function ClearAll() {
   const { setValue, getValues } = useFormContext();
 
   const onClear = () => {
-    const cars = getValues('cars');
-    setValue('cars', setAllCarsSelection(cars, false), { shouldDirty: true });
+    const cars = getValues('carChoices');
+    setValue('carChoices', setAllCarsSelection(cars, false), { shouldDirty: true });
   };
 
   return <ClearButton onClear={onClear} />;

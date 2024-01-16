@@ -68,8 +68,8 @@ export type ICarsSerialized = {
   };
 };
 
-export type IFilterSerialized = Omit<IFilter, 'cars' | 'price' | 'manufactureYear' | 'mileage'> & {
-  cars: ICarsSerialized;
+export type IFilterSerialized = Omit<IFilter, 'carChoices' | 'price' | 'manufactureYear' | 'mileage'> & {
+  carChoices: ICarsSerialized;
   price: [string, string];
   manufactureYear: [string, string];
   mileage: [string, string];
