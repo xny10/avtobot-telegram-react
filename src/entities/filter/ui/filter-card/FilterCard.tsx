@@ -21,7 +21,7 @@ export function FilterCard({ filter, index, Buttons }: FilterCardProps) {
         {Buttons}
       </div>
       <div className={styles.variants}>
-        {filter.cars.map((car) => (
+        {filter.carChoices.map((car) => (
           <Chip key={car.id} size="small" label={`${car.name}${car.models.map((make) => make.name).join(', ')}`} />
         ))}
       </div>

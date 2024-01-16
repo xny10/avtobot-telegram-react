@@ -9,7 +9,7 @@ export type IModel = {
   manufacturerId: number;
 };
 
-export type ICar = {
+export type IManufacturer = {
   id: number;
   name: string;
   models: IModel[];
@@ -19,11 +19,10 @@ export type IRangeTuple = [number | null, number | null];
 
 export type IFilter = {
   id: number;
+  userId: number;
   name: string;
   isActive: boolean;
-  // example: 2024-01-10 17:41:06.675979 +00:00
-  createdAt: string;
-  cars: ICar[];
+  carChoices: IManufacturer[];
   price: IRangeTuple;
   manufactureYear: IRangeTuple;
   mileage: IRangeTuple;
@@ -31,10 +30,12 @@ export type IFilter = {
   // TODO: пока выключаем эту шнягу
   // engineVolume: IRangeTuple;
   // enginePower: IRangeTuple;
-  // TODO: на самом деле это int айдишники городов и регионов
-  region: number[];
-  city: number[];
+  regionIds: number[];
+  cityIds: number[];
   searchType: ISearchType;
+  // example: 2024-01-15T12:23:11.83061Z
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ICarChoice = {
@@ -66,8 +67,8 @@ export type ICarsSerialized = {
   };
 };
 
-export type IFilterSerialized = Omit<IFilter, 'cars' | 'price' | 'manufactureYear' | 'mileage'> & {
-  cars: ICarsSerialized;
+export type IFilterSerialized = Omit<IFilter, 'carChoices' | 'price' | 'manufactureYear' | 'mileage'> & {
+  carChoices: ICarsSerialized;
   price: [string, string];
   manufactureYear: [string, string];
   mileage: [string, string];

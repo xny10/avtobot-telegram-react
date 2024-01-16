@@ -37,7 +37,7 @@ export const LocationSelect = memo(function LocationSelect() {
           Input: (
             <RHFMultiSelect<IRegion, number>
               key="region"
-              name="region"
+              name="regionIds"
               options={regions}
               inputLabel="Добавить регион"
               renderOption={renderRegion}
@@ -53,7 +53,7 @@ export const LocationSelect = memo(function LocationSelect() {
           Input: (
             <RHFMultiSelect<ICity, number>
               key="city"
-              name="city"
+              name="cityIds"
               options={cities}
               inputLabel="Добавить город"
               renderOption={renderCity}

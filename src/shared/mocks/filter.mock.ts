@@ -2,8 +2,9 @@ import { IFilter } from 'shared/types';
 
 export const filterMock: IFilter = {
   id: 123,
+  userId: 100,
   name: 'фильтр 1',
-  cars: [
+  carChoices: [
     {
       id: 215,
       name: 'ACURA',
@@ -34,13 +35,14 @@ export const filterMock: IFilter = {
   isActive: true,
   price: [200000, 1200000],
   manufactureYear: [1996, 2023],
-  createdAt: '2024-01-10 17:41:06.675979 +00:00',
+  createdAt: '2024-01-15T12:23:11.83061Z',
+  updatedAt: '2024-01-15T12:23:11.83061Z',
   mileage: [null, 150000],
   // engineVolume: ['', '3.4'],
   // enginePower: ['300', '1300'],
   engineType: 'petrol',
-  city: [701, 702, 705, 708],
-  region: [104, 105, 106, 109, 112],
+  cityIds: [701, 702, 705, 708],
+  regionIds: [104, 105, 106, 109, 112],
   searchType: 'region',
 };
 

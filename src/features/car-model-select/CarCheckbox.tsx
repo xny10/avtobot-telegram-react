@@ -7,7 +7,7 @@ import { useController } from 'react-hook-form';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList } from 'react-window';
 import { useDialog } from 'shared/hooks/useDialog';
-import { AutoSizerRenderProps, ICar, ICarsSerialized } from 'shared/types';
+import { AutoSizerRenderProps, ICarsSerialized, IManufacturer } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
 import { OpenStacked } from 'ui/open-stacked';
@@ -16,13 +16,13 @@ import styles from './CarModelSelect.module.scss';
 import { ModelRow } from './ModelRow';
 
 type CarCheckboxProps = {
-  car: ICar;
+  car: IManufacturer;
 };
 
 export const CarCheckbox = memo(function CarCheckbox({ car }: CarCheckboxProps) {
   const {
     field: { value, onChange },
-  } = useController({ name: `cars.${car.name}` });
+  } = useController({ name: `carChoices.${car.name}` });
 
   const carSerialized = value as ICarsSerialized[string];
 

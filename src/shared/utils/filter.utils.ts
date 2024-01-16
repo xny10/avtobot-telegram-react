@@ -13,6 +13,7 @@ export function areNoneCarsSelected(cars: ICarsSerialized) {
 }
 
 export function setAllCarsSelection(cars: ICarsSerialized, selected: boolean) {
+  console.log('cars', cars);
   const copy = JSON.parse(JSON.stringify(cars));
   Object.keys(copy).forEach((brandName) => {
     Object.keys(copy[brandName]).forEach((makeName) => {
