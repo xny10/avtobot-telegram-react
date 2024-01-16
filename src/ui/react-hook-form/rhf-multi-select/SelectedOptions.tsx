@@ -1,47 +1,55 @@
 import { Chip } from '@mui/material';
 import { Control, useFormContext, useWatch } from 'react-hook-form';
+import { IOption } from 'shared/types';
 
 import styles from './styles.module.scss';
 
-type SelectedOptionsProps = {
+type SelectedOptionsProps<Option extends IOption, FieldValue> = {
   name: string;
   control?: Control<any, any>;
-  options: string[];
+  options: Option[];
+  getFieldValue?: (fieldValue: FieldValue) => string;
+  isEqual?: (valueA: FieldValue, valueB: FieldValue) => boolean;
 };
 
-export function SelectedOptions({ name, control, options }: SelectedOptionsProps) {
+export function SelectedOptions<Option extends IOption, FieldValue>({
+  name,
+  control,
+  options,
+  getFieldValue,
+  isEqual = (a, b) => a === b,
+}: SelectedOptionsProps<Option, FieldValue>) {
   const { control: contextControl, setValue } = useFormContext();
 
-  const selectedOptions: string[] = useWatch({
+  const selectedValues: FieldValue[] = useWatch({
     control: control ?? contextControl,
     name,
   });
 
-  const onDeleteOption = (option: string) => {
+  const onDeleteOption = (valueToDelete: FieldValue) => {
     setValue(
       name,
-      selectedOptions.filter((opt) => opt !== option),
+      selectedValues.filter((value) => {
+        return !isEqual(value, valueToDelete);
+      }),
       { shouldDirty: true }
     );
   };
 
-  // TODO: такая проверка не сработает для вложенных структур, надо будет что-то придумать
-  const isEverythingSelected = selectedOptions.length === options.length;
-
   return (
     <div className={styles.selected_options}>
       {(() => {
-        if (selectedOptions.length === 0) {
-          return <Chip variant="outlined" color="error" size="small" label="Ничего не выбрано" />;
-        }
-
-        if (isEverythingSelected) {
+        if (selectedValues.length === options.length || selectedValues.length === 0) {
           return <Chip variant="outlined" size="small" label="Все" />;
         }
 
-        return selectedOptions.map((option) => (
-          <Chip key={option} size="small" label={option} onDelete={() => onDeleteOption(option)} />
-        ));
+        return selectedValues.map((value) => {
+          let label: string;
+          if (getFieldValue) label = getFieldValue(value as unknown as FieldValue);
+          else label = value as string;
+
+          return <Chip key={value as string} size="small" label={label} onDelete={() => onDeleteOption(value)} />;
+        });
       })()}
     </div>
   );
