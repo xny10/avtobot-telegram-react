@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { carsMock } from 'shared/mocks/cars.mock';
-import { IFilter, IFilterSerialized } from 'shared/types';
+import { ICar, IFilter, IFilterSerialized } from 'shared/types';
 import { deserializeFilter, serializeFilter } from 'shared/utils/form.utils';
 import { formatNumber } from 'shared/utils/format.utils';
 import { RangeSelect } from 'ui/range-select';
@@ -16,14 +16,15 @@ import styles from './styles.module.scss';
 
 type FilterFormProps = {
   filter: IFilter;
+  manufacturers: ICar[];
   setConfirmExit: (confirm: boolean) => void;
 };
 
-export function FilterForm({ filter, setConfirmExit }: FilterFormProps) {
+export function FilterForm({ filter, manufacturers, setConfirmExit }: FilterFormProps) {
   const { tg } = useTelegram();
 
   const fields = useForm<IFilterSerialized>({
-    defaultValues: serializeFilter(filter, carsMock),
+    defaultValues: serializeFilter(filter, manufacturers),
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
