@@ -6,8 +6,12 @@
 }
 
 .title {
+  display: block;
   text-transform: uppercase;
   font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .header {
@@ -34,6 +38,7 @@
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
+  background-color: var(--tg-theme-bg-color);
 }
 
 .main {
