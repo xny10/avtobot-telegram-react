@@ -19,6 +19,7 @@ export type IRangeTuple = [number | null, number | null];
 
 export type IFilter = {
   id: number;
+  userId: number;
   name: string;
   isActive: boolean;
   // example: 2024-01-10 17:41:06.675979 +00:00
