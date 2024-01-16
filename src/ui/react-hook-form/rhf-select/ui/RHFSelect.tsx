@@ -101,6 +101,7 @@ export function RHFSelect({
 
           if (options.length === 0) return <MenuItem>No options</MenuItem>;
 
+          //TODO: перенести и в multiple
           if (renderOption) {
             return options.map((option) => renderOption(option));
           }

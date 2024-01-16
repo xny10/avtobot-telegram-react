@@ -32,8 +32,8 @@ export type IFilter = {
   // engineVolume: IRangeTuple;
   // enginePower: IRangeTuple;
   // TODO: на самом деле это int айдишники городов и регионов
-  region: string[];
-  city: string[];
+  region: number[];
+  city: number[];
   searchType: ISearchType;
 };
 

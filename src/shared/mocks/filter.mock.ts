@@ -39,8 +39,8 @@ export const filterMock: IFilter = {
   // engineVolume: ['', '3.4'],
   // enginePower: ['300', '1300'],
   engineType: 'petrol',
-  city: ['Москва'],
-  region: ['Ростовская обл.'],
+  city: [701, 702, 705, 708],
+  region: [104, 105, 106, 109, 112],
   searchType: 'region',
 };
 
