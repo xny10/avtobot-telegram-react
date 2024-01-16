@@ -21,7 +21,7 @@ export function CarSelect({ cars }: CarSelectProps) {
 
   const carsFiltered = cars.filter((car) => car.name.toLowerCase().includes(search.toLowerCase()));
 
-  const { field } = useController({ name: 'cars' });
+  const { field } = useController({ name: 'carChoices' });
 
   const value: ICarsSerialized = field.value;
 

@@ -10,7 +10,7 @@ type SelectedListProps = {
 };
 
 export function SelectedList({ EverythingSelectedList }: SelectedListProps) {
-  const cars: ICarsSerialized = useWatch({ name: 'cars' });
+  const cars: ICarsSerialized = useWatch({ name: 'carChoices' });
 
   const result = Object.entries(cars).map(([brand, models]) => {
     const entries = Object.entries(models);

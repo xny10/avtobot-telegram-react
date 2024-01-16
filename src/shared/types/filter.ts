@@ -24,7 +24,7 @@ export type IFilter = {
   isActive: boolean;
   // example: 2024-01-10 17:41:06.675979 +00:00
   createdAt: string;
-  cars: ICar[];
+  carChoices: ICar[];
   price: IRangeTuple;
   manufactureYear: IRangeTuple;
   mileage: IRangeTuple;

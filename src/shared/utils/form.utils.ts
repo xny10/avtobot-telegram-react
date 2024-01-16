@@ -35,7 +35,7 @@ function deserializeTuple(tuple: [string, string]): IRangeTuple {
 export function serializeFilter(filter: IFilter, cars: ICar[]): IFilterSerialized {
   const carsSerialized = serializeCars(cars);
 
-  filter.cars.forEach((car) => {
+  filter.carChoices.forEach((car) => {
     car.models.forEach((make) => {
       carsSerialized[car.name][make.name] = true;
     });
@@ -62,7 +62,7 @@ export function deserializeFilter(filterSerialized: IFilterSerialized): IFilter 
   // TODO: привести не к filter, а к filterDto
   const filter: IFilter = {
     ...filterSerialized,
-    cars: deserializeCars(filterCopy.cars),
+    carChoices: deserializeCars(filterCopy.cars),
     price: deserializeTuple(filterCopy.price),
     manufactureYear: deserializeTuple(filterCopy.manufactureYear),
     mileage: deserializeTuple(filterCopy.mileage),

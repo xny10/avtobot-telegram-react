@@ -22,7 +22,7 @@ type CarCheckboxProps = {
 export const CarCheckbox = memo(function CarCheckbox({ car }: CarCheckboxProps) {
   const {
     field: { value, onChange },
-  } = useController({ name: `cars.${car.name}` });
+  } = useController({ name: `carChoices.${car.name}` });
 
   const carSerialized = value as ICarsSerialized[string];
 

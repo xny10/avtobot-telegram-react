@@ -4,7 +4,7 @@ export const filterMock: IFilter = {
   id: 123,
   userId: 100,
   name: 'фильтр 1',
-  cars: [
+  carChoices: [
     {
       id: 215,
       name: 'ACURA',
