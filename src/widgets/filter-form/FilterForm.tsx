@@ -2,10 +2,12 @@ import { CarModelSelect } from 'features/car-model-select';
 import { SaveFilter } from 'features/filter';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { UpdateFilterDto } from 'shared/dto/UpdateFilter.dto';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { carsMock } from 'shared/mocks/cars.mock';
-import { IFilter, IFilterSerialized, IManufacturer } from 'shared/types';
-import { deserializeFilter, serializeFilter } from 'shared/utils/form.utils';
+import { ICar, IFilter, IFilterSerialized } from 'shared/types';
+import { serializeFilter } from 'shared/utils/form.utils';
 import { formatNumber } from 'shared/utils/format.utils';
 import { RangeSelect } from 'ui/range-select';
 import { RHFTextField } from 'ui/react-hook-form';
@@ -16,15 +18,15 @@ import styles from './styles.module.scss';
 
 type FilterFormProps = {
   filter: IFilter;
-  manufacturers: IManufacturer[];
+  cars: ICar[];
   setConfirmExit: (confirm: boolean) => void;
 };
 
-export function FilterForm({ filter, manufacturers, setConfirmExit }: FilterFormProps) {
+export function FilterForm({ filter, cars, setConfirmExit }: FilterFormProps) {
   const { tg } = useTelegram();
 
   const fields = useForm<IFilterSerialized>({
-    defaultValues: serializeFilter(filter, manufacturers),
+    defaultValues: serializeFilter(filter, cars),
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
@@ -32,9 +34,13 @@ export function FilterForm({ filter, manufacturers, setConfirmExit }: FilterForm
   const { control, handleSubmit, formState } = fields;
 
   const onSubmit = (values: IFilterSerialized) => {
-    //* если в cars ничего не выбрано - это значит что на самом деле выбрано всё.
-    tg.HapticFeedback.impactOccurred('rigid');
-    console.log('values', deserializeFilter(values));
+    try {
+      console.log('result', new UpdateFilterDto(values, cars));
+
+      tg.HapticFeedback.impactOccurred('rigid');
+    } catch (e) {
+      console.log('e', e);
+    }
   };
 
   useEffect(() => {

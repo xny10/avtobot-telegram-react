@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { ICarsSerialized, IManufacturer } from 'shared/types';
+import { ICar, ICarsSerialized } from 'shared/types';
 
 import { ModelCheckbox } from './MakeCheckbox';
 
@@ -7,7 +7,7 @@ type ModelRowProps = {
   index: number;
   style: CSSProperties;
   data: {
-    carModels: IManufacturer['models'];
+    carModels: ICar['models'];
     onTriggerMake: (makeName: string) => void;
     carSerialized: ICarsSerialized[string];
   };

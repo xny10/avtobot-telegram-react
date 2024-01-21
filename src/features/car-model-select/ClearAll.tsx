@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { setAllCarsSelection } from 'shared/utils/filter.utils';
+import { createCarsWithSelection } from 'shared/utils/filter.utils';
 import { ClearButton } from 'ui/clear-button';
 
 export function ClearAll() {
@@ -7,7 +7,7 @@ export function ClearAll() {
 
   const onClear = () => {
     const cars = getValues('carChoices');
-    setValue('carChoices', setAllCarsSelection(cars, false), { shouldDirty: true });
+    setValue('carChoices', createCarsWithSelection(cars, false), { shouldDirty: true });
   };
 
   return <ClearButton onClear={onClear} />;
