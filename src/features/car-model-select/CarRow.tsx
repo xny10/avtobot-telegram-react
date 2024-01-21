@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { IManufacturer } from 'shared/types';
+import { ICar } from 'shared/types';
 
 import { CarCheckbox } from './CarCheckbox';
 
@@ -7,7 +7,7 @@ type CarRowProps = {
   index: number;
   style: CSSProperties;
   data: {
-    carsFiltered: IManufacturer[];
+    carsFiltered: ICar[];
     isEverythingSelected: boolean;
   };
 };

@@ -1,24 +1,27 @@
 import { ICarsSerialized } from 'shared/types';
 
-export function isBrandMakesSelected(carMakes: ICarsSerialized[string]) {
-  return Object.values(carMakes).every(Boolean);
+function allModelsSelected(models: ICarsSerialized[string]) {
+  return Object.values(models).every(Boolean);
 }
 
-export function areAllCarsSelected(cars: ICarsSerialized) {
-  return Object.values(cars).every((carMakes) => isBrandMakesSelected(carMakes));
+function allModelsDeselected(models: ICarsSerialized[string]) {
+  return Object.values(models).every((selected) => !selected);
 }
 
-export function areNoneCarsSelected(cars: ICarsSerialized) {
-  return Object.values(cars).every((carMakes) => !isBrandMakesSelected(carMakes));
+export function allCarsSelected(cars: ICarsSerialized) {
+  return Object.values(cars).every((carMakes) => allModelsSelected(carMakes));
 }
 
-export function setAllCarsSelection(cars: ICarsSerialized, selected: boolean) {
-  console.log('cars', cars);
-  const copy = JSON.parse(JSON.stringify(cars));
-  Object.keys(copy).forEach((brandName) => {
-    Object.keys(copy[brandName]).forEach((makeName) => {
-      copy[brandName][makeName] = selected;
+export function allCarsDeselected(cars: ICarsSerialized) {
+  return Object.values(cars).every((carMakes) => allModelsDeselected(carMakes));
+}
+
+export function createCarsWithSelection(cars: ICarsSerialized, selected: boolean) {
+  const clone = structuredClone(cars);
+  Object.keys(clone).forEach((brandName) => {
+    Object.keys(clone[brandName]).forEach((makeName) => {
+      clone[brandName][makeName] = selected;
     });
   });
-  return copy;
+  return clone;
 }

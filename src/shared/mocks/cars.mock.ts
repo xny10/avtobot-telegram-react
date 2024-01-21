@@ -1,6 +1,6 @@
-import { IManufacturer } from 'shared/types';
+import { ICar } from 'shared/types';
 
-export const carsMock: IManufacturer[] = [
+export const carsMock: ICar[] = [
   {
     id: 215,
     name: 'ACURA',
