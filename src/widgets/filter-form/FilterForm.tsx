@@ -7,7 +7,7 @@ import { createFilter, updateFilter } from 'shared/api';
 import { FilterDto } from 'shared/dto/Filter.dto';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { carsMock } from 'shared/mocks/cars.mock';
-import { ICar, IFilter, IFilterSerialized } from 'shared/types';
+import { ICarExpanded, IFilter, IFilterSerialized } from 'shared/types';
 import { serializeFilter } from 'shared/utils/form.utils';
 import { formatNumber } from 'shared/utils/format.utils';
 import { RangeSelect } from 'ui/range-select';
@@ -19,7 +19,7 @@ import styles from './styles.module.scss';
 
 type FilterFormProps = {
   filter: IFilter;
-  cars: ICar[];
+  cars: ICarExpanded[];
   setConfirmExit: (confirm: boolean) => void;
 };
 

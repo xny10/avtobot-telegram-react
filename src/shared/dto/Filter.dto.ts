@@ -1,18 +1,21 @@
-import { ICar, ICarsSerialized, IFilterEngine, IFilterSerialized, IRangeTuple, ISearchType } from 'shared/types';
+import {
+  ICar,
+  ICarExpanded,
+  ICarsSerialized,
+  IFilterEngine,
+  IFilterSerialized,
+  IRangeTuple,
+  ISearchType,
+} from 'shared/types';
 import { allCarsDeselected, createCarsWithSelection } from 'shared/utils/filter.utils';
 import { deserializeTuple } from 'shared/utils/form.utils';
-
-type ICarDto = {
-  manufacturerId: number;
-  modelIds: number[];
-};
 
 export class FilterDto {
   id: number;
   userId: number;
   name: string;
   isActive: boolean;
-  carChoices: ICarDto[];
+  carChoices: ICar[];
   price: IRangeTuple;
   manufactureYear: IRangeTuple;
   mileage: IRangeTuple;
@@ -26,7 +29,7 @@ export class FilterDto {
   createdAt: string;
   updatedAt: string;
 
-  constructor(filter: IFilterSerialized, cars: ICar[]) {
+  constructor(filter: IFilterSerialized, cars: ICarExpanded[]) {
     const clone = structuredClone(filter);
     this.id = clone.id;
     this.userId = clone.userId;
@@ -48,8 +51,8 @@ export class FilterDto {
     this.updatedAt = clone.updatedAt;
   }
 
-  private deseralizeCars(carsSerialized: ICarsSerialized, cars: ICar[]) {
-    const carsDeserialized: ICarDto[] = [];
+  private deseralizeCars(carsSerialized: ICarsSerialized, cars: ICarExpanded[]) {
+    const carsDeserialized: ICar[] = [];
 
     const namesMapId = this.getCarNames(cars);
     const modelMapId = this.getCarModels(cars);
@@ -62,24 +65,25 @@ export class FilterDto {
       if (modelNames.length === 0) return;
 
       const carId = namesMapId[carName];
-      const modelIds = modelNames.map((name) => modelMapId[name]);
+      const models = modelNames.map((name) => ({ id: modelMapId[name], name }));
 
       carsDeserialized.push({
-        manufacturerId: carId,
-        modelIds,
+        name: carName,
+        id: carId,
+        models,
       });
     });
 
     return carsDeserialized;
   }
 
-  private getCarNames(cars: ICar[]) {
+  private getCarNames(cars: ICarExpanded[]) {
     const namesMapId: Record<string, number> = {};
     cars.forEach((car) => (namesMapId[car.name] = car.id));
     return namesMapId;
   }
 
-  private getCarModels(cars: ICar[]) {
+  private getCarModels(cars: ICarExpanded[]) {
     const modelMapId: Record<string, number> = {};
     cars.forEach((car) => {
       car.models.forEach((model) => {

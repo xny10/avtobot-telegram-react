@@ -1,5 +1,5 @@
 import { FilterDto } from 'shared/dto/Filter.dto';
-import { ICar, ICity, IFilter, IRegion } from 'shared/types';
+import { ICarExpanded, ICity, IFilter, IRegion } from 'shared/types';
 
 import { api } from './queryClient';
 
@@ -15,7 +15,7 @@ export async function fetchRegions() {
 
 export async function fetchCars() {
   try {
-    const res = await api.get<ICar[]>('Dictionaries/manufacturers');
+    const res = await api.get<ICarExpanded[]>('Dictionaries/manufacturers');
     return res.data;
   } catch (e) {
     console.error('error', e);

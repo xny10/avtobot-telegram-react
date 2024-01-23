@@ -2,13 +2,13 @@ import { IFilter } from 'shared/types';
 
 export const filterMock: IFilter = {
   id: 12,
-  userId: 100,
+  userId: 0,
   name: 'фильтр 1',
   carChoices: [
     {
       id: 215,
       name: 'ACURA',
-      models: [{ id: 1569, name: 'EL', manufacturerId: 215 }],
+      models: [{ id: 1569, name: 'EL' }],
     },
     {
       id: 216,
@@ -17,17 +17,14 @@ export const filterMock: IFilter = {
         {
           id: 1584,
           name: '6C',
-          manufacturerId: 216,
         },
         {
           id: 1585,
           name: 'Spider',
-          manufacturerId: 216,
         },
         {
           id: 1586,
           name: '8C',
-          manufacturerId: 216,
         },
       ],
     },
