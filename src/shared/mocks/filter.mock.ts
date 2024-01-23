@@ -1,7 +1,7 @@
 import { IFilter } from 'shared/types';
 
 export const filterMock: IFilter = {
-  id: 123,
+  id: 12,
   userId: 100,
   name: 'фильтр 1',
   carChoices: [
@@ -47,7 +47,7 @@ export const filterMock: IFilter = {
 };
 
 export const filtersMock: IFilter[] = [
-  { ...filterMock, id: 123 },
+  { ...filterMock, id: 12 },
   { ...filterMock, id: 124 },
   { ...filterMock, id: 125 },
   { ...filterMock, id: 126 },
