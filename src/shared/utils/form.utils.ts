@@ -1,6 +1,6 @@
-import { ICar, ICarsSerialized, IFilter, IFilterSerialized, IRangeTuple } from 'shared/types';
+import { ICarExpanded, ICarsSerialized, IFilter, IFilterSerialized, IRangeTuple } from 'shared/types';
 
-export function serializeCars(cars: ICar[]): ICarsSerialized {
+export function serializeCars(cars: ICarExpanded[]): ICarsSerialized {
   const carsSerialized: ICarsSerialized = {};
 
   cars.forEach((car) => {
@@ -24,7 +24,7 @@ export function deserializeTuple(tuple: [string, string]): IRangeTuple {
   return [tuple[0] === '' ? null : Number.parseInt(tuple[0]), tuple[1] === '' ? null : Number.parseInt(tuple[1])];
 }
 
-export function serializeFilter(filter: IFilter, cars: ICar[]): IFilterSerialized {
+export function serializeFilter(filter: IFilter, cars: ICarExpanded[]): IFilterSerialized {
   const carsSerialized = serializeCars(cars);
 
   filter.carChoices.forEach((car) => {

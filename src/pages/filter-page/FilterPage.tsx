@@ -1,23 +1,46 @@
 import { Typography } from '@mui/material';
+import { SaveFilterButton } from 'features/save-filter-button';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
-import { fetchCars } from 'shared/api';
-import { filterMock } from 'shared/mocks/filter.mock';
+import { UseFormHandleSubmit, UseFormReturn } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import { useGetFilter } from 'shared/hooks/filter/useGetFilter';
+import { ICarExpanded, IFilterSerialized } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { FilterForm } from 'widgets/filter-form';
 
-export function FilterPage() {
-  const [confirmExit, setConfirmExit] = useState(false);
-  const filter = filterMock;
+type SubmitButtonParams = {
+  handleSubmit: UseFormHandleSubmit<IFilterSerialized>;
+  formApi: UseFormReturn<IFilterSerialized>;
+  cars: ICarExpanded[];
+};
 
-  // TODO: проверить как работает кэш на телефоне. Если плохо - сделать сохранение в localStorage и последующих hotswap. Для этого скорее всего надо будет добавить effect в FilterForm
-  const { data: cars, isLoading, isError } = useQuery('cars', fetchCars);
+const renderSubmitButton = (params: SubmitButtonParams) => (
+  <SaveFilterButton cars={params.cars} handleSubmit={params.handleSubmit} formApi={params.formApi} />
+);
+
+export function FilterPage() {
+  const params = useParams<{ id: string }>();
+  const [confirmExit, setConfirmExit] = useState(false);
+
+  const { cars, filter, error, isLoading } = useGetFilter(+(params.id as string));
 
   return (
-    <BaseLayout confirmGoBack={confirmExit} backLinkBehavior="previous_page" title={filter.name || 'Новый Фильтр'}>
-      {isError && <Typography variant="h5">Произошла ошибка!</Typography>}
-      {isLoading && <Typography variant="h5">Загружаем фильтр...</Typography>}
-      {cars && <FilterForm filter={filter} cars={cars} setConfirmExit={setConfirmExit} />}
+    <BaseLayout confirmGoBack={confirmExit} backLinkBehavior="previous_page" title={filter?.name || ''}>
+      {error && (
+        <>
+          <Typography variant="h5">Произошла ошибка!</Typography>
+          <Typography>{error.message}</Typography>
+        </>
+      )}
+      {isLoading && <Typography variant="h5">Загрузка...</Typography>}
+      {cars && filter && (
+        <FilterForm
+          filter={filter}
+          cars={cars}
+          setConfirmExit={setConfirmExit}
+          renderSubmitButton={renderSubmitButton}
+        />
+      )}
     </BaseLayout>
   );
 }

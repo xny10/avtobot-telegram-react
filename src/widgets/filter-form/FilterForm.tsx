@@ -1,12 +1,8 @@
 import { CarModelSelect } from 'features/car-model-select';
-import { SaveFilter } from 'features/filter';
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import { UpdateFilterDto } from 'shared/dto/UpdateFilter.dto';
-import { useTelegram } from 'shared/hooks/useTelegram';
 import { carsMock } from 'shared/mocks/cars.mock';
-import { ICar, IFilter, IFilterSerialized } from 'shared/types';
+import { ICarExpanded, IFilter, IFilterSerialized } from 'shared/types';
 import { serializeFilter } from 'shared/utils/form.utils';
 import { formatNumber } from 'shared/utils/format.utils';
 import { RangeSelect } from 'ui/range-select';
@@ -15,33 +11,23 @@ import { RHFTextField } from 'ui/react-hook-form';
 import { FuelField } from './FuelField';
 import { LocationSelect } from './LocationSelect';
 import styles from './styles.module.scss';
+import { SubmitButtonParams } from './types';
 
 type FilterFormProps = {
   filter: IFilter;
-  cars: ICar[];
+  cars: ICarExpanded[];
   setConfirmExit: (confirm: boolean) => void;
+  renderSubmitButton: (params: SubmitButtonParams) => ReactNode;
 };
 
-export function FilterForm({ filter, cars, setConfirmExit }: FilterFormProps) {
-  const { tg } = useTelegram();
-
-  const fields = useForm<IFilterSerialized>({
+export function FilterForm({ filter, cars, setConfirmExit, renderSubmitButton }: FilterFormProps) {
+  const formApi = useForm<IFilterSerialized>({
     defaultValues: serializeFilter(filter, cars),
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
 
-  const { control, handleSubmit, formState } = fields;
-
-  const onSubmit = (values: IFilterSerialized) => {
-    try {
-      console.log('result', new UpdateFilterDto(values, cars));
-
-      tg.HapticFeedback.impactOccurred('rigid');
-    } catch (e) {
-      console.log('e', e);
-    }
-  };
+  const { control, handleSubmit, formState } = formApi;
 
   useEffect(() => {
     setConfirmExit(formState.isDirty);
@@ -80,7 +66,7 @@ export function FilterForm({ filter, cars, setConfirmExit }: FilterFormProps) {
   }
 
   return (
-    <FormProvider {...fields}>
+    <FormProvider {...formApi}>
       <form className={styles.form}>
         <RHFTextField control={control} name="name" label="Название" />
         <LocationSelect />
@@ -92,7 +78,7 @@ export function FilterForm({ filter, cars, setConfirmExit }: FilterFormProps) {
         {/* TODO: пока выключаем */}
         {/* <EngineVolumeSelect options={ENGINE_VOLUME_MOCK} /> */}
         {/* <RangeSelect name="enginePower" label="Мощность двигателя, л.с." options={ENGINE_POWER_MOCK} /> */}
-        <SaveFilter onSubmit={handleSubmit(onSubmit)} disabled={!formState.isDirty} />
+        {renderSubmitButton({ cars, handleSubmit, formApi })}
       </form>
     </FormProvider>
   );

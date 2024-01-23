@@ -1,7 +1,7 @@
 import { produce } from 'immer';
-import { ICar, IFilter } from 'shared/types';
+import { ICarExpanded, IFilter } from 'shared/types';
 
-export function populateMissingCars(filter: IFilter, cars: ICar[]) {
+export function populateMissingCars(filter: IFilter, cars: ICarExpanded[]) {
   const existingCarsBrands = new Set(filter.carChoices.map((car) => car.name));
 
   return produce(filter, (draft) => {

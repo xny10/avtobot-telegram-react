@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useController, useWatch } from 'react-hook-form';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList } from 'react-window';
-import { ICar, ICarsSerialized } from 'shared/types';
+import { ICarExpanded, ICarsSerialized } from 'shared/types';
 import { AutoSizerRenderProps } from 'shared/types/lib';
 import { allCarsSelected, createCarsWithSelection } from 'shared/utils/filter.utils';
 import { LabeledCheckbox } from 'ui/labeled-checkbox';
@@ -13,7 +13,7 @@ import styles from './CarModelSelect.module.scss';
 import { CarRow } from './CarRow';
 
 type CarSelectProps = {
-  cars: ICar[];
+  cars: ICarExpanded[];
 };
 
 export function CarSelect({ cars }: CarSelectProps) {
