@@ -1,17 +1,18 @@
 import { Typography } from '@mui/material';
 import { AxiosError } from 'axios';
 import { useQuery } from 'react-query';
-import { fetchFilters } from 'shared/api';
+import { fetchFilter } from 'shared/api';
 import { IFilter } from 'shared/types';
 import { FiltersList } from 'widgets/filters-list';
 
 import { Layout } from './Layout';
 
 export function HomePage() {
+  // TODO: заменить на что-то человеческое из телеги
   const userId = 0;
 
   const { data, isLoading, error } = useQuery<IFilter[], AxiosError>('filters', {
-    queryFn: () => fetchFilters({ userId }),
+    queryFn: () => fetchFilter({ userId }),
   });
 
   if (error) {

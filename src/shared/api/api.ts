@@ -14,20 +14,23 @@ export async function fetchRegions() {
 }
 
 export async function fetchCars() {
-  try {
-    const res = await api.get<ICarExpanded[]>('Dictionaries/manufacturers');
-    return res.data;
-  } catch (e) {
-    console.error('error', e);
-  }
+  const res = await api.get<ICarExpanded[]>('Dictionaries/manufacturers');
+  return res.data;
 }
 
 type FetchFiltersPayload = {
   userId: number;
 };
 
-export async function fetchFilters(payload: FetchFiltersPayload) {
+export async function fetchFilter(payload: FetchFiltersPayload) {
   const res = await api.post<IFilter[]>('Filter/getAllByUserId', payload);
+  return res.data;
+}
+
+export async function fetchFilterById(filterId: number) {
+  const res = await api.post<IFilter>('Filter/get', {
+    id: filterId,
+  });
   return res.data;
 }
 
