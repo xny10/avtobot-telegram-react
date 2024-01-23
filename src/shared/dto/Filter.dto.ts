@@ -7,7 +7,7 @@ type ICarDto = {
   modelIds: number[];
 };
 
-export class UpdateFilterDto {
+export class FilterDto {
   id: number;
   userId: number;
   name: string;

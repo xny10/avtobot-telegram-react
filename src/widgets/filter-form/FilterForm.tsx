@@ -3,7 +3,8 @@ import { SaveFilter } from 'features/filter';
 import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
-import { UpdateFilterDto } from 'shared/dto/UpdateFilter.dto';
+import { createFilter, updateFilter } from 'shared/api';
+import { FilterDto } from 'shared/dto/Filter.dto';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { carsMock } from 'shared/mocks/cars.mock';
 import { ICar, IFilter, IFilterSerialized } from 'shared/types';
@@ -33,14 +34,20 @@ export function FilterForm({ filter, cars, setConfirmExit }: FilterFormProps) {
 
   const { control, handleSubmit, formState } = fields;
 
-  const onSubmit = (values: IFilterSerialized) => {
+  const { data, isLoading, isError, mutateAsync } = useMutation({
+    mutationFn: updateFilter,
+  });
+
+  console.log('data, isLoading, isError', data, isLoading, isError);
+
+  const onSubmit = async (values: IFilterSerialized) => {
+    // TODO: нужно ли вообще ловит ошибку?
     try {
-      console.log('result', new UpdateFilterDto(values, cars));
+      const res = await mutateAsync(new FilterDto(values, cars));
+      console.log('res', res);
 
       tg.HapticFeedback.impactOccurred('rigid');
-    } catch (e) {
-      console.log('e', e);
-    }
+    } catch (e) {}
   };
 
   useEffect(() => {
