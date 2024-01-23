@@ -1,5 +1,5 @@
-import { UpdateFilterDto } from 'shared/dto/UpdateFilter.dto';
-import { ICar, ICity, IRegion } from 'shared/types';
+import { FilterDto } from 'shared/dto/Filter.dto';
+import { ICar, ICity, IFilter, IRegion } from 'shared/types';
 
 import { api } from './queryClient';
 
@@ -27,6 +27,23 @@ type FetchFiltersPayload = {
 };
 
 export async function fetchFilters(payload: FetchFiltersPayload) {
-  const res = await api.post<ICar[]>('Filter/getAllByUserId', payload);
+  const res = await api.post<IFilter[]>('Filter/getAllByUserId', payload);
+  return res.data;
+}
+
+export async function createFilter(dto: FilterDto) {
+  const res = await api.post<IFilter>('Filter/add', dto);
+  return res.data;
+}
+
+export async function updateFilter(dto: FilterDto) {
+  const res = await api.post<IFilter>('Filter/edit', dto);
+  return res.data;
+}
+
+export async function deleteFilter(filterId: number) {
+  const res = await api.post<boolean>('Filter/edit', {
+    id: filterId,
+  });
   return res.data;
 }
