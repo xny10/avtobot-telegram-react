@@ -68,7 +68,7 @@ export function BaseLayout({
         </DialogContent>
         <DialogActions>
           <Button onClick={onCloseDialog}>Остаться</Button>
-          <Button onClick={initiateCloseBehavior} color="error">
+          <Button variant="contained" onClick={initiateCloseBehavior} color="error">
             Уйти
           </Button>
         </DialogActions>
