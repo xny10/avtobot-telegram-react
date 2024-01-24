@@ -1,5 +1,6 @@
 import { StyledEngineProvider } from '@mui/material';
 import { Suspense, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { BrowserRouter } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { BaseLayout } from 'ui/base-layout';
@@ -29,6 +30,7 @@ export function App() {
           </BrowserRouter>
         </ThemeProvider>
       </StyledEngineProvider>
+      <Toaster />
     </ReactQueryProvider>
   );
 }

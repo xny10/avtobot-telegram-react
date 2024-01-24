@@ -4,7 +4,7 @@ import { fetchCars, fetchFilterById } from 'shared/api';
 import { ICarExpanded, IFilter } from 'shared/types';
 
 export function useGetFilter(filterId: number) {
-  const filterQuery = useQuery<IFilter, AxiosError>('filter', {
+  const filterQuery = useQuery<IFilter, AxiosError>(['filter', filterId], {
     queryFn: () => fetchFilterById(filterId),
   });
 
