@@ -1,4 +1,4 @@
-import { CarModelSelect } from 'features/car-model-select';
+import { CarModelSelect } from 'features/filter/ui/car-model-select';
 import { ReactNode, useEffect } from 'react';
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { carsMock } from 'shared/mocks/cars.mock';

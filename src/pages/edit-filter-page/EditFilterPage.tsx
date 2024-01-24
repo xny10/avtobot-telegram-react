@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
-import { SaveFilterButton } from 'features/save-filter-button';
+import { SaveFilterButton } from 'features/filter';
 import { useState } from 'react';
 import { UseFormHandleSubmit, UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useGetFilter } from 'shared/hooks/filter/useGetFilter';
-import { ICarExpanded, IFilter, IFilterSerialized } from 'shared/types';
+import { ICarExpanded, IFilterSerialized } from 'shared/types';
 import { serializeFilter } from 'shared/utils/form.utils';
 import { BaseLayout } from 'ui/base-layout';
 import { FilterForm } from 'widgets/filter-form';
