@@ -1,4 +1,4 @@
 export const ROUTES = {
-  home: '/',
-  filter: '/filter',
+  filters: '/',
+  editFilter: '/edit',
 };
