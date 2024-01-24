@@ -30,7 +30,12 @@ export function FiltersList({ filters }: FiltersListProps) {
             filter={filter}
             index={i}
             Buttons={
-              <div>
+              <div
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+              >
                 <SwitchFilter filterId={filter.id} isActive={filter.isActive} />
                 <CopyFilter filterId={filter.id} />
                 <DeleteFilter filterId={filter.id} />

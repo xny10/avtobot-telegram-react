@@ -8,7 +8,6 @@ type SwitchFilterProps = {
 
 export function SwitchFilter({ filterId, isActive }: SwitchFilterProps) {
   const onClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
     console.log(`change filter id=${filterId} active state to=${!isActive}`);
   };
 

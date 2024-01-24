@@ -8,7 +8,6 @@ type DeleteFilterProps = {
 
 export function DeleteFilter({ filterId }: DeleteFilterProps) {
   const onDelete = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
     // do something...
     console.log(`filter id=${filterId} deleted`);
   };
