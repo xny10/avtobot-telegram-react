@@ -8,7 +8,6 @@ type CopyFilterProps = {
 
 export function CopyFilter({ filterId }: CopyFilterProps) {
   const onCopy = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
     // do something...
     console.log(`filter id=${filterId} copied`);
   };
