@@ -13,3 +13,6 @@
 1. вынести все field(s) в features, вынести стилизованный select в ui
 2. выключить прокрутку при открытии форм - актуально для компов
 3. SF pro display для айфонов - возможно для айфонов ег оможно просто указать от device detector
+
+### Tar packaging
+tar -cvzf build_v2.tar.gz E:\work\avtobot-mwp\build
