@@ -1,4 +1,12 @@
-import { ICarExpanded, ICarsSerialized, IFilter, IFilterSerialized, IRangeTuple } from 'shared/types';
+import {
+  ICarExpanded,
+  ICarsSerialized,
+  IFilter,
+  IFilterCreate,
+  IFilterCreateSerialized,
+  IFilterSerialized,
+  IRangeTuple,
+} from 'shared/types';
 
 export function serializeCars(cars: ICarExpanded[]): ICarsSerialized {
   const carsSerialized: ICarsSerialized = {};
@@ -36,6 +44,28 @@ export function serializeFilter(filter: IFilter, cars: ICarExpanded[]): IFilterS
   const filterCopy = structuredClone(filter);
 
   const filterSerialized: IFilterSerialized = {
+    ...filterCopy,
+    carChoices: carsSerialized,
+    price: serializeTuple(filterCopy.price),
+    manufactureYear: serializeTuple(filterCopy.manufactureYear),
+    mileage: serializeTuple(filterCopy.mileage),
+  };
+
+  return filterSerialized;
+}
+
+export function serializeFilterCreate(filter: IFilterCreate, cars: ICarExpanded[]): IFilterCreateSerialized {
+  const carsSerialized = serializeCars(cars);
+
+  filter.carChoices.forEach((car) => {
+    car.models.forEach((make) => {
+      carsSerialized[car.name][make.name] = true;
+    });
+  });
+
+  const filterCopy = structuredClone(filter);
+
+  const filterSerialized: IFilterCreateSerialized = {
     ...filterCopy,
     carChoices: carsSerialized,
     price: serializeTuple(filterCopy.price),

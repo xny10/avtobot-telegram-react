@@ -1,3 +1,4 @@
+import { CreateFilterDto } from 'shared/dto/CreateFilter.dto';
 import { FilterDto } from 'shared/dto/Filter.dto';
 import { ICarExpanded, ICity, IFilter, IRegion } from 'shared/types';
 
@@ -34,7 +35,7 @@ export async function fetchFilterById(filterId: number) {
   return res.data;
 }
 
-export async function createFilter(dto: FilterDto) {
+export async function createFilter(dto: CreateFilterDto) {
   const res = await api.post<IFilter>('Filter/add', dto);
   return res.data;
 }

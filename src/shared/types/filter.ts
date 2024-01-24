@@ -48,29 +48,6 @@ export type IFilter = {
   updatedAt: string;
 };
 
-export type ICarChoice = {
-  ManufacturerID: number;
-  ModelIds: number[];
-};
-
-export type FilterDto = {
-  Id: number;
-  UserId: number;
-  Name: string;
-  IsActive: boolean;
-  CarChoices: ICarChoice[];
-  Price: IRangeTuple;
-  ManufactureYear: IRangeTuple;
-  Mileage: IRangeTuple;
-  EngineType: IFilterEngine;
-  SearchType: ISearchType;
-  // TODO: пока выключаем эту шнягу
-  // engineVolume: IRangeTuple;
-  // enginePower: IRangeTuple;
-  RegionIds: number[];
-  CityIds: number[];
-};
-
 export type ICarsSerialized = {
   [brand: string]: {
     [model: string]: boolean;
@@ -83,3 +60,7 @@ export type IFilterSerialized = Omit<IFilter, 'carChoices' | 'price' | 'manufact
   manufactureYear: [string, string];
   mileage: [string, string];
 };
+
+export type IFilterCreate = Omit<IFilter, 'id'>;
+
+export type IFilterCreateSerialized = Omit<IFilterSerialized, 'id'>;
