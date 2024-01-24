@@ -3,7 +3,11 @@ import { useQuery } from 'react-query';
 import { fetchCars, fetchFilterById } from 'shared/api';
 import { ICarExpanded, IFilter } from 'shared/types';
 
-export function useGetFilter(filterId: number) {
+type UseGetFilterParams = {
+  filterId: number;
+};
+
+export function useGetFilter({ filterId }: UseGetFilterParams) {
   const filterQuery = useQuery<IFilter, AxiosError>(['filter', filterId], {
     queryFn: () => fetchFilterById(filterId),
   });
