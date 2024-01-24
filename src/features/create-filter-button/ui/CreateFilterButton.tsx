@@ -17,22 +17,14 @@ export type CreateFilterButtonProps = {
 
 export function CreateFilterButton({ handleSubmit, formApi, cars }: CreateFilterButtonProps) {
   const navigate = useNavigate();
-  const { tg } = useTelegram();
-  const client = useQueryClient();
 
   const [createFilter, { isLoading }] = useCreateFilter();
 
   const onSubmit = async (values: IFilterCreateSerialized) => {
-    try {
-      await createFilter(new CreateFilterDto(values, cars));
+    const dto = new CreateFilterDto(values, cars);
+    const { success } = await createFilter(dto);
+    if (success) {
       navigate(ROUTES.filters);
-      tg.HapticFeedback.impactOccurred('rigid');
-      toast.success('Фильтр создан');
-      client.invalidateQueries({
-        queryKey: 'filters',
-      });
-    } catch (e) {
-      toast.success('Не удалось создать');
     }
   };
 
