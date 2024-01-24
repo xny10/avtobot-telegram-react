@@ -1,10 +1,10 @@
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { TextField } from '@mui/material';
-import { LabeledInput } from 'features/filter';
 import { memo } from 'react';
 import { useDialog } from 'shared/hooks/useDialog';
 import { ICarExpanded } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
+import { LabeledInput } from 'ui/labeled-input';
 import { OpenStacked } from 'ui/open-stacked';
 
 import { AllCarsSelectedList } from './AllCarsSelectedList';
