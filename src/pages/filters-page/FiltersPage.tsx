@@ -2,14 +2,20 @@ import { Typography } from '@mui/material';
 import { AxiosError } from 'axios';
 import { useQuery } from 'react-query';
 import { fetchFilter } from 'shared/api';
+import { useTelegram } from 'shared/hooks/useTelegram';
 import { IFilter } from 'shared/types';
+import { StartupNotTelegram } from 'ui/startup-not-telegram';
 import { FiltersList } from 'widgets/filters-list';
 
 import { Layout } from './Layout';
 
 export function FiltersPage() {
-  // TODO: заменить на что-то человеческое из телеги
-  const userId = 0;
+  const tg = useTelegram();
+  const userId = tg.user?.id;
+
+  if (!userId) {
+    return <StartupNotTelegram />;
+  }
 
   const { data, isLoading, error } = useQuery<IFilter[], AxiosError>('filters', {
     queryFn: () => fetchFilter({ userId }),

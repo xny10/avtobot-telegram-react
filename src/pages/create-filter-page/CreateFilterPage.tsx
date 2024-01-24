@@ -2,10 +2,12 @@ import { Typography } from '@mui/material';
 import { CreateFilterButton } from 'features/filter';
 import { useState } from 'react';
 import { useGetCars } from 'shared/hooks/useGetCars';
+import { useTelegram } from 'shared/hooks/useTelegram';
 import { IFilterCreateSerialized } from 'shared/types';
 import { createEmptyFilter } from 'shared/utils/filter.utils';
 import { serializeFilterCreate } from 'shared/utils/form.utils';
 import { BaseLayout } from 'ui/base-layout';
+import { StartupNotTelegram } from 'ui/startup-not-telegram';
 import { FilterForm, SubmitButtonParams } from 'widgets/filter-form';
 
 const renderCreateButton = (params: SubmitButtonParams<IFilterCreateSerialized>) => (
@@ -13,11 +15,16 @@ const renderCreateButton = (params: SubmitButtonParams<IFilterCreateSerialized>)
 );
 
 export function CreateFilterPage() {
-  const userId = 0;
+  const tg = useTelegram();
+  const userId = tg.user?.id;
 
   const [confirmExit, setConfirmExit] = useState(false);
 
   const { cars, isLoading, error } = useGetCars();
+
+  if (!userId) {
+    return <StartupNotTelegram />;
+  }
 
   return (
     <BaseLayout confirmGoBack={confirmExit} backLinkBehavior="previous_page" title="Создать фильтр">
