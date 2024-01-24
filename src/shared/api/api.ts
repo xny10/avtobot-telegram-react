@@ -54,8 +54,8 @@ export async function deleteFilter(filterId: number) {
 }
 
 type ToggleFilterParams = {
-  filterId: number;
-  active: boolean;
+  id: number;
+  isActive: boolean;
 };
 
 export async function toggleFilter(payload: ToggleFilterParams) {

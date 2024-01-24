@@ -17,7 +17,7 @@ export function useCopyFilter() {
   const onCreate = async (dto: CopyFilterDto) => {
     let success = false;
     try {
-      const createdFilter = await createFilter(dto);
+      const createdFilter = await mutateAsync(dto);
       tg.HapticFeedback.impactOccurred('rigid');
       client.setQueryData<IFilter[]>('filters', (filters) => [...(filters || []), createdFilter]);
       toast.success('Фильтр скопирован');

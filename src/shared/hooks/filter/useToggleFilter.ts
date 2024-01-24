@@ -17,8 +17,8 @@ export function useToggleFilter() {
     let success = false;
     try {
       await toggleFilter({
-        filterId,
-        active,
+        id: filterId,
+        isActive: active,
       });
       tg.HapticFeedback.impactOccurred('rigid');
       client.setQueryData<IFilter[]>('filters', (filters) =>
