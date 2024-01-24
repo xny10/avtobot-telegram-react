@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { CreateFilterButton } from 'features/create-filter-button';
+import { CreateFilterButton } from 'features/filter';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetCars } from 'shared/hooks/useGetCars';
@@ -16,7 +16,6 @@ const renderCreateButton = (params: SubmitButtonParams<IFilterCreateSerialized>)
 export function CreateFilterPage() {
   const userId = 0;
 
-  const params = useParams<{ id: string }>();
   const [confirmExit, setConfirmExit] = useState(false);
 
   const { cars, isLoading, error } = useGetCars();
