@@ -7,7 +7,7 @@ import { FiltersList } from 'widgets/filters-list';
 
 import { Layout } from './Layout';
 
-export function HomePage() {
+export function FiltersPage() {
   // TODO: заменить на что-то человеческое из телеги
   const userId = 0;
 

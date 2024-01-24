@@ -18,7 +18,7 @@ const renderSubmitButton = (params: SubmitButtonParams) => (
   <SaveFilterButton cars={params.cars} handleSubmit={params.handleSubmit} formApi={params.formApi} />
 );
 
-export function FilterPage() {
+export function EditFilterPage() {
   const params = useParams<{ id: string }>();
   const [confirmExit, setConfirmExit] = useState(false);
 

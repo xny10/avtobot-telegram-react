@@ -15,7 +15,7 @@ type FilterCardProps = {
 
 export function FilterCard({ filter, index, Buttons }: FilterCardProps) {
   return (
-    <Link to={`${ROUTES.filter}/${filter.id}`} className={styles.card}>
+    <Link to={`${ROUTES.editFilter}/${filter.id}`} className={styles.card}>
       <div className={styles.header}>
         <HeaderPrimary index={index} title={filter.name} manufactureYear={filter.manufactureYear} />
         {Buttons}
