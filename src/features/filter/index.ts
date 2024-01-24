@@ -1,4 +1,3 @@
-export * from './ui/save-filter';
 export * from './ui/switch-filter';
 export * from './ui/delete-filter';
 export * from './ui/copy-filter-button';
