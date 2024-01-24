@@ -2,8 +2,8 @@ import { Typography } from '@mui/material';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 import { ClearButton } from 'ui/clear-button';
+import { LabeledInput } from 'ui/labeled-input';
 
-import { LabeledInput } from '../labeled-input';
 import styles from './styles.module.scss';
 
 type IInputVariant = {
