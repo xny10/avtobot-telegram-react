@@ -1,7 +1,6 @@
 import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from 'react-query';
 import { createFilter, toggleFilter } from 'shared/api';
-import { CreateFilterDto } from 'shared/dto/CreateFilter.dto';
 import { IFilter } from 'shared/types';
 
 import { useTelegram } from '../useTelegram';
