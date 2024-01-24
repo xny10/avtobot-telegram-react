@@ -1,8 +1,8 @@
-import { UseFormHandleSubmit, UseFormReturn } from 'react-hook-form';
-import { ICarExpanded, IFilterSerialized } from 'shared/types';
+import { FieldValues, UseFormHandleSubmit, UseFormReturn } from 'react-hook-form';
+import { ICarExpanded } from 'shared/types';
 
-export type SubmitButtonParams = {
-  handleSubmit: UseFormHandleSubmit<IFilterSerialized>;
-  formApi: UseFormReturn<IFilterSerialized>;
+export type SubmitButtonParams<T extends FieldValues> = {
+  handleSubmit: UseFormHandleSubmit<T>;
+  formApi: UseFormReturn<T>;
   cars: ICarExpanded[];
 };

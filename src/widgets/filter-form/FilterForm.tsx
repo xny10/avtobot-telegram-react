@@ -1,9 +1,8 @@
 import { CarModelSelect } from 'features/car-model-select';
 import { ReactNode, useEffect } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { carsMock } from 'shared/mocks/cars.mock';
-import { ICarExpanded, IFilter, IFilterSerialized } from 'shared/types';
-import { serializeFilter } from 'shared/utils/form.utils';
+import { ICarExpanded } from 'shared/types';
 import { formatNumber } from 'shared/utils/format.utils';
 import { RangeSelect } from 'ui/range-select';
 import { RHFTextField } from 'ui/react-hook-form';
@@ -13,16 +12,21 @@ import { LocationSelect } from './LocationSelect';
 import styles from './styles.module.scss';
 import { SubmitButtonParams } from './types';
 
-type FilterFormProps = {
-  filter: IFilter;
+type FilterFormProps<T extends FieldValues> = {
+  defaultValues: T;
   cars: ICarExpanded[];
   setConfirmExit: (confirm: boolean) => void;
-  renderSubmitButton: (params: SubmitButtonParams) => ReactNode;
+  renderSubmitButton: (params: SubmitButtonParams<T>) => ReactNode;
 };
 
-export function FilterForm({ filter, cars, setConfirmExit, renderSubmitButton }: FilterFormProps) {
-  const formApi = useForm<IFilterSerialized>({
-    defaultValues: serializeFilter(filter, cars),
+export function FilterForm<T extends FieldValues>({
+  defaultValues,
+  cars,
+  setConfirmExit,
+  renderSubmitButton,
+}: FilterFormProps<T>) {
+  const formApi = useForm<T>({
+    defaultValues: defaultValues as any,
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
