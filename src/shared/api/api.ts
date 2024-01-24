@@ -46,7 +46,7 @@ export async function updateFilter(dto: FilterDto) {
 }
 
 export async function deleteFilter(filterId: number) {
-  const res = await api.post<boolean>('Filter/edit', {
+  const res = await api.post<boolean>('Filter/delete', {
     id: filterId,
   });
   return res.data;

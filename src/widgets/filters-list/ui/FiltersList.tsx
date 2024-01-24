@@ -38,7 +38,7 @@ export function FiltersList({ filters }: FiltersListProps) {
               >
                 <SwitchFilter filterId={filter.id} isActive={filter.isActive} />
                 <CopyFilter filterId={filter.id} />
-                <DeleteFilter filterId={filter.id} />
+                <DeleteFilter filterId={filter.id} filterName={filter.name} />
               </div>
             }
           />
