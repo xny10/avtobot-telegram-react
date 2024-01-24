@@ -1,4 +1,4 @@
-import { ICarsSerialized } from 'shared/types';
+import { ICarsSerialized, IFilterCreate } from 'shared/types';
 
 function allModelsSelected(models: ICarsSerialized[string]) {
   return Object.values(models).every(Boolean);
@@ -24,4 +24,22 @@ export function createCarsWithSelection(cars: ICarsSerialized, selected: boolean
     });
   });
   return clone;
+}
+
+export function createEmptyFilter(userId: number): IFilterCreate {
+  return {
+    userId,
+    name: '',
+    carChoices: [],
+    cityIds: [],
+    regionIds: [],
+    searchType: 'city',
+    engineType: 'petrol',
+    isActive: true,
+    manufactureYear: [null, null],
+    mileage: [null, null],
+    price: [null, null],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
 }

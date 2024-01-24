@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { UseFormHandleSubmit, UseFormReturn } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useGetFilter } from 'shared/hooks/filter/useGetFilter';
-import { ICarExpanded, IFilterSerialized } from 'shared/types';
+import { ICarExpanded, IFilter, IFilterSerialized } from 'shared/types';
+import { serializeFilter } from 'shared/utils/form.utils';
 import { BaseLayout } from 'ui/base-layout';
 import { FilterForm } from 'widgets/filter-form';
 
@@ -26,21 +27,35 @@ export function EditFilterPage() {
 
   return (
     <BaseLayout confirmGoBack={confirmExit} backLinkBehavior="previous_page" title={filter?.name || ''}>
-      {error && (
-        <>
-          <Typography variant="h5">Произошла ошибка!</Typography>
-          <Typography>{error.message}</Typography>
-        </>
-      )}
-      {isLoading && <Typography variant="h5">Загрузка...</Typography>}
-      {cars && filter && (
-        <FilterForm
-          filter={filter}
-          cars={cars}
-          setConfirmExit={setConfirmExit}
-          renderSubmitButton={renderSubmitButton}
-        />
-      )}
+      {(() => {
+        if (error) {
+          return (
+            <>
+              <Typography variant="h5">Произошла ошибка!</Typography>
+              <Typography>{error.message}</Typography>
+            </>
+          );
+        }
+
+        if (isLoading) {
+          return <Typography variant="h5">Загрузка...</Typography>;
+        }
+
+        if (!filter) {
+          return <Typography variant="h5">Фильтра с ID: {params.id} не существует</Typography>;
+        }
+
+        if (cars) {
+          return (
+            <FilterForm<IFilterSerialized>
+              defaultValues={serializeFilter(filter, cars)}
+              cars={cars}
+              setConfirmExit={setConfirmExit}
+              renderSubmitButton={renderSubmitButton}
+            />
+          );
+        }
+      })()}
     </BaseLayout>
   );
 }

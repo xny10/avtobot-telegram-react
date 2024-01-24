@@ -1,3 +1,4 @@
+import { CreateFilterPageAsync } from 'pages/create-filter-page';
 import { EditFilterPageAsync } from 'pages/edit-filter-page';
 import { FiltersPageAsync } from 'pages/filters-page';
 import { Navigate, Route, Routes } from 'react-router-dom';
@@ -8,6 +9,7 @@ export function Router() {
     <Routes>
       <Route index element={<FiltersPageAsync />} />
       <Route path={`${ROUTES.editFilter}/:id`} element={<EditFilterPageAsync />} />
+      <Route path={ROUTES.createFilter} element={<CreateFilterPageAsync />} />
       <Route path="*" element={<Navigate to={ROUTES.filters} />} />
     </Routes>
   );
