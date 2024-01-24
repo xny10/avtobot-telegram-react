@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material';
 import { CreateFilterButton } from 'features/filter';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useGetCars } from 'shared/hooks/useGetCars';
 import { IFilterCreateSerialized } from 'shared/types';
 import { createEmptyFilter } from 'shared/utils/filter.utils';
