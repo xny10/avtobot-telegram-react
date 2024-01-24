@@ -23,7 +23,9 @@ export function EditFilterPage() {
   const params = useParams<{ id: string }>();
   const [confirmExit, setConfirmExit] = useState(false);
 
-  const { cars, filter, error, isLoading } = useGetFilter(+(params.id as string));
+  const { cars, filter, error, isLoading } = useGetFilter({
+    filterId: +(params.id as string),
+  });
 
   return (
     <BaseLayout confirmGoBack={confirmExit} backLinkBehavior="previous_page" title={filter?.name || ''}>
