@@ -1,12 +1,9 @@
 import { Button } from '@mui/material';
 import { UseFormHandleSubmit, UseFormReturn } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from 'shared/config/routes';
 import { CreateFilterDto } from 'shared/dto/CreateFilter.dto';
 import { useCreateFilter } from 'shared/hooks/filter/useCreateFilter';
-import { useTelegram } from 'shared/hooks/useTelegram';
 import { ICarExpanded, IFilterCreateSerialized } from 'shared/types';
 
 export type CreateFilterButtonProps = {
