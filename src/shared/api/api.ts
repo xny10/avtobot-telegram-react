@@ -52,3 +52,13 @@ export async function deleteFilter(filterId: number) {
   });
   return res.data;
 }
+
+type ToggleFilterParams = {
+  filterId: number;
+  active: boolean;
+};
+
+export async function toggleFilter(payload: ToggleFilterParams) {
+  const res = await api.post<never>('Filter/toggle', payload);
+  return res.data;
+}

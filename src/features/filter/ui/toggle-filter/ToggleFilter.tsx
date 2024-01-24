@@ -1,4 +1,5 @@
 import { Switch } from '@mui/material';
+import { useToggleFilter } from 'shared/hooks/filter/useToggleFilter';
 
 type SwitchFilterProps = {
   filterId: number;
@@ -6,9 +7,11 @@ type SwitchFilterProps = {
 };
 
 export function ToggleFilter({ filterId, isActive }: SwitchFilterProps) {
-  const onClick = () => {
-    console.log(`change filter id=${filterId} active state to=${!isActive}`);
+  const [toggleFilter, { isLoading }] = useToggleFilter();
+
+  const onToggle = async () => {
+    await toggleFilter(filterId, !isActive);
   };
 
-  return <Switch onClick={onClick} checked={isActive} />;
+  return <Switch onClick={onToggle} checked={isActive} disabled={isLoading} />;
 }
