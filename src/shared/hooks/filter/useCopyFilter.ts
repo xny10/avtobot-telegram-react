@@ -23,7 +23,7 @@ export function useCopyFilter() {
       toast.success('Фильтр скопирован');
       success = true;
     } catch (e) {
-      toast.success('Не удалось скопировать');
+      toast.error('Не удалось скопировать');
     }
 
     return { success };

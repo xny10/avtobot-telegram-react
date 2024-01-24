@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { FilterCard } from 'entities/filter';
-import { CopyFilterButton, DeleteFilter, SwitchFilter } from 'features/filter';
+import { CopyFilterButton, DeleteFilter, ToggleFilter } from 'features/filter';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from 'shared/config/routes';
 import { IFilter } from 'shared/types';
@@ -36,7 +36,7 @@ export function FiltersList({ filters }: FiltersListProps) {
                   e.stopPropagation();
                 }}
               >
-                <SwitchFilter filterId={filter.id} isActive={filter.isActive} />
+                <ToggleFilter filterId={filter.id} isActive={filter.isActive} />
                 <CopyFilterButton filterId={filter.id} filterName={filter.name} />
                 <DeleteFilter filterId={filter.id} filterName={filter.name} />
               </div>

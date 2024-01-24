@@ -5,7 +5,7 @@ import { useQueryClient } from 'react-query';
 import { FilterDto } from 'shared/dto/Filter.dto';
 import { useUpdateFilter } from 'shared/hooks/filter/useUpdateFilter';
 import { useTelegram } from 'shared/hooks/useTelegram';
-import { ICarExpanded, IFilterSerialized } from 'shared/types';
+import { ICarExpanded, IFilter, IFilterSerialized } from 'shared/types';
 import { serializeFilter } from 'shared/utils/form.utils';
 
 export type SaveFilterButtonProps = {
@@ -25,10 +25,16 @@ export function SaveFilterButton({ handleSubmit, formApi, cars }: SaveFilterButt
       const res = await updateFilter(new FilterDto(values, cars));
       formApi.reset(serializeFilter(res, cars));
       tg.HapticFeedback.impactOccurred('rigid');
-      client.setQueryData(['filter', res.id], res);
+      client.setQueryData<IFilter>(['filter', res.id], res);
+      client.setQueryData<IFilter[]>('filters', (filters) =>
+        (filters || []).map((filter) => {
+          if (filter.id !== res.id) return filter;
+          return res;
+        })
+      );
       toast.success('Фильтр сохранён');
     } catch (e) {
-      toast.success('Не удалось сохранить');
+      toast.error('Не удалось сохранить');
     }
   };
 

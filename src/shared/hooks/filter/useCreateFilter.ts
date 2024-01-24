@@ -23,7 +23,7 @@ export function useCreateFilter() {
       toast.success('Фильтр создан');
       success = true;
     } catch (e) {
-      toast.success('Не удалось создать');
+      toast.error('Не удалось создать');
     }
 
     return { success };
