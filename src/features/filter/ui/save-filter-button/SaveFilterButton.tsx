@@ -34,7 +34,7 @@ export function SaveFilterButton({ handleSubmit, formApi, cars }: SaveFilterButt
       );
       toast.success('Фильтр сохранён');
     } catch (e) {
-      toast.success('Не удалось сохранить');
+      toast.error('Не удалось сохранить');
     }
   };
 

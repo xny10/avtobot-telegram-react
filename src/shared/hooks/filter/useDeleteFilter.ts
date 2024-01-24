@@ -20,7 +20,7 @@ export function useDeleteFilter() {
       toast.success(`Фильтр "${filterName}" удалён`);
       success = true;
     } catch (e) {
-      toast.success('Не удалось удалить фильтр');
+      toast.error('Не удалось удалить фильтр');
     }
 
     return { success };
