@@ -19,6 +19,7 @@ export default (env: EnvVariables) => {
     paths,
     analyzer: env.analyzer,
     platform: env.platform ?? 'desktop',
+    https: env.https || false,
   });
 
   return config;

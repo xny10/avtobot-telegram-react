@@ -15,6 +15,7 @@ export interface BuildOptions {
   mode: BuildMode;
   platform: BuildPlatform;
   analyzer?: boolean;
+  https?: boolean;
 }
 
 export interface EnvVariables {
@@ -22,4 +23,5 @@ export interface EnvVariables {
   analyzer?: boolean;
   port?: number;
   platform?: BuildPlatform;
+  https?: boolean;
 }
