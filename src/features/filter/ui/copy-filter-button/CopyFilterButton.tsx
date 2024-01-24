@@ -2,12 +2,12 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { IconButton } from '@mui/material';
 import { MouseEvent } from 'react';
 
-type CopyFilterProps = {
+type CopyFilterButtonProps = {
   filterId: number;
 };
 
-export function CopyFilter({ filterId }: CopyFilterProps) {
-  const onCopy = (e: MouseEvent<HTMLButtonElement>) => {
+export function CopyFilterButton({ filterId }: CopyFilterButtonProps) {
+  const onCopy = () => {
     // do something...
     console.log(`filter id=${filterId} copied`);
   };
