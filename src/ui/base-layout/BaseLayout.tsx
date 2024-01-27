@@ -9,7 +9,7 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDialog } from 'shared/hooks/useDialog';
 import { useTelegram } from 'shared/hooks/useTelegram';
