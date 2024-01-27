@@ -3,8 +3,11 @@ import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import WavingHandIcon from '@mui/icons-material/WavingHand';
 import { FormControlLabel, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Switch } from '@mui/material';
+import { IMenu } from 'shared/types';
 
-type MenuProps = {};
+type MenuProps = {
+  menu: IMenu;
+};
 
 export function Menu({}: MenuProps) {
   return (

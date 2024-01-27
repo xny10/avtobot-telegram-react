@@ -1,9 +1,9 @@
-import { Menu } from 'entities/menu';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { IMenu } from 'shared/types';
 import { BaseLayout } from 'ui/base-layout';
 import { StartupNotTelegram } from 'ui/startup-not-telegram';
 import { SupportLink } from 'ui/support-link';
+import { Menu } from 'widgets/menu';
 
 import styles from './MenuPage.module.scss';
 
@@ -27,7 +27,7 @@ export function MenuPage() {
   return (
     <BaseLayout title="Меню">
       <div className={styles.layout}>
-        <Menu />
+        <Menu menu={data} />
         <SupportLink url={data.inviteLink} className={styles.support_link} />
       </div>
     </BaseLayout>
