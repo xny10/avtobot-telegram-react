@@ -1,0 +1,19 @@
+.link_text {
+  display: flex;
+  flex-direction: column;
+}
+
+.invite_link {
+  font-weight: bold;
+  color: var(--tg-theme-button-color);
+  animation: fadein 0.5s ease forwards;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,5 +1,6 @@
 export const ROUTES = {
-  filters: '/',
+  menu: '/',
+  filters: '/filters',
   editFilter: '/edit',
   createFilter: '/new',
 };
