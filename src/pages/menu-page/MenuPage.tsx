@@ -20,6 +20,7 @@ export function MenuPage() {
     subscriptionDate: new Date().toISOString(),
     alertsEnabled: false,
     inviteLink: 'https://google.com',
+    supportLink: 'https://google.com',
   };
 
   const data = MENU_DATA_MOCK;
@@ -28,7 +29,7 @@ export function MenuPage() {
     <BaseLayout title="Меню">
       <div className={styles.layout}>
         <Menu menu={data} />
-        <SupportLink url={data.inviteLink} className={styles.support_link} />
+        <SupportLink url={data.supportLink} className={styles.support_link} />
       </div>
     </BaseLayout>
   );

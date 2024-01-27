@@ -4,4 +4,5 @@ export type IMenu = {
   subscriptionDate: string | null;
   alertsEnabled: boolean;
   inviteLink: string;
+  supportLink: string;
 };
