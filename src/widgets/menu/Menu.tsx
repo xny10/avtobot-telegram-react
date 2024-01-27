@@ -1,10 +1,12 @@
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { List } from '@mui/material';
 import { InviteFriend } from 'features/invite-friend';
 import { ToggleNotifications } from 'features/toggle-notifications';
+import { ROUTES } from 'shared/config/routes';
 import { IMenu } from 'shared/types';
 
-import { MyFiltersLink } from './MyFiltersLink';
+import { NavLink } from './NavLink';
 
 type MenuProps = {
   menu: IMenu;
@@ -13,15 +15,8 @@ type MenuProps = {
 export function Menu({ menu }: MenuProps) {
   return (
     <List>
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            <LoyaltyIcon />
-          </ListItemIcon>
-          <ListItemText>Подписка и оплата</ListItemText>
-        </ListItemButton>
-      </ListItem>
-      <MyFiltersLink />
+      <NavLink url={ROUTES.payment} label="Подписка и оплата" icon={<LoyaltyIcon />} />
+      <NavLink url={ROUTES.filters} label="Мои фильтры" icon={<FormatListNumberedIcon />} />
       <ToggleNotifications isActive={menu.alertsEnabled} />
       <InviteFriend inviteLink={menu.inviteLink} />
     </List>
