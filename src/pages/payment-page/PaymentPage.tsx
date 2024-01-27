@@ -1,13 +1,10 @@
 import { Button, Typography } from '@mui/material';
-import { hasSubscribers } from 'diagnostics_channel';
 import { theme } from 'shared/config/theme';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { IMenu } from 'shared/types';
 import { formatDate } from 'shared/utils/date.utils';
 import { BaseLayout } from 'ui/base-layout';
 import { StartupNotTelegram } from 'ui/startup-not-telegram';
-import { SupportLink } from 'ui/support-link';
-import { Menu } from 'widgets/menu';
 
 import styles from './PaymentPage.module.scss';
 
