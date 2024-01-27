@@ -30,7 +30,7 @@ export function App() {
           </BrowserRouter>
         </ThemeProvider>
       </StyledEngineProvider>
-      <Toaster />
+      <Toaster toastOptions={{ duration: 1500 }} />
     </ReactQueryProvider>
   );
 }
