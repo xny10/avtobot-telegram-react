@@ -27,7 +27,7 @@ export function CreateFilterPage() {
   }
 
   return (
-    <BaseLayout confirmGoBack={confirmExit} backLinkBehavior="previous_page" title="Создать фильтр">
+    <BaseLayout confirmGoBack={confirmExit} title="Создать фильтр">
       {(() => {
         if (error) {
           return <Typography variant="h5">Произошла ошибка!</Typography>;

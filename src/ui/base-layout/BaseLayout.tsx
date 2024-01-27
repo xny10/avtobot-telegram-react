@@ -10,7 +10,8 @@ import {
   Typography,
 } from '@mui/material';
 import { PropsWithChildren } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ROUTES } from 'shared/config/routes';
 import { useDialog } from 'shared/hooks/useDialog';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { useTelegramScrollLock } from 'shared/hooks/useTelegramScrollLock';
@@ -20,25 +21,24 @@ import styles from './styles.module.scss';
 
 type BaseLayoutProps = PropsWithChildren<{
   title: string;
-  backLinkBehavior?: 'previous_page' | 'exit_telegram' | AnyFunction;
+  backLinkBehavior?: AnyFunction;
   confirmGoBack?: boolean;
 }>;
 
-export function BaseLayout({
-  children,
-  title,
-  backLinkBehavior = 'exit_telegram',
-  confirmGoBack = false,
-}: BaseLayoutProps) {
+export function BaseLayout({ children, title, backLinkBehavior, confirmGoBack = false }: BaseLayoutProps) {
   const { tg } = useTelegram();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { open: confirmOpen, onOpen: onOpenDialog, onClose: onCloseDialog } = useDialog();
 
   const initiateCloseBehavior = () => {
-    if (typeof backLinkBehavior === 'function') backLinkBehavior();
-    else if (backLinkBehavior === 'exit_telegram') tg.close();
-    else navigate(-1);
+    if (typeof backLinkBehavior === 'function') return backLinkBehavior();
+    if (location.pathname !== ROUTES.menu) {
+      if (location.key !== 'default') return navigate(-1);
+      return navigate(ROUTES.menu);
+    }
+    return tg.close();
   };
 
   const onClose = () => {

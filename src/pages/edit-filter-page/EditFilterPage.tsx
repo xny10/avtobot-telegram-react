@@ -28,7 +28,7 @@ export function EditFilterPage() {
   });
 
   return (
-    <BaseLayout confirmGoBack={confirmExit} backLinkBehavior="previous_page" title={filter?.name || ''}>
+    <BaseLayout confirmGoBack={confirmExit} title={filter?.name || ''}>
       {(() => {
         if (error) {
           return (
