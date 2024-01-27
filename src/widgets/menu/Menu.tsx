@@ -1,15 +1,15 @@
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import WavingHandIcon from '@mui/icons-material/WavingHand';
 import { FormControlLabel, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Switch } from '@mui/material';
+import { InviteFriend } from 'features/invite-friend';
 import { IMenu } from 'shared/types';
 
 type MenuProps = {
   menu: IMenu;
 };
 
-export function Menu({}: MenuProps) {
+export function Menu({ menu }: MenuProps) {
   return (
     <List>
       <ListItem disablePadding>
@@ -36,14 +36,7 @@ export function Menu({}: MenuProps) {
           <FormControlLabel control={<Switch checked />} label="Уведомления" />
         </ListItemButton>
       </ListItem>
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            <WavingHandIcon />
-          </ListItemIcon>
-          <ListItemText>Пригласить друга</ListItemText>
-        </ListItemButton>
-      </ListItem>
+      <InviteFriend inviteLink={menu.inviteLink} />
     </List>
   );
 }
