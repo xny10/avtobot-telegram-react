@@ -1,0 +1,10 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100dvh - var(--header-height) - 50px);
+}
+
+.support_link {
+  align-self: center;
+}
