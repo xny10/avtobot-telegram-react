@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material';
 import globalCssStyles from 'app/styles/global.module.scss';
 
 import { TG_THEME_COLORS } from './colors';
+import { tg } from './consts';
 
 export const theme = createTheme({
   palette: {

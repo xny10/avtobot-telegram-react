@@ -2,6 +2,7 @@ import { KEY_TOKEN, tg } from 'shared/config/consts';
 
 class AuthService {
   constructor(private readonly tg: WebApp) {}
+
   onAppStarted() {
     const token = this.createToken(this.tg.initData);
     localStorage.setItem(KEY_TOKEN, token);
@@ -20,6 +21,11 @@ class AuthService {
 
   getToken() {
     return localStorage.getItem(KEY_TOKEN);
+  }
+
+  isOpenedInTelegram() {
+    const userId = this.tg.initDataUnsafe.user?.id;
+    return userId !== undefined && userId !== null;
   }
 }
 

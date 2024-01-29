@@ -1,5 +1,6 @@
-import { useTelegram } from 'shared/hooks/useTelegram';
-import { IMenu } from 'shared/types';
+import { Typography } from '@mui/material';
+import { useGetUserMeta } from 'shared/hooks/useGetUserMeta';
+import { authService } from 'shared/services/Auth.service';
 import { BaseLayout } from 'ui/base-layout';
 import { StartupNotTelegram } from 'ui/startup-not-telegram';
 import { SupportLink } from 'ui/support-link';
@@ -8,27 +9,33 @@ import { Menu } from 'widgets/menu';
 import styles from './MenuPage.module.scss';
 
 export function MenuPage() {
-  const tg = useTelegram();
-  const userId = tg.user?.id;
+  const { data, isLoading, error } = useGetUserMeta();
 
-  if (!userId) {
+  if (!authService.isOpenedInTelegram()) {
     return <StartupNotTelegram />;
   }
 
-  const MENU_DATA_MOCK: IMenu = {
-    hasSubscription: true,
-    subscriptionDate: new Date().toISOString(),
-    alertsEnabled: false,
-    inviteLink: 'https://google.com',
-    supportLink: 'https://google.com',
-  };
+  if (!!error) {
+    return (
+      <BaseLayout title="Меню">
+        <Typography variant="h5">Произошла ошибка</Typography>
+        <Typography>{error.message}</Typography>
+      </BaseLayout>
+    );
+  }
 
-  const data = MENU_DATA_MOCK;
+  if (isLoading || !data) {
+    return (
+      <BaseLayout title="Меню">
+        <Typography variant="h5">Загрузка...</Typography>
+      </BaseLayout>
+    );
+  }
 
   return (
     <BaseLayout title="Меню">
       <div className={styles.layout}>
-        <Menu menu={data} />
+        <Menu userMeta={data} />
         <SupportLink url={data.supportLink} className={styles.support_link} />
       </div>
     </BaseLayout>

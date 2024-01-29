@@ -32,7 +32,11 @@ export function InviteFriend({ inviteLink }: InviteFriendProps) {
         <ListItemText>
           <span className={styles.link_text}>
             <span>Пригласить друга</span>
-            {isError && <span className={styles.invite_link}>{inviteLink}</span>}
+            {isError && (
+              <a href={inviteLink} className={styles.invite_link}>
+                {inviteLink}
+              </a>
+            )}
           </span>
         </ListItemText>
       </ListItemButton>

@@ -1,7 +1,8 @@
 import { Button, Typography } from '@mui/material';
 import { theme } from 'shared/config/theme';
+import { useGetUserMeta } from 'shared/hooks/useGetUserMeta';
 import { useTelegram } from 'shared/hooks/useTelegram';
-import { IMenu } from 'shared/types';
+import { authService } from 'shared/services/Auth.service';
 import { formatDate } from 'shared/utils/date.utils';
 import { BaseLayout } from 'ui/base-layout';
 import { StartupNotTelegram } from 'ui/startup-not-telegram';
@@ -9,32 +10,38 @@ import { StartupNotTelegram } from 'ui/startup-not-telegram';
 import styles from './PaymentPage.module.scss';
 
 export function PaymentPage() {
-  const tg = useTelegram();
-  const userId = tg.user?.id;
+  const { data, isLoading, error } = useGetUserMeta();
 
-  if (!userId) {
+  if (!authService.isOpenedInTelegram()) {
     return <StartupNotTelegram />;
   }
 
-  const MENU_DATA_MOCK: IMenu = {
-    hasSubscription: true,
-    subscriptionDate: new Date().toISOString(),
-    alertsEnabled: false,
-    inviteLink: 'https://google.com',
-    supportLink: 'https://google.com',
-  };
+  if (!!error) {
+    return (
+      <BaseLayout title="Подписка">
+        <Typography variant="h5">Произошла ошибка</Typography>
+        <Typography>{error.message}</Typography>
+      </BaseLayout>
+    );
+  }
 
-  const data = MENU_DATA_MOCK;
+  if (isLoading || !data) {
+    return (
+      <BaseLayout title="Подписка">
+        <Typography variant="h5">Загрузка...</Typography>
+      </BaseLayout>
+    );
+  }
 
   return (
     <BaseLayout title="Подписка">
       <div className={styles.layout}>
         {(() => {
-          if (data.hasSubscription && data.subscriptionDate) {
+          if (data?.isRecievingActive && data.subscriptionEnds) {
             return (
               <Typography align="center" variant="h5" color={theme.palette.success.main}>
                 Активна до <br />
-                {formatDate(data.subscriptionDate)}
+                {formatDate(data.subscriptionEnds)}
               </Typography>
             );
           }
