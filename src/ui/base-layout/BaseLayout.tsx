@@ -9,7 +9,7 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Suspense, startTransition } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from 'shared/config/routes';
 import { useDialog } from 'shared/hooks/useDialog';
@@ -43,7 +43,7 @@ export function BaseLayout({ children, title, backLinkBehavior, confirmGoBack = 
 
   const onClose = () => {
     if (confirmGoBack) onOpenDialog();
-    else initiateCloseBehavior();
+    else startTransition(initiateCloseBehavior);
   };
 
   const { scrollableRef, contentRef } = useTelegramScrollLock();
@@ -59,7 +59,7 @@ export function BaseLayout({ children, title, backLinkBehavior, confirmGoBack = 
         </Typography>
       </header>
       <main className={styles.main} ref={contentRef}>
-        {children}
+        <Suspense fallback="">{children}</Suspense>
       </main>
       <Dialog open={confirmOpen} onClose={onCloseDialog}>
         <DialogTitle>Вы действительно хотите выйти?</DialogTitle>
