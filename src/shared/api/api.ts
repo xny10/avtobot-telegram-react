@@ -1,7 +1,7 @@
 import { CopyFilterDto } from 'shared/dto/CopyFilter.dto';
 import { CreateFilterDto } from 'shared/dto/CreateFilter.dto';
 import { FilterDto } from 'shared/dto/Filter.dto';
-import { ICarExpanded, ICity, IFilter, IRegion } from 'shared/types';
+import { ICarExpanded, ICity, IFilter, IRegion, IUserMeta } from 'shared/types';
 
 import { api } from './queryClient';
 
@@ -17,6 +17,13 @@ export async function fetchRegions() {
 
 export async function fetchCars() {
   const res = await api.get<ICarExpanded[]>('Dictionaries/manufacturers');
+  return res.data;
+}
+
+export async function fetchUserMeta(chatId: number) {
+  const res = await api.post<IUserMeta>('User/get', {
+    chatId,
+  });
   return res.data;
 }
 

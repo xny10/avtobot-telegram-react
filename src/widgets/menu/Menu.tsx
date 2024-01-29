@@ -4,21 +4,21 @@ import { List } from '@mui/material';
 import { InviteFriend } from 'features/invite-friend';
 import { ToggleNotifications } from 'features/toggle-notifications';
 import { ROUTES } from 'shared/config/routes';
-import { IMenu } from 'shared/types';
+import { IUserMeta } from 'shared/types';
 
 import { NavLink } from './NavLink';
 
 type MenuProps = {
-  menu: IMenu;
+  userMeta: IUserMeta;
 };
 
-export function Menu({ menu }: MenuProps) {
+export function Menu({ userMeta }: MenuProps) {
   return (
     <List>
       <NavLink url={ROUTES.payment} label="Подписка и оплата" icon={<LoyaltyIcon />} />
       <NavLink url={ROUTES.filters} label="Мои фильтры" icon={<FormatListNumberedIcon />} />
-      <ToggleNotifications isActive={menu.alertsEnabled} />
-      <InviteFriend inviteLink={menu.inviteLink} />
+      <ToggleNotifications isActive={userMeta.isRecievingActive} />
+      <InviteFriend inviteLink={userMeta.inviteLink} />
     </List>
   );
 }
