@@ -3,6 +3,7 @@ import { Suspense, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter } from 'react-router-dom';
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { authService } from 'shared/services/Auth.service';
 import { BaseLayout } from 'ui/base-layout';
 
 import { ReactQueryProvider } from './providers/ReactQueryProvider';
@@ -17,6 +18,7 @@ export function App() {
     tg.ready();
     if (!tg.isExpanded) tg.expand();
     tg.HapticFeedback.impactOccurred('soft');
+    authService.onAppStarted();
   }, []);
 
   return (

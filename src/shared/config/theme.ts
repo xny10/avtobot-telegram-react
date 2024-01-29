@@ -1,12 +1,7 @@
 import { createTheme } from '@mui/material';
 import globalCssStyles from 'app/styles/global.module.scss';
-import { tg } from 'shared/hooks/useTelegram';
 
 import { TG_THEME_COLORS } from './colors';
-
-// TODO: for dev only
-console.log('tg', tg);
-console.log('tg', tg.platform);
 
 export const theme = createTheme({
   palette: {
