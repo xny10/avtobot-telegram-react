@@ -3,6 +3,7 @@ import { CreateFilterButton } from 'features/filter';
 import { useState } from 'react';
 import { useGetCars } from 'shared/hooks/useGetCars';
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { authService } from 'shared/services/Auth.service';
 import { IFilterCreateSerialized } from 'shared/types';
 import { createEmptyFilter } from 'shared/utils/filter.utils';
 import { serializeFilterCreate } from 'shared/utils/form.utils';
@@ -22,7 +23,7 @@ export function CreateFilterPage() {
 
   const { cars, isLoading, error } = useGetCars();
 
-  if (!userId) {
+  if (!authService.isOpenedInTelegram()) {
     return <StartupNotTelegram />;
   }
 

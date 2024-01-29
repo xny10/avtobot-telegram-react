@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 import { useQuery } from 'react-query';
 import { fetchFilter } from 'shared/api';
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { authService } from 'shared/services/Auth.service';
 import { IFilter } from 'shared/types';
 import { StartupNotTelegram } from 'ui/startup-not-telegram';
 import { FiltersList } from 'widgets/filters-list';
@@ -13,13 +14,14 @@ export function FiltersPage() {
   const tg = useTelegram();
   const userId = tg.user?.id;
 
-  if (!userId) {
-    return <StartupNotTelegram />;
-  }
-
   const { data, isLoading, error } = useQuery<IFilter[], AxiosError>('filters', {
     queryFn: () => fetchFilter({ userId }),
+    enabled: authService.isOpenedInTelegram(),
   });
+
+  if (!authService.isOpenedInTelegram()) {
+    return <StartupNotTelegram />;
+  }
 
   if (error) {
     return (

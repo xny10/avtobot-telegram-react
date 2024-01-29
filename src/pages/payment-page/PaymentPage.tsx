@@ -1,6 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import { theme } from 'shared/config/theme';
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { authService } from 'shared/services/Auth.service';
 import { IMenu } from 'shared/types';
 import { formatDate } from 'shared/utils/date.utils';
 import { BaseLayout } from 'ui/base-layout';
@@ -10,9 +11,8 @@ import styles from './PaymentPage.module.scss';
 
 export function PaymentPage() {
   const tg = useTelegram();
-  const userId = tg.user?.id;
 
-  if (!userId) {
+  if (!authService.isOpenedInTelegram()) {
     return <StartupNotTelegram />;
   }
 
