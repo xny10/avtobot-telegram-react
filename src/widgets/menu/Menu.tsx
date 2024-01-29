@@ -17,7 +17,7 @@ export function Menu({ userMeta }: MenuProps) {
     <List>
       <NavLink url={ROUTES.payment} label="Подписка и оплата" icon={<LoyaltyIcon />} />
       <NavLink url={ROUTES.filters} label="Мои фильтры" icon={<FormatListNumberedIcon />} />
-      <ToggleNotifications isActive={userMeta.isRecievingActive} />
+      <ToggleNotifications isActive={userMeta.isReceivingActive} />
       <InviteFriend inviteLink={userMeta.inviteLink} />
     </List>
   );

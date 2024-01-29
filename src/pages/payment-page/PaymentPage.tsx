@@ -1,7 +1,6 @@
 import { Button, Typography } from '@mui/material';
 import { theme } from 'shared/config/theme';
 import { useGetUserMeta } from 'shared/hooks/useGetUserMeta';
-import { useTelegram } from 'shared/hooks/useTelegram';
 import { authService } from 'shared/services/Auth.service';
 import { formatDate } from 'shared/utils/date.utils';
 import { BaseLayout } from 'ui/base-layout';
@@ -37,7 +36,7 @@ export function PaymentPage() {
     <BaseLayout title="Подписка">
       <div className={styles.layout}>
         {(() => {
-          if (data?.isRecievingActive && data.subscriptionEnds) {
+          if (data.subscription && data.subscriptionEnds) {
             return (
               <Typography align="center" variant="h5" color={theme.palette.success.main}>
                 Активна до <br />
@@ -45,7 +44,11 @@ export function PaymentPage() {
               </Typography>
             );
           }
-          return <Button variant="contained">оформить подписку</Button>;
+          return (
+            <Button className={styles.buy_subscription} variant="contained">
+              оформить подписку
+            </Button>
+          );
         })()}
       </div>
     </BaseLayout>

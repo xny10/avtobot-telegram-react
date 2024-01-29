@@ -2,9 +2,10 @@ export type IUserMeta = {
   id: number;
   chatId: number;
   invitedBy: number | null;
-  isRecievingActive: boolean;
+  isReceivingActive: boolean;
   inviteLink: string;
   // ISO Date
+  subscription: boolean;
   subscriptionEnds: string | null;
   supportLink: string;
   // ISO Date
