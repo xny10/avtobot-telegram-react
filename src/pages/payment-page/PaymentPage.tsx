@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material';
 import { theme } from 'shared/config/theme';
-import { useGetUserMeta } from 'shared/hooks/useGetUserMeta';
+import { useGetUserMeta } from 'shared/hooks/user/useGetUserMeta';
 import { authService } from 'shared/services/Auth.service';
 import { formatDate } from 'shared/utils/date.utils';
 import { BaseLayout } from 'ui/base-layout';

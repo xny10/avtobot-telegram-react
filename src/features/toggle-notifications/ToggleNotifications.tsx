@@ -2,6 +2,7 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { FormControlLabel, ListItem, ListItemButton, ListItemIcon, Switch } from '@mui/material';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useToggleNotifications } from 'shared/hooks/user/useToggleNotifications';
 
 type ToggleNotificationsProps = {
   isActive: boolean;
@@ -9,14 +10,15 @@ type ToggleNotificationsProps = {
 
 export function ToggleNotifications({ isActive: isActiveByDefault }: ToggleNotificationsProps) {
   const [isActive, setIsActive] = useState(isActiveByDefault);
-  const isLoading = false;
+
+  const [toggleNotifications, { isLoading }] = useToggleNotifications();
 
   const onChangeActive = async (active: boolean) => {
-    try {
-      // TODO: бэк и react-query
+    const { success } = await toggleNotifications(active);
+    if (success) {
       toast.success(active ? 'Уведомления включены' : 'Уведомления выключены');
       setIsActive(active);
-    } catch (e) {
+    } else {
       toast.error('Произошла ошибка');
     }
   };

@@ -69,3 +69,13 @@ export async function toggleFilter(payload: ToggleFilterParams) {
   const res = await api.post<never>('Filter/toggle', payload);
   return res.data;
 }
+
+type ToggleNotificationsParams = {
+  id: number;
+  isActive: boolean;
+};
+
+export async function toggleNotifications(payload: ToggleNotificationsParams) {
+  const res = await api.post<boolean>('User/toggle', payload);
+  return res.data;
+}

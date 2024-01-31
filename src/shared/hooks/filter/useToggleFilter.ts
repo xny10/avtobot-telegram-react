@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from 'react-query';
-import { createFilter, toggleFilter } from 'shared/api';
+import { toggleFilter } from 'shared/api';
 import { IFilter } from 'shared/types';
 
 import { useTelegram } from '../useTelegram';
@@ -10,13 +10,13 @@ export function useToggleFilter() {
   const client = useQueryClient();
 
   const { mutateAsync, ...rest } = useMutation({
-    mutationFn: createFilter,
+    mutationFn: toggleFilter,
   });
 
   const onToggle = async (filterId: number, active: boolean) => {
     let success = false;
     try {
-      await toggleFilter({
+      await mutateAsync({
         id: filterId,
         isActive: active,
       });
