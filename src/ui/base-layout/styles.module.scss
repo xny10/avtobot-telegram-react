@@ -1,5 +1,6 @@
 .layout_root {
-  min-height: var(--tg-viewport-stable-height);
+  min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
   padding-bottom: 30vh;
   background-color: var(--tg-theme-bg-color);
