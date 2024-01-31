@@ -1,4 +1,5 @@
 export type IUserMeta = {
+  activeFiltersCount: boolean;
   id: number;
   chatId: number;
   invitedBy: number | null;
