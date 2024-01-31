@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { useGetUserMeta } from 'shared/hooks/useGetUserMeta';
+import { useGetUserMeta } from 'shared/hooks/user/useGetUserMeta';
 import { authService } from 'shared/services/Auth.service';
 import { BaseLayout } from 'ui/base-layout';
 import { StartupNotTelegram } from 'ui/startup-not-telegram';
