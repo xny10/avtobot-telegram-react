@@ -16,14 +16,13 @@ const renderCreateButton = (params: SubmitButtonParams<IFilterCreateSerialized>)
 );
 
 export function CreateFilterPage() {
-  const tg = useTelegram();
-  const userId = tg.user?.id;
+  const { user } = useTelegram();
 
   const [confirmExit, setConfirmExit] = useState(false);
 
   const { cars, isLoading, error } = useGetCars();
 
-  if (!authService.isOpenedInTelegram()) {
+  if (!authService.isOpenedInTelegram() || !user) {
     return <StartupNotTelegram />;
   }
 
@@ -42,7 +41,7 @@ export function CreateFilterPage() {
 
         return (
           <FilterForm<IFilterCreateSerialized>
-            defaultValues={serializeFilterCreate(createEmptyFilter(userId), cars)}
+            defaultValues={serializeFilterCreate(createEmptyFilter(user.id), cars)}
             cars={cars}
             setConfirmExit={setConfirmExit}
             renderSubmitButton={renderCreateButton}

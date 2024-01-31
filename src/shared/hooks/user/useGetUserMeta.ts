@@ -10,8 +10,8 @@ export function useGetUserMeta() {
   const { user } = useTelegram();
 
   const queryResult = useQuery<IUserMeta, AxiosError>('user', {
-    queryFn: () => fetchUserMeta(user.id),
-    enabled: authService.isOpenedInTelegram(),
+    queryFn: () => fetchUserMeta(user!.id),
+    enabled: authService.isOpenedInTelegram() && !!user,
   });
 
   return queryResult;

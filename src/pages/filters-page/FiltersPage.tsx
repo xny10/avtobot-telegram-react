@@ -11,12 +11,11 @@ import { FiltersList } from 'widgets/filters-list';
 import { Layout } from './Layout';
 
 export function FiltersPage() {
-  const tg = useTelegram();
-  const userId = tg.user?.id;
+  const { user } = useTelegram();
 
   const { data, isLoading, error } = useQuery<IFilter[], AxiosError>('filters', {
-    queryFn: () => fetchFilter({ userId }),
-    enabled: authService.isOpenedInTelegram(),
+    queryFn: () => fetchFilter({ userId: user!.id }),
+    enabled: authService.isOpenedInTelegram() && !!user,
   });
 
   if (!authService.isOpenedInTelegram()) {
