@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from 'react-query';
-import { queryClient, toggleFilter, toggleNotifications } from 'shared/api';
+import { queryClient, toggleNotifications } from 'shared/api';
 import { IUserMeta } from 'shared/types';
 
 import { useTelegram } from '../useTelegram';
@@ -21,7 +21,7 @@ export function useToggleNotifications() {
     }
 
     try {
-      await toggleFilter({
+      await mutateAsync({
         id: user.id,
         isActive: active,
       });
