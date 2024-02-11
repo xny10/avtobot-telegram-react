@@ -1,3 +1,4 @@
+import { Base64 } from 'js-base64';
 import { KEY_TOKEN, tg } from 'shared/config/consts';
 
 class AuthService {
@@ -16,7 +17,7 @@ class AuthService {
       .sort()
       .join('\n');
 
-    return btoa(token);
+    return Base64.encode(token);
   }
 
   getToken() {
