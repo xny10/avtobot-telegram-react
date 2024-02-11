@@ -31,7 +31,7 @@ type FetchFiltersPayload = {
   userId: number;
 };
 
-export async function fetchFilter(payload: FetchFiltersPayload) {
+export async function fetchFilters(payload: FetchFiltersPayload) {
   const res = await api.post<IFilter[]>('Filter/getAllByUserId', payload);
   return res.data;
 }

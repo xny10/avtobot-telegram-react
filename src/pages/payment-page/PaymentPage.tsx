@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material';
 import { theme } from 'shared/config/theme';
-import { useGetUserMeta } from 'shared/hooks/user/useGetUserMeta';
+import { useUserMeta } from 'shared/hooks/user/useUserMeta';
 import { authService } from 'shared/services/Auth.service';
 import { formatDate } from 'shared/utils/date.utils';
 import { BaseLayout } from 'ui/base-layout';
@@ -9,7 +9,7 @@ import { StartupNotTelegram } from 'ui/startup-not-telegram';
 import styles from './PaymentPage.module.scss';
 
 export function PaymentPage() {
-  const { data, isLoading, error } = useGetUserMeta();
+  const { data, isLoading, error } = useUserMeta();
 
   if (!authService.isOpenedInTelegram()) {
     return <StartupNotTelegram />;

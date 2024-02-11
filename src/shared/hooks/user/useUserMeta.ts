@@ -6,7 +6,7 @@ import { IUserMeta } from 'shared/types';
 
 import { useTelegram } from '../useTelegram';
 
-export function useGetUserMeta() {
+export function useUserMeta() {
   const { user } = useTelegram();
 
   const queryResult = useQuery<IUserMeta, AxiosError>('user', {

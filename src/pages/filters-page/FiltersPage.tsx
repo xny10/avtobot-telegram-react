@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { AxiosError } from 'axios';
 import { useQuery } from 'react-query';
-import { fetchFilter } from 'shared/api';
+import { fetchFilters } from 'shared/api';
 import { useTelegram } from 'shared/hooks/useTelegram';
 import { authService } from 'shared/services/Auth.service';
 import { IFilter } from 'shared/types';
@@ -14,7 +14,7 @@ export function FiltersPage() {
   const { user } = useTelegram();
 
   const { data, isLoading, error } = useQuery<IFilter[], AxiosError>('filters', {
-    queryFn: () => fetchFilter({ userId: user!.id }),
+    queryFn: () => fetchFilters({ userId: user!.id }),
     enabled: authService.isOpenedInTelegram() && !!user,
   });
 

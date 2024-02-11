@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { useGetUserMeta } from 'shared/hooks/user/useGetUserMeta';
+import { useUserMeta } from 'shared/hooks/user/useUserMeta';
 import { authService } from 'shared/services/Auth.service';
 import { BaseLayout } from 'ui/base-layout';
 import { StartupNotTelegram } from 'ui/startup-not-telegram';
@@ -9,7 +9,7 @@ import { Menu } from 'widgets/menu';
 import styles from './MenuPage.module.scss';
 
 export function MenuPage() {
-  const { data, isLoading, error } = useGetUserMeta();
+  const { data, isLoading, error } = useUserMeta();
 
   if (!authService.isOpenedInTelegram()) {
     return <StartupNotTelegram />;

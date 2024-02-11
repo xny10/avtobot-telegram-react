@@ -15,4 +15,4 @@
 3. SF pro display для айфонов - возможно для айфонов ег оможно просто указать от device detector
 
 ### Tar packaging
-tar -cvzf build_v2.tar.gz E:\work\avtobot-mwp\build
+tar -cvzf build_v3.tar.gz E:\work\avtobot-mwp\avtobot-telegram-react\build
