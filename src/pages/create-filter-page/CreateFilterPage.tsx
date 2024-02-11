@@ -3,6 +3,7 @@ import { CreateFilterButton } from 'features/filter';
 import { useState } from 'react';
 import { useGetCars } from 'shared/hooks/useGetCars';
 import { useTelegram } from 'shared/hooks/useTelegram';
+import { useUserMeta } from 'shared/hooks/user/useUserMeta';
 import { authService } from 'shared/services/Auth.service';
 import { IFilterCreateSerialized } from 'shared/types';
 import { createEmptyFilter } from 'shared/utils/filter.utils';
@@ -16,13 +17,13 @@ const renderCreateButton = (params: SubmitButtonParams<IFilterCreateSerialized>)
 );
 
 export function CreateFilterPage() {
-  const { user } = useTelegram();
+  const { data: userMeta } = useUserMeta();
 
   const [confirmExit, setConfirmExit] = useState(false);
 
   const { cars, isLoading, error } = useGetCars();
 
-  if (!authService.isOpenedInTelegram() || !user) {
+  if (!authService.isOpenedInTelegram() || !userMeta) {
     return <StartupNotTelegram />;
   }
 
@@ -41,7 +42,7 @@ export function CreateFilterPage() {
 
         return (
           <FilterForm<IFilterCreateSerialized>
-            defaultValues={serializeFilterCreate(createEmptyFilter(user.id), cars)}
+            defaultValues={serializeFilterCreate(createEmptyFilter(userMeta.id), cars)}
             cars={cars}
             setConfirmExit={setConfirmExit}
             renderSubmitButton={renderCreateButton}

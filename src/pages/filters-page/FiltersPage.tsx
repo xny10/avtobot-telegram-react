@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import { AxiosError } from 'axios';
 import { useQuery } from 'react-query';
 import { fetchFilters } from 'shared/api';
-import { useTelegram } from 'shared/hooks/useTelegram';
+import { useUserMeta } from 'shared/hooks/user/useUserMeta';
 import { authService } from 'shared/services/Auth.service';
 import { IFilter } from 'shared/types';
 import { StartupNotTelegram } from 'ui/startup-not-telegram';
@@ -11,11 +11,11 @@ import { FiltersList } from 'widgets/filters-list';
 import { Layout } from './Layout';
 
 export function FiltersPage() {
-  const { user } = useTelegram();
+  const { data: userMeta } = useUserMeta();
 
   const { data, isLoading, error } = useQuery<IFilter[], AxiosError>('filters', {
-    queryFn: () => fetchFilters({ userId: user!.id }),
-    enabled: authService.isOpenedInTelegram() && !!user,
+    queryFn: () => fetchFilters({ userId: userMeta!.id }),
+    enabled: authService.isOpenedInTelegram() && !!userMeta,
   });
 
   if (!authService.isOpenedInTelegram()) {
