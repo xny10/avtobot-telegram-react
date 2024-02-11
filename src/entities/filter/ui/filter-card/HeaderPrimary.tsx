@@ -17,13 +17,15 @@ export function HeaderPrimary({ index, title, manufactureYear }: CardHeaderProps
         <Typography className={styles.title} component="div">
           {title}
         </Typography>
-        <Typography className={styles.years}>
-          {(() => {
-            if (!manufactureYear[0]) return `до ${manufactureYear[1]}`;
-            if (!manufactureYear[1]) return `от ${manufactureYear[0]}`;
-            return `${manufactureYear[0]} - ${manufactureYear[1]}`;
-          })()}
-        </Typography>
+        {manufactureYear[0] && manufactureYear[1] && (
+          <Typography className={styles.years}>
+            {(() => {
+              if (!manufactureYear[0]) return `до ${manufactureYear[1]}`;
+              if (!manufactureYear[1]) return `от ${manufactureYear[0]}`;
+              return `${manufactureYear[0]} - ${manufactureYear[1]}`;
+            })()}
+          </Typography>
+        )}
       </div>
     </div>
   );
