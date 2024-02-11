@@ -34,6 +34,16 @@ export const theme = createTheme({
           color: TG_THEME_COLORS['button-text'],
         },
       },
+      variants: [
+        {
+          props: {
+            variant: 'text',
+          },
+          style: {
+            color: TG_THEME_COLORS['text'],
+          },
+        },
+      ],
     },
     MuiTextField: {
       defaultProps: {
